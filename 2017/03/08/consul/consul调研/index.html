@@ -1,0 +1,953 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="consul,微服务,注册发现," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="场景 我的服务相互依赖，而且数量较多，需要有合适的机制解决繁杂的配置文件配置问题 我要架设微服务架构，需要一个服务注册中心，需要一个较为完善的服务发现的机制  上面是我找到consul的原因 什么是consul官网的一句话总结里面有这么几个关键词:   服务发现 简化配置 分布式(去中心化) 高可用  多数据中心  在github上，consul给出了这么几个关键特性：  服务发现 健康检查 键值">
+<meta name="keywords" content="consul,微服务,注册发现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="consul调研">
+<meta property="og:url" content="http://cocacola183.github.io/2017/03/08/consul/consul调研/index.html">
+<meta property="og:site_name" content="Kivi">
+<meta property="og:description" content="场景 我的服务相互依赖，而且数量较多，需要有合适的机制解决繁杂的配置文件配置问题 我要架设微服务架构，需要一个服务注册中心，需要一个较为完善的服务发现的机制  上面是我找到consul的原因 什么是consul官网的一句话总结里面有这么几个关键词:   服务发现 简化配置 分布式(去中心化) 高可用  多数据中心  在github上，consul给出了这么几个关键特性：  服务发现 健康检查 键值">
+<meta property="og:image" content="http://7xj5yf.com1.z0.glb.clouddn.com//images/20170308-01.png?imageView2/2/w/1000">
+<meta property="og:updated_time" content="2017-07-02T02:29:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="consul调研">
+<meta name="twitter:description" content="场景 我的服务相互依赖，而且数量较多，需要有合适的机制解决繁杂的配置文件配置问题 我要架设微服务架构，需要一个服务注册中心，需要一个较为完善的服务发现的机制  上面是我找到consul的原因 什么是consul官网的一句话总结里面有这么几个关键词:   服务发现 简化配置 分布式(去中心化) 高可用  多数据中心  在github上，consul给出了这么几个关键特性：  服务发现 健康检查 键值">
+<meta name="twitter:image" content="http://7xj5yf.com1.z0.glb.clouddn.com//images/20170308-01.png?imageView2/2/w/1000">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cocacola183.github.io/2017/03/08/consul/consul调研/"/>
+
+
+
+
+
+  <title> consul调研 | Kivi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a26f6bf6f853fe7eb93344a17e0c094";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kivi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">没有什么远大理想，只是永远都不会满足而已</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cocacola183.github.io/2017/03/08/consul/consul调研/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kivi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kivi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                consul调研
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T21:35:04+08:00">
+                2017-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/consul/" itemprop="url" rel="index">
+                    <span itemprop="name">consul</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/08/consul/consul调研/" class="leancloud_visitors" data-flag-title="consul调研">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><ul>
+<li>我的服务相互依赖，而且数量较多，需要有合适的机制解决繁杂的配置文件配置问题</li>
+<li>我要架设微服务架构，需要一个服务注册中心，需要一个较为完善的服务发现的机制</li>
+</ul>
+<p>上面是我找到consul的原因</p>
+<h2 id="什么是consul"><a href="#什么是consul" class="headerlink" title="什么是consul"></a>什么是consul</h2><p><a href="https://www.consul.io/" target="_blank" rel="external">官网</a>的一句话总结里面有这么几个关键词: </p>
+<ul>
+<li>服务发现</li>
+<li>简化配置</li>
+<li>分布式(去中心化)</li>
+<li>高可用 </li>
+<li>多数据中心</li>
+</ul>
+<p>在<a href="https://github.com/hashicorp/consul" target="_blank" rel="external">github</a>上，consul给出了这么几个关键特性：</p>
+<ul>
+<li>服务发现</li>
+<li>健康检查</li>
+<li>键值存储</li>
+<li>多数据中心支持</li>
+</ul>
+<p>以上便是我对cosnul的初步印象</p>
+<a id="more"></a>
+<h2 id="consul的架构"><a href="#consul的架构" class="headerlink" title="consul的架构"></a>consul的架构</h2><img title="consul架构图" alt="consul架构图" src="http://7xj5yf.com1.z0.glb.clouddn.com//images/20170308-01.png?imageView2/2/w/1000">
+<p>这里简单说明consul几个方言：<br><strong>Agent</strong>：Consul集群中长时间运行的守护进程，以consul agent 命令开始启动. 在客户端和服务端模式下都可以运行，可以运行DNS或者HTTP接口， 它的主要作用是运行时检查和保持服务同步<br><strong>Client</strong>: 客户端, 无状态, 消耗极少的资源，将接口请求转发给局域网内的服务端集群<br><strong>server</strong>: 服务端, 保存配置信息, 高可用集群, 在局域网内与本地客户端通讯, 通过广域网与其他数据中心通讯. 每个数据中心的 server 数量推荐为 3 个或是 5 个<br><strong>Datacenter</strong>: 数据中心，多数据中心联合工作保证数据存储安全快捷<br><strong>Consensus</strong>：一致性协议使用的是Raft Protocol<br><strong>Gossip</strong>: consul是基于<a href="https://www.serf.io/" target="_blank" rel="external">serf</a>构建的, serf使用<a href="https://en.wikipedia.org/wiki/Gossip_protocol" target="_blank" rel="external">gossip protocol</a>来实现各种特性<br><strong>LAN Gossip</strong>: 包含了同一局域网所有内节点的gossip池<br><strong>WAN Gossip</strong>: 广域网中由Server组成的gossip池<br><strong>RPC</strong>： 远程过程调用</p>
+<p>对于consul的详细理解，可以参考<a href="https://www.consul.io/docs/internals/architecture.html" target="_blank" rel="external">官方文档</a></p>
+<p>总结为以下几点：</p>
+<ul>
+<li>如图所示，consul支持多数据中心</li>
+<li>每个数据中心由server和client组成。server推荐由3～5个节点组成(基于可用性和性能的平衡),节点越多, 数据恢复一致周期越长，但是节点无数量限制, 横向拓展非常方便</li>
+<li>所有节点基于gossip protocol加入集群。即一个数据中心就是一个gossip池，这么做有以下几个目的<ul>
+<li>不需要给clent配置server地址，自动化服务发现（关于这点我还比较疑惑）</li>
+<li>所有节点能做到相互故障感知，比传统的心跳机制更容易拓展到更大集群规模</li>
+<li>gossip protocol做为一个消息层传递重大消息，例如lead election</li>
+</ul>
+</li>
+<li>server节点也是wan_goosip池的成员，wan_gossip与lan_gossip的区别是wan_gossip做了高网络延迟的相关优化。wan_gossip的目的是让多个数据中心互相感知，同时添加一个新的数据中心就像添加一个节点到wan_gossip池中一样简单。也因为所有server再同一gossip池中，所以能轻松实现跨数据中心请求</li>
+</ul>
+<h2 id="与同类型的产品相比较，consul有哪些优势"><a href="#与同类型的产品相比较，consul有哪些优势" class="headerlink" title="与同类型的产品相比较，consul有哪些优势"></a>与同类型的产品相比较，consul有哪些优势</h2><h3 id="同类工具有以下这些"><a href="#同类工具有以下这些" class="headerlink" title="同类工具有以下这些"></a>同类工具有以下这些</h3><ul>
+<li><a href="https://github.com/coreos/etcd" target="_blank" rel="external">etcd</a> Distributed reliable key-value store for the most critical data of a distributed system</li>
+<li><a href="https://zookeeper.apache.org/" target="_blank" rel="external">zookeeper</a> Apache ZooKeeper is an effort to develop and maintain an open-source server which enables highly reliable distributed coordination.</li>
+<li><a href="https://github.com/ha/doozerd" target="_blank" rel="external">Doozerd</a> A consistent distributed data store.</li>
+</ul>
+<h3 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h3><ul>
+<li>架构类似，都有服务节点，而这些服务节点的操作都要求达到节点的仲裁数（通常，节点的仲裁数遵循的是简单多数原则</li>
+<li>强一致性，用于构建复杂的分布式系统</li>
+</ul>
+<h3 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h3><ul>
+<li>zooKeeper, etcd只提供一个原始的K/V值存储，并要求开发人员构建他们自己的系统来提供服务发现功能，cosnul提供服务发现功能</li>
+<li>consul基于gossip的健康检查机制脱颖而出。ZooKeeper健康检查机制需要胖客户端，增加了工作量。etcd无健康检查功能</li>
+<li>consul使用Raft算法来保证一致性, 比复杂的Paxos算法更直接. 相比较而言, zookeeper采用的是 Paxos, 而 etcd 使用的则是 Raft.</li>
+<li>支持多数据中心，内外网的服务采用不同的端口进行监听。多数据中心集群可以避免单数据中心的单点故障, 而其部署则需要考虑网络延迟, 分片等情况等. zookeeper和etcd 均不提供多数据中心功能的支持.</li>
+<li>支持 http 和 dns 协议接口. zookeeper的集成较为复杂, etcd 只支持 http 协议.</li>
+<li>官方提供web管理界面, etcd 无此功能</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>consul和其他的工具来比，一方面提供了完整的工具集让降低了使用的工作量成本，另一方面在作为一个服务注册发现中心，自身有相对完善的机制，确实是中小型团队的推荐方案。</p>
+<h3 id="更多关于工具的对比，参考下面"><a href="#更多关于工具的对比，参考下面" class="headerlink" title="更多关于工具的对比，参考下面"></a>更多关于工具的对比，参考下面</h3><p><a href="https://www.consul.io/intro/vs/zookeeper.html" target="_blank" rel="external">官网链接，主要看这个就够了</a><br><a href="https://my.oschina.net/u/2362111/blog/714503" target="_blank" rel="external">服务发现 zookeeper ,consul ,etcd 的一些比较(文中表格有参考价值)</a></p>
+<h2 id="工具成熟程度"><a href="#工具成熟程度" class="headerlink" title="工具成熟程度"></a>工具成熟程度</h2><h3 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h3><h4 id="技术支撑"><a href="#技术支撑" class="headerlink" title="技术支撑"></a>技术支撑</h4><p><a href="https://www.hashicorp.com/?_ga=1.3867120.1947061243.1483414531" target="_blank" rel="external">HashiCorp</a>是一家企业级服务公司，公司致力于革命性的数据中心管理技术研发，让开发者通过一个工具就来构建完整的开发环境，提高开发效率。<a href="https://github.com/hashicorp" target="_blank" rel="external">这里</a>是他们的开源项目列表。<br>consul的技术支撑来自这里，目前github star已拥有8600+，算是比较优质的项目了</p>
+<h4 id="国内使用情况"><a href="#国内使用情况" class="headerlink" title="国内使用情况"></a>国内使用情况</h4><p>consul是新东西，加上真的贯彻微服务架构的公可能没那么多，感觉好像没有太多人用，但是随便一搜总能搜到一些公司的技术分享用到了consul,比如<a href="http://www.infoq.com/cn/articles/service-discovery-at-stripe" target="_blank" rel="external">这个</a>，还有<a href="http://www.weidu8.net/wx/1004147150862858" target="_blank" rel="external">这个（挺潮的，ansible,consul,docker）</a>等等，大家都开始陆陆续续的踩坑了。现在看来也不至于新到没人用</p>
+<h3 id="LTS"><a href="#LTS" class="headerlink" title="LTS"></a>LTS</h3><p>目前consul还处于0.x的状态，更新的速度并不快，简单来讲，这个工具还处于试水阶段。虽然是0.7（目前是0.7.5），但是发布过30个版本了。所以也不算是第一批入坑的人，这里作为一个已经使用过consul的“司机”，我觉得consul还是很好用的，目前没遇到过什么根本无法解决，或者是需要等更新才能解决的难题，可能我使用的功能相对简单，但是如果根据28原则来看，这些功能真的够了</p>
+<p>目前没有看到相关的LTS计划，包括版本升级之类的，真的要升级，还是要多看release文档，多测试。</p>
+<h3 id="社区"><a href="#社区" class="headerlink" title="社区"></a>社区</h3><h4 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h4><p>这是目前我觉得最蛋疼的事情了，少有优质中文setup文档，这也是我刚开始接触consul的时候，感觉最痛苦的地方，下一篇会写consul入门文章。<br>学习的整体思路还是先看官网，注意消化理解，然后setup，遇到问题stackoverflow，最后提issue，这是目前我学习任何一门新的开源工具的实(tao)践(lu)。</p>
+<h4 id="社区-1"><a href="#社区-1" class="headerlink" title="社区"></a>社区</h4><p>没有中文社区，可能能在go中文社区，docker中文社区等周边社区看到consul的影子，stackoverflow find by tags: consul 357, consul-template 31，作为新生一代的服务注册发现工具，社区方面还有待提高</p>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><p>社区方面可能是consul目前看来的缺点吧</p>
+<h2 id="投入回报比"><a href="#投入回报比" class="headerlink" title="投入回报比"></a>投入回报比</h2><h3 id="使用成本"><a href="#使用成本" class="headerlink" title="使用成本"></a>使用成本</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>consul的安装很简单，下载然后解压就行了一个可执行文件搞定一切，<a href="https://www.consul.io/intro/getting-started/install.html" target="_blank" rel="external">安装文档</a></p>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>配置相对于安装要复杂一些，<a href="https://www.consul.io/docs/agent/options.html#reloadable-configuration" target="_blank" rel="external">这里</a>是完整的配置选项。个人觉得搭建consul集群可能首面临的问题是要规划一个集群环境，当然这个通过docker做也比较方便，关于配置，在下一篇文章中会重点描述</p>
+<h3 id="学习成本"><a href="#学习成本" class="headerlink" title="学习成本"></a>学习成本</h3><p>consul的使用是比较简单的，就是简单的http，dns等API调用，非常方便，简单易用。</p>
+<h3 id="长期-短期利益衡量"><a href="#长期-短期利益衡量" class="headerlink" title="长期/短期利益衡量"></a>长期/短期利益衡量</h3><p>这个主要就是看具体情景了，如果不是特别需要用到其他的服务注册发现工具，我觉得consul是一个不错的低成本选择。所以从短期利益来看，用这个很快，基本的功能很全，能分分钟造出来火箭；从长远角度看目前确实个人评估能力有限，暂时考虑不到。</p>
+<h3 id="对当前工作流的影响"><a href="#对当前工作流的影响" class="headerlink" title="对当前工作流的影响"></a>对当前工作流的影响</h3><p>这个确实对开发主要影响体现在现在使用网络接口获取配置，跟原来使用配置文件的方式不太一样了。尤其是node程序，举个简单的例子，还是有很多人在用express的时候，启动文件和应用程序配置文件(app.js)没有分开，这样的话想要在启动主程序之前做一些初始化的工作，就得改点东西了，如果用临时的方式处理（把app.js包在初始化配置的会掉函数中），可能没那么优雅</p>
+<h2 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h2><p>以上对比的与consul相关的工具可能就是一个分布式kv系统，而consul提供的是一套fullstack的工具集合。从某种程度来说，consul提供的每一个小的工具，都是一个最佳实践，再有这些小的最佳实践组成一个健全的工具集合，暴露出简单的API给client。如果没有特别的需要必须使用其他工具（例如使用Hadoop的话可能会选择zookeeper），或者是没有那么极客必须要自己去构建一个完善的注册发现系统，consul确实一个非常不错的选择。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/consul/" rel="tag"># consul</a>
+          
+            <a href="/tags/微服务/" rel="tag"># 微服务</a>
+          
+            <a href="/tags/注册发现/" rel="tag"># 注册发现</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/07/mongo/mongodb常见Q-A整理/" rel="next" title="mongodb常见Q&A整理">
+                <i class="fa fa-chevron-left"></i> mongodb常见Q&A整理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/15/consul/consul简单集群搭建/" rel="prev" title="consul简单集群搭建">
+                consul简单集群搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/author.jpg"
+               alt="kivi" />
+          <p class="site-author-name" itemprop="name">kivi</p>
+           
+              <p class="site-description motion-element" itemprop="description">nodejs | server</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是consul"><span class="nav-number">2.</span> <span class="nav-text">什么是consul</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#consul的架构"><span class="nav-number">3.</span> <span class="nav-text">consul的架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与同类型的产品相比较，consul有哪些优势"><span class="nav-number">4.</span> <span class="nav-text">与同类型的产品相比较，consul有哪些优势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同类工具有以下这些"><span class="nav-number">4.1.</span> <span class="nav-text">同类工具有以下这些</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相同点"><span class="nav-number">4.2.</span> <span class="nav-text">相同点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同点"><span class="nav-number">4.3.</span> <span class="nav-text">不同点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更多关于工具的对比，参考下面"><span class="nav-number">4.5.</span> <span class="nav-text">更多关于工具的对比，参考下面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具成熟程度"><span class="nav-number">5.</span> <span class="nav-text">工具成熟程度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技术背景"><span class="nav-number">5.1.</span> <span class="nav-text">技术背景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#技术支撑"><span class="nav-number">5.1.1.</span> <span class="nav-text">技术支撑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#国内使用情况"><span class="nav-number">5.1.2.</span> <span class="nav-text">国内使用情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LTS"><span class="nav-number">5.2.</span> <span class="nav-text">LTS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#社区"><span class="nav-number">5.3.</span> <span class="nav-text">社区</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文档"><span class="nav-number">5.3.1.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#社区-1"><span class="nav-number">5.3.2.</span> <span class="nav-text">社区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结-1"><span class="nav-number">5.3.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#投入回报比"><span class="nav-number">6.</span> <span class="nav-text">投入回报比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用成本"><span class="nav-number">6.1.</span> <span class="nav-text">使用成本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">6.1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置"><span class="nav-number">6.1.2.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习成本"><span class="nav-number">6.2.</span> <span class="nav-text">学习成本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长期-短期利益衡量"><span class="nav-number">6.3.</span> <span class="nav-text">长期/短期利益衡量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对当前工作流的影响"><span class="nav-number">6.4.</span> <span class="nav-text">对当前工作流的影响</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结-2"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kivi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 访客数量<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i> 浏览量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2128103"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("e99ORGgDvGxLUzH8mhKbAKu0-gzGzoHsz", "INsrz00YWhTssAqr5djkdMAS");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

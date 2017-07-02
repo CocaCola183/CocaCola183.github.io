@@ -1,0 +1,921 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mongodb," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="是什么Capped collection（固定大小表）是一种大小为可设定的固定值的集合。支持高性能写入操作和高性能以插入顺序读操作。Capped collection原理类似循环缓冲区，当达到最大限制时，会覆盖最老的数据用以写入新的数据。 有什么特性 大小固定可设定 提供高性能的写入操作，高性能的基于插入顺序的读操作  什么时候需要用下面列举两个常见场景 日志写入在大磁盘容量的系统中，在没有索引的">
+<meta name="keywords" content="mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongodb固定大小表">
+<meta property="og:url" content="http://cocacola183.github.io/2017/05/09/mongo/mongodb固定大小表/index.html">
+<meta property="og:site_name" content="Kivi">
+<meta property="og:description" content="是什么Capped collection（固定大小表）是一种大小为可设定的固定值的集合。支持高性能写入操作和高性能以插入顺序读操作。Capped collection原理类似循环缓冲区，当达到最大限制时，会覆盖最老的数据用以写入新的数据。 有什么特性 大小固定可设定 提供高性能的写入操作，高性能的基于插入顺序的读操作  什么时候需要用下面列举两个常见场景 日志写入在大磁盘容量的系统中，在没有索引的">
+<meta property="og:updated_time" content="2017-07-02T02:33:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongodb固定大小表">
+<meta name="twitter:description" content="是什么Capped collection（固定大小表）是一种大小为可设定的固定值的集合。支持高性能写入操作和高性能以插入顺序读操作。Capped collection原理类似循环缓冲区，当达到最大限制时，会覆盖最老的数据用以写入新的数据。 有什么特性 大小固定可设定 提供高性能的写入操作，高性能的基于插入顺序的读操作  什么时候需要用下面列举两个常见场景 日志写入在大磁盘容量的系统中，在没有索引的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cocacola183.github.io/2017/05/09/mongo/mongodb固定大小表/"/>
+
+
+
+
+
+  <title> mongodb固定大小表 | Kivi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a26f6bf6f853fe7eb93344a17e0c094";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kivi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">没有什么远大理想，只是永远都不会满足而已</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cocacola183.github.io/2017/05/09/mongo/mongodb固定大小表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kivi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kivi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                mongodb固定大小表
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-09T15:59:26+08:00">
+                2017-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/05/09/mongo/mongodb固定大小表/" class="leancloud_visitors" data-flag-title="mongodb固定大小表">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p><code>Capped collection</code>（固定大小表）是一种大小为可设定的固定值的集合。支持高性能写入操作和高性能以插入顺序读操作。<code>Capped collection</code>原理类似循环缓冲区，当达到最大限制时，会覆盖最老的数据用以写入新的数据。</p>
+<h2 id="有什么特性"><a href="#有什么特性" class="headerlink" title="有什么特性"></a>有什么特性</h2><ul>
+<li>大小固定可设定</li>
+<li>提供高性能的写入操作，高性能的基于插入顺序的读操作</li>
+</ul>
+<h2 id="什么时候需要用"><a href="#什么时候需要用" class="headerlink" title="什么时候需要用"></a>什么时候需要用</h2><p>下面列举两个常见场景</p>
+<h3 id="日志写入"><a href="#日志写入" class="headerlink" title="日志写入"></a>日志写入</h3><p>在大磁盘容量的系统中，在没有索引的前提下，以接近写日志文件的速度存储日志到<code>Capped collection</code>中。而且自带先进先出的磁盘空间使用策略</p>
+<h3 id="缓存少量数据"><a href="#缓存少量数据" class="headerlink" title="缓存少量数据"></a>缓存少量数据</h3><p>缓存属于读取压力大，写入压力小的操作，如果不使用<code>Capped collection</code>，你就会面临两种选择</p>
+<ul>
+<li>牺牲写入性能，添加索引</li>
+<li>让这部分数据常驻内存（占用内存空间）</li>
+</ul>
+<a id="more"></a>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="更新操作"><a href="#更新操作" class="headerlink" title="更新操作"></a>更新操作</h3><p>如果固定大小表会有更新操作，请先创建索引避免一次更新操作会扫描整个表</p>
+<p>使用MMAPv1存储引擎的时候，如果有更新操作导致数据增长超过固定大小表的限制，更新将会失败</p>
+<h3 id="使用MMAPv1存储引擎的副本集从节点"><a href="#使用MMAPv1存储引擎的副本集从节点" class="headerlink" title="使用MMAPv1存储引擎的副本集从节点"></a>使用MMAPv1存储引擎的副本集从节点</h3><p>如果主节点将固定大小表的size改小了，从节点也会随之改小</p>
+<p>更新操作如果会让<code>Capped collection</code>超出配置的大小，primary节点会执行成功，secondary节点如果使用的是MMAPv1存储引擎，就会导致出现<code>failing update: objects in a capped ns cannot grow</code>的错误信息<br>为了解决这个问题，可以按照<a href="https://docs.mongodb.com/v3.0/tutorial/backup-with-filesystem-snapshots/" target="_blank" rel="external">这个教程</a>去处理secondary节点。<br>简单来说，方法就是把primary的数据目录复制一遍作为secondary的数据目录</p>
+<h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3><p><code>Capped collection</code>无法删除部分文档，如果要删数据，只能drop掉表，然后新建一个新的<code>Capped collection</code></p>
+<h3 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h3><p><code>Capped collection</code>不能被分片</p>
+<h3 id="Aggregation-out"><a href="#Aggregation-out" class="headerlink" title="Aggregation $out"></a>Aggregation $out</h3><p>聚合操作的$out操作符输出数据不能输出到<code>Capped collection</code></p>
+<h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.createCollection( "log", &#123; capped: true, size: 100000 &#125; ) // size的单位bytes</div></pre></td></tr></table></figure>
+<ul>
+<li>以上两个参数是必要参数</li>
+<li><code>Capped collection</code>实际占用空间大小会略微大于配置的maxsize，因为有一些磁盘空间用于内部开销</li>
+<li>如果size小于4096那么，<code>Capped collection</code>将认为size是4096，如果size大于4096，<code>Capped collection</code>会自动让size整除256</li>
+</ul>
+<p>也可以指定最大的document数量，例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.createCollection(&quot;log&quot;, &#123; capped : true, size : 5242880, max : 5000 &#125; )</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>size是必传参数，size的优先级高于max</p>
+</blockquote>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.cappedCollection.find().sort( &#123; $natural: -1 &#125; )</div></pre></td></tr></table></figure>
+<p>上例是按照文档插入顺序倒排查询</p>
+<h3 id="检查是否是Capped-collection"><a href="#检查是否是Capped-collection" class="headerlink" title="检查是否是Capped collection"></a>检查是否是<code>Capped collection</code></h3><p>db.collection.isCapped()</p>
+<h3 id="将一个非Capped-collection转换为Capped-collection"><a href="#将一个非Capped-collection转换为Capped-collection" class="headerlink" title="将一个非Capped collection转换为Capped collection"></a>将一个非<code>Capped collection</code>转换为<code>Capped collection</code></h3><p>db.runCommand({“convertToCapped”: “mycoll”, size: 100000});</p>
+<blockquote>
+<p><span style="color: red">警告：这个命令会创建一个全局写锁，并且会阻塞其他操作一直到命令结束</span></p>
+<p><span style="color: red">注意：分片集群不支持<code>convertToCapped</code>命令</span></p>
+</blockquote>
+<h3 id="设置自动删除数据的延迟时间"><a href="#设置自动删除数据的延迟时间" class="headerlink" title="设置自动删除数据的延迟时间"></a>设置自动删除数据的延迟时间</h3><p>如果想设置自动删除数据的延迟时间，可以参考mongodb的<a href="https://docs.mongodb.com/v3.0/reference/glossary/#term-ttl" target="_blank" rel="external">TTL索引</a>机制。遗憾的是TTL集合跟<code>Capped collection</code>并不兼容（没搞懂官网提这个搞什么）</p>
+<h3 id="Tailable-Cursor"><a href="#Tailable-Cursor" class="headerlink" title="Tailable Cursor"></a>Tailable Cursor</h3><p><a href="https://docs.mongodb.com/v3.0/reference/glossary/#term-tailable-cursor" target="_blank" rel="external">tailable cursor</a>有点类似Unix命令<code>tail -f</code>，会跟踪文件新写入的内容，使用<code>tailable cursor</code>可以跟踪新插入到<code>Capped collection</code>中的数据</p>
+<h2 id="其他相关概念"><a href="#其他相关概念" class="headerlink" title="其他相关概念"></a>其他相关概念</h2><h3 id="写入顺序"><a href="#写入顺序" class="headerlink" title="写入顺序"></a>写入顺序</h3><p><code>Capped collection</code>会保存数据写入顺序，所以如果返回数据顺序就是数据插入顺序，查询的时候不需要额外的索引去控制，<code>Capped collection</code>会自动以插入顺序返回。这种方式比使用索引有更好的性能</p>
+<h3 id="旧数据的自动清除"><a href="#旧数据的自动清除" class="headerlink" title="旧数据的自动清除"></a>旧数据的自动清除</h3><p><code>Capped collection</code>会自动删除最老的数据，为新来的数据腾出空间，不需要代码控制</p>
+<h3 id="id索引"><a href="#id索引" class="headerlink" title="_id索引"></a>_id索引</h3><p>2.4以及2.4以上的变更<br>固定大小表默认有_id字段，而且会默认在_id字段创建索引</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mongodb/" rel="tag"># mongodb</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/04/mongo/mongodb分片对curd的影响/" rel="next" title="分片对mongo curd的影响(小节)">
+                <i class="fa fa-chevron-left"></i> 分片对mongo curd的影响(小节)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/22/mongo/mongodb常用命令整理/" rel="prev" title="mongodb常用命令整理">
+                mongodb常用命令整理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/author.jpg"
+               alt="kivi" />
+          <p class="site-author-name" itemprop="name">kivi</p>
+           
+              <p class="site-description motion-element" itemprop="description">nodejs | server</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么"><span class="nav-number">1.</span> <span class="nav-text">是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有什么特性"><span class="nav-number">2.</span> <span class="nav-text">有什么特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么时候需要用"><span class="nav-number">3.</span> <span class="nav-text">什么时候需要用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#日志写入"><span class="nav-number">3.1.</span> <span class="nav-text">日志写入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存少量数据"><span class="nav-number">3.2.</span> <span class="nav-text">缓存少量数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新操作"><span class="nav-number">4.1.</span> <span class="nav-text">更新操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用MMAPv1存储引擎的副本集从节点"><span class="nav-number">4.2.</span> <span class="nav-text">使用MMAPv1存储引擎的副本集从节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除操作"><span class="nav-number">4.3.</span> <span class="nav-text">删除操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分片"><span class="nav-number">4.4.</span> <span class="nav-text">分片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Aggregation-out"><span class="nav-number">4.5.</span> <span class="nav-text">Aggregation $out</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用操作"><span class="nav-number">5.</span> <span class="nav-text">常用操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">5.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询"><span class="nav-number">5.2.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查是否是Capped-collection"><span class="nav-number">5.3.</span> <span class="nav-text">检查是否是Capped collection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将一个非Capped-collection转换为Capped-collection"><span class="nav-number">5.4.</span> <span class="nav-text">将一个非Capped collection转换为Capped collection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置自动删除数据的延迟时间"><span class="nav-number">5.5.</span> <span class="nav-text">设置自动删除数据的延迟时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tailable-Cursor"><span class="nav-number">5.6.</span> <span class="nav-text">Tailable Cursor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他相关概念"><span class="nav-number">6.</span> <span class="nav-text">其他相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#写入顺序"><span class="nav-number">6.1.</span> <span class="nav-text">写入顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#旧数据的自动清除"><span class="nav-number">6.2.</span> <span class="nav-text">旧数据的自动清除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#id索引"><span class="nav-number">6.3.</span> <span class="nav-text">_id索引</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kivi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 访客数量<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i> 浏览量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2128103"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("e99ORGgDvGxLUzH8mhKbAKu0-gzGzoHsz", "INsrz00YWhTssAqr5djkdMAS");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

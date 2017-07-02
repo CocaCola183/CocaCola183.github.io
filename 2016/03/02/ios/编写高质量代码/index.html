@@ -1,0 +1,1192 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,read," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="###写在前面自己看完这本书之后做的一点记录，收获还是有的，但是没有封面上吹的那么好，建议还是去看英文版的《Effective Object-C》系列的吧，如果能忍受住英语，还是不要看翻译过的了。 ###让自己习惯Object-C  tip 1  Objective-C为一门动态开发语言   Objective-C是动态语言，C++是静态语言，runtime相当于是运行Objective－C的操作">
+<meta name="keywords" content="iOS,read">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编写高质量代码-改善Objective-C程序的61个建议">
+<meta property="og:url" content="http://cocacola183.github.io/2016/03/02/ios/编写高质量代码/index.html">
+<meta property="og:site_name" content="Kivi">
+<meta property="og:description" content="###写在前面自己看完这本书之后做的一点记录，收获还是有的，但是没有封面上吹的那么好，建议还是去看英文版的《Effective Object-C》系列的吧，如果能忍受住英语，还是不要看翻译过的了。 ###让自己习惯Object-C  tip 1  Objective-C为一门动态开发语言   Objective-C是动态语言，C++是静态语言，runtime相当于是运行Objective－C的操作">
+<meta property="og:image" content="http://7xj5yf.com1.z0.glb.clouddn.com/qrcode_for_gh_62243782e36d_344.jpg">
+<meta property="og:updated_time" content="2017-07-02T02:23:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编写高质量代码-改善Objective-C程序的61个建议">
+<meta name="twitter:description" content="###写在前面自己看完这本书之后做的一点记录，收获还是有的，但是没有封面上吹的那么好，建议还是去看英文版的《Effective Object-C》系列的吧，如果能忍受住英语，还是不要看翻译过的了。 ###让自己习惯Object-C  tip 1  Objective-C为一门动态开发语言   Objective-C是动态语言，C++是静态语言，runtime相当于是运行Objective－C的操作">
+<meta name="twitter:image" content="http://7xj5yf.com1.z0.glb.clouddn.com/qrcode_for_gh_62243782e36d_344.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cocacola183.github.io/2016/03/02/ios/编写高质量代码/"/>
+
+
+
+
+
+  <title> 编写高质量代码-改善Objective-C程序的61个建议 | Kivi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a26f6bf6f853fe7eb93344a17e0c094";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kivi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">没有什么远大理想，只是永远都不会满足而已</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cocacola183.github.io/2016/03/02/ios/编写高质量代码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kivi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kivi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                编写高质量代码-改善Objective-C程序的61个建议
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-02T17:46:59+08:00">
+                2016-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/03/02/ios/编写高质量代码/" class="leancloud_visitors" data-flag-title="编写高质量代码-改善Objective-C程序的61个建议">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>###写在前面<br>自己看完这本书之后做的一点记录，收获还是有的，但是没有封面上吹的那么好，建议还是去看英文版的《Effective Object-C》系列的吧，如果能忍受住英语，还是不要看翻译过的了。</p>
+<p>###让自己习惯Object-C</p>
+<blockquote>
+<p>tip 1  Objective-C为一门动态开发语言</p>
+</blockquote>
+<ul>
+<li>Objective-C是动态语言，C++是静态语言，runtime相当于是运行Objective－C的操作系统</li>
+<li>静态语言的执行效率和安全性要比动态语言高，但是不够简便</li>
+<li>运行时可以处理弱类型，函数存在检查等工作，确保了Object-C的灵活性</li>
+</ul>
+<blockquote>
+<p>tip 2 在头文件中尽量减少其他头文件的引用</p>
+</blockquote>
+<ul>
+<li>尽可能使用<code>@class</code>，<code>@class</code>的使用也要求类名和.h文件名需要保持一致</li>
+<li>在<code>.h</code>文件中使用<code>@class</code>，在<code>.m</code>文件中使用<code>#import</code>可以减少不必要的编译时间，降低类之间的藕合度，还可以避免出现循环引用</li>
+<li>设计类的时候尽量多的使用协议，避免过多的使用<code>#import</code>引入不必要的部分</li>
+<li>如果头文件<code>.h</code>中有多个类的定义，尽量采用模块方式，只针对性引进所需要的类</li>
+</ul>
+<a id="more"></a>
+<blockquote>
+<p>tip 3 尽量使用const，enum来替换预处理#define</p>
+<p>tip 4 优先使用对象字面量语法而非等效方法</p>
+</blockquote>
+<ul>
+<li>举个例子：<code>@[@&quot;string1&quot;, @&quot;string2&quot;]</code></li>
+</ul>
+<blockquote>
+<p>tip 5 处理隐藏的返回值类型，优先选择实例类型(Instancetype)而非id</p>
+<p>tip 6 尽量使用模块方式与多类建立复合关系</p>
+</blockquote>
+<ul>
+<li><code>#include</code>和<code>#import</code>其根本就是简单的复制粘贴，将目标<code>.h</code>文件中的内容一字不落的复制到当前文件中，后者可以避免多次的重复引用</li>
+<li>以预编译头文件的方式，虽然可以缩短编译时间，但是不易维护</li>
+<li>模块功能，其引用不仅仅表现在编译的速度加快，同时在链接框架等方面也非常好用</li>
+<li>启动模块功能后，编译器会隐式地把所有的<code>#import</code>转换为<code>@import</code></li>
+</ul>
+<blockquote>
+<p>tip 7 明解Object-C++中的有所为而有所不为</p>
+<p>tip 8 C语言与Object-C语言的关系时充分而非必要条件</p>
+<p>tip 9 高度警惕空指针和野指针的袭击</p>
+</blockquote>
+<ul>
+<li>没有存储任何内存地址的指针就称为空指针(NULL指针)</li>
+<li>野指针不是NULL指针，而是指向垃圾内存（不可用内存）的指针</li>
+</ul>
+<blockquote>
+<p>tip 10 在64位环境下尽可能利用标记指针</p>
+<p>tip 11 谨记兼容32位和64位环境下代码编写注意事项</p>
+<p>tip 12 记清楚常量字符串和一般字符串的区别</p>
+</blockquote>
+<ul>
+<li>由于编译器优化，相同内容的常量字符串的地址值是完全相同的</li>
+<li>如果使用常量字符串来初始化一个字符串，那么这个字符串也是相同的常量</li>
+<li>对于常量字符串永远不要release</li>
+</ul>
+<blockquote>
+<p>tip 13 在访问集合时要优先考虑使用快速枚举(for…in…)</p>
+</blockquote>
+<ul>
+<li>使用快速枚举，要尽可能使用枚举新写法</li>
+<li>和直接使用NSEnumerator相比，使用快速枚举可以更有效率</li>
+<li>使用快速枚举(for…in…)更安全，因为如果在枚举过程中，枚举会监控枚举对象的变化，如果发生变化，则会抛出一个异常</li>
+<li>多个枚举可以同时进行，枚举对象在循环中是不允许被修改的，可以使用break和continue来略过当次循环而进行到下一元素</li>
+</ul>
+<blockquote>
+<p>tip 14 有序对象适宜存于数组，无序对象适宜存于集合(Set)</p>
+<p>tip 15 存在公共键时，字典是在对象之间传递信息的最佳方式</p>
+<p>tip 16 明智而谨慎地使用BOOL类型</p>
+</blockquote>
+<ul>
+<li>BOOL在OC中被定义为<code>unsigned char</code>，这意味着它不仅仅有<code>YES</code>(1)和<code>NO</code>(0)两个值</li>
+<li>整形转为<code>BOOL</code>类型，使用三元操作符，保证返回<code>YES</code>和<code>NO</code></li>
+<li>整形转换为<code>BOOL</code>的时候，要避免直接和YES比较</li>
+<li>BOOL值进行逻辑运算(&amp;&amp; || !)不仅有效，而且可以保证返回值安全的转换为<code>BOOL</code>类型</li>
+</ul>
+<p>###内存管理</p>
+<blockquote>
+<p>tip 17 理解内存和OC内存管理规则</p>
+</blockquote>
+<ul>
+<li>内存是内存控制器和CPU之间的桥梁</li>
+<li>OC内存管理模式基于对象的“所有权”上，任何对象都会被一个或者是多个使用者使用，只有当对象没有使用者的时候，系统才会自动销毁该对象</li>
+<li>对象所有权策略是基于引用计数实现的，每一个对象有一个retain count变量，当retain count减少到0时，对象被销毁</li>
+</ul>
+<blockquote>
+<p>tip 18 内存管理讲究“好借好还，再借不难”</p>
+<p>tip 19 区别开alloc init retain release dealloc之间的差异</p>
+</blockquote>
+<ul>
+<li>alloc创建变量，dealloc释放变量，retain是引用计数＋1，release是引用计数－1</li>
+</ul>
+<blockquote>
+<p>tip 20 优先使用存取方法管理内存</p>
+<p>tip 21 对象销毁或者被移除一定考虑所有权的释放</p>
+</blockquote>
+<ul>
+<li>释放对象前，一定要先释放对象的所有权</li>
+<li>从集合移除对象，集合要释放对被移除对象的所有权</li>
+<li>防止出现父对象被释放前而子对象没有被释放</li>
+<li>在OC中，是否负责对象的释放，要看如何获取的对象，即要看对象的所有权策略</li>
+</ul>
+<blockquote>
+<p>tip 22 谨慎使用dealloc</p>
+</blockquote>
+<p>###设计与声明</p>
+<blockquote>
+<p>tip 23 编写代码要遵守CocoaAPI约定</p>
+<p>tip 24 实例变量</p>
+</blockquote>
+<ul>
+<li>只加入一些绝对必要的实例变量，负责容易造成大的开销</li>
+<li>永远不要将变量设置为<code>@public</code>，这违反了封装的原则</li>
+<li>确保类基本属性对应的实例变量有存取方法</li>
+</ul>
+<blockquote>
+<p>tip 25 透彻了解属性俄里里外外</p>
+</blockquote>
+<ul>
+<li>属性的动态性定义，需要用关键字<code>@dynamic</code>，属性动态性是相对于<code>@synthesis</code>而言的，不是有编译器自动生成setter和getter，而是在运行时添加的setter和getter</li>
+<li>属性采用动态性，与采用静态性相比，可简化代码的编写，便于代码的管理</li>
+<li>利用类拓展，可实现对属性的“篡改”</li>
+</ul>
+<blockquote>
+<p>tip 26 存取方法是良好的类接口必要的组成部分</p>
+<p>tip 27 明晓类公共领域的方法都是虚方法</p>
+</blockquote>
+<ul>
+<li>虚方法是多态的基础，实现机制时运行系统将根据对象的类型自动选择适当的具体实现运行，没有定位虚方法的方法不具备次性质</li>
+<li>OC中所有的方法都是虚方法</li>
+<li>实现纯虚方法，可以用正式协议来实现，虚方法的不足是不知道哪些方法被重定义了，而正式协议可以保证协议中的方法都被实现</li>
+</ul>
+<blockquote>
+<p>tip 28 初始化还是解码取决于是否支持归档和解档</p>
+</blockquote>
+<ul>
+<li>类的对象支持归档和解档，该类必须遵循NSCoding协议，必须实现对对象进行编码(<code>encodeWithCoder</code>)和解档(<code>initWithCoder</code>)的方法</li>
+<li>类的初始化方法和<code>initWithCoder</code>在角色上的并行性存在例外</li>
+</ul>
+<blockquote>
+<p>tip 29 利用键-值机制访问类的私有成员变量的方法</p>
+</blockquote>
+<ul>
+<li>KVC(key-value coding    键值编码)</li>
+<li>KVO(key-value Observing 键值观察)</li>
+<li>KVB(key-value binding     键值绑定)</li>
+</ul>
+<blockquote>
+<p>tip 30 浅复制适宜指针 深复制适宜数据  </p>
+</blockquote>
+<p>浅复制：将原始对象的指针复制到副本中，原对象引用计数＋1<br>深复制：复制指针所引用的数据，并将其赋给副本的实例变量  </p>
+<blockquote>
+<p>tip 31 明智而谨慎的使用NSCopying </p>
+<p>tip 32 使用协议来实现匿名对象的提供</p>
+</blockquote>
+<p>###实现</p>
+<blockquote>
+<p>tip 33 使用类别（catagory）把类的实现拆分成不同的文件</p>
+</blockquote>
+<ul>
+<li>类别的方法具有最高的优先级</li>
+</ul>
+<blockquote>
+<p>tip 34 明智地使用内省（instrospection）    </p>
+</blockquote>
+<p>主要就是说明下面几个函数的重要  </p>
+<ul>
+<li>class</li>
+<li>superclass</li>
+<li>isKindOfClass</li>
+<li>respondsToSelector（这个很有用，常用判断delegate的某个方法是否已经实现）</li>
+<li>conformsToProtocol</li>
+<li>hash&amp;isEqual<ul>
+<li>实现hash方法必须返回一个整数</li>
+<li>isEqual就是判断两个对象的hash是否相等</li>
+<li>NSObject isEqual只是简单地检查指针是否相等</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>tip 35 尽量使用不可变对象，而不是可辨对象</p>
+</blockquote>
+<ul>
+<li>尽量不要把可变对象存储到集合对象中，否走容易导致存储的可变对象被破坏或变成无效</li>
+<li>可变对象在开销上比不可辨对象大，因为可变对象必须动态管理一个可变的辅助存储</li>
+<li>如果不确定对象是否可变，则把它当成不可变处理（保证程序的安全）</li>
+</ul>
+<blockquote>
+<p>tip 36 利用复合能巧妙的将两个类或者对象融合</p>
+</blockquote>
+<ul>
+<li>在面向对象编程中，类与类，对象于对象之间的关系，一个是继承，一个是复合</li>
+<li>复合是通过在类中声明一个指向另外一个类对象的指针作为实例变量，从而将这两个类复合</li>
+<li>OC中所有对象之间的交互都是通过指针实现的</li>
+</ul>
+<blockquote>
+<p>tip 37 使用类拓展来隐藏实现的细节</p>
+</blockquote>
+<ul>
+<li><p>类拓展（extension）语法如下  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@interface className ()  </div><div class="line">@end</div></pre></td></tr></table></figure>
+</li>
+<li><p>类拓展从某种程度来说可以称之为匿名类别</p>
+</li>
+<li>利用类拓展来隐藏私有信息</li>
+<li>可以在单独的头文件中声明类拓展，然后再需要用到的源文件中进行引入</li>
+</ul>
+<blockquote>
+<p>tip 38 内联块中尽量少使用self，可能回形成循环引用</p>
+</blockquote>
+<ul>
+<li><p>内联块中能直接引用self，但是要注意避免导致循环引用</p>
+<ul>
+<li><p>独立的block  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">void (^independentBlockObject)(void) = ^(void)&#123;  </div><div class="line">    NSInteger localInteger = 10;  </div><div class="line">    NSLog(@&quot;local integer = %ld&quot;,(long)localInteger);  </div><div class="line">    localInteger = 20;  </div><div class="line">    NSLog(@&quot;local integer = %ld&quot;,(long)localInteger);  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>内联的block</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//内联Block  </div><div class="line">- (void)simpleMethod  </div><div class="line">&#123;  </div><div class="line">    NSUInteger outsideVariable = 10;  </div><div class="line">    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:@&quot;obj1&quot;, @&quot;obj2&quot;, nil];  </div><div class="line">    [array sortUsingComparator:^NSComparisonResult(id obj1, id obj2)&#123;  </div><div class="line">        NSInteger insideVariable = 20;  </div><div class="line">        NSLog(@&quot;Outside variable = %lu&quot;, (unsigned long)outsideVariable); //在这个Block里不能使outsideVariable的值变化，如果要改变outsideVariable，可以在定义outsideVariable时加上__block存储类的前缀  </div><div class="line">        NSLog(@&quot;Inside variable = %lu&quot;, (unsigned long)insideVariable);  </div><div class="line">        NSLog(@&quot;self = %@&quot;, self);  </div><div class="line">        return NSOrderedSame;  </div><div class="line">    &#125;];  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>避免由于在内联block中直接食用self导致的的循环引用，较好的方式，是用<code>strong-weak-dance</code>来解决</p>
+</li>
+<li>在非内敛块中不能直接使用self，只能通过将self当成参数传递到块中才能使用，并且此时的self只能通过setter和getter方法访问属性，不能使用句点式语法</li>
+</ul>
+<blockquote>
+<p>39 通过类别把方法添加到现有的类</p>
+<p>40 通过强弱引用来管理对象的所有权</p>
+</blockquote>
+<ul>
+<li><code>__weak</code>对面是<code>__strong</code>，<code>__strong</code>是默认的</li>
+<li>父对象应该强引用子对象，子变量应该弱引用父对象</li>
+<li>只要该变量是在范围内，变量就会保持对对象的强引用，或者至它被重新分配给另外一个对象或nil</li>
+<li>对一些不支持弱引用的类，可以通过<code>_unsafe_unretained</code>引用来暗渡陈仓</li>
+<li>使用弱引用来避免循环retain</li>
+</ul>
+<p>###继承与面向对象设计</p>
+<blockquote>
+<p>tip 41 明确isa在继承上的作用</p>
+</blockquote>
+<ul>
+<li>isa<ul>
+<li>Object-C对类对象与实例对象中的 isa 所指向的类结构作了不同的命名：类对象中的 isa 指向类结构被称作 metaclass，metaclass 存储类的static类成员变量与static类成员方法（+开头的方法）；实例对象中的 isa 指向类结构称作 class（普通的），class 结构存储类的普通成员变量与普通成员方法（-开头的方法）。</li>
+</ul>
+</li>
+<li>实例对象：类实例画得到的对象</li>
+<li>类对象，在objc中，类本身也是对象，称为类对象</li>
+</ul>
+<blockquote>
+<p>tip 42 使用类别和协议实现类似多重继承的机制</p>
+</blockquote>
+<ul>
+<li>类别可以实现类的相关方法的模块化</li>
+<li>类别可以重载原始类的方法，但是不建议这么做</li>
+<li>类别的实现文件中不一定要全部实现生命的方法</li>
+<li>协议就是一系列不属于任何类的方法表</li>
+</ul>
+<blockquote>
+<p>tip 43 类别和类拓展是类继承的延续性拓展</p>
+</blockquote>
+<ul>
+<li>类别是为类增加外部的方法</li>
+<li>类拓展用做类的内部拓展</li>
+</ul>
+<blockquote>
+<p>tip 44 继承基类的实现行为勿忘调用super</p>
+</blockquote>
+<ul>
+<li>根据意图（补充或者是覆盖基类的方法）来决定super的使用</li>
+</ul>
+<p>###设计模式与cocoa编程</p>
+<blockquote>
+<p>tip 45 设计模式是特定环境下的特定问题的解决方案</p>
+</blockquote>
+<ul>
+<li>设计模式是特定环境下特定问题的解决方案</li>
+<li>设计模式是某种特定设计的模板或指导原则</li>
+<li>在某种意义上，具体设计是设计模式的一个实例化</li>
+</ul>
+<blockquote>
+<p>tip 46 MVC模式是一种复合或聚合模式</p>
+<p>tip 47 对象建模在数据库中也广泛使用</p>
+<p>tip 48 类簇可简化框架的公开架构而又不减少功能的丰富性</p>
+</blockquote>
+<ul>
+<li>类簇基于抽象工厂设计模式</li>
+<li>类簇可以用于隐藏实现的详细细节，为调用着提供一个简单的接口</li>
+<li>类簇也可以有多个基类</li>
+</ul>
+<blockquote>
+<p>tip 49 委托用于界面控制，数据源用于数据控制</p>
+</blockquote>
+<ul>
+<li>代理是一种对象，当向外委托任务的对象遇到程序中的事件时，它的委托可以代表它对事件进行处理，或者和它进行协调</li>
+<li>代理使一个对象有可能在没有集成的情况下改变另一个对象的行为</li>
+<li>数据源很像代理，不同的是代理处理的是界面的的逻辑，而数据源处理的是数据的逻辑</li>
+</ul>
+<p>###定制init和dealloc</p>
+<blockquote>
+<p>tip 50 了解对象的alloc和init</p>
+</blockquote>
+<ul>
+<li>alloc方法使用应用程序默认的虚存区，区是一个按页对齐的内存区域，用于存放应用程序分配的对象和数据</li>
+<li>alloc分配过程不仅进行对象内存的分配，还初始化对象两个非常小而非常重要的属性</li>
+<li>子类可以不采用带参数的初始化方法，而是实现一个简单的init方法，并在初始化后马上使用set存取方法，将对象设置为用用的初始状态</li>
+<li>工厂方法则可以避免为可能没有用的对象盲目分配内存</li>
+</ul>
+<blockquote>
+<p>tip 51 直接访问实例变量的init方法</p>
+<p>tip 52 初始化方法必须以init开头</p>
+<p>tip 53 从init方法得到的对象可能不是想要的</p>
+</blockquote>
+<ul>
+<li>init方法得到的对象可能不是正在被初始化的对象（单例）</li>
+<li>init方法并不是一定能执行其他对象请求的初始化（出现错误）</li>
+<li>在创建对象时，通常应该子处理之前检查返回值是否为nil</li>
+<li>一旦对象被初始化了，就不应该再进行初始化，否则容易产生异常</li>
+</ul>
+<blockquote>
+<p>tip 54 实现init…方法的唯一性或指定性并非不可能</p>
+</blockquote>
+<ul>
+<li>总是先调用基类的方法</li>
+<li>检查基类返回的对象</li>
+<li>在初始化实例变量时，如果他们是其他对象的引用，则在必要时进行保留和复制</li>
+<li>将实例变量设置为正当的初始值之后，就返回self，除了以下情况<ul>
+<li>需要返回一个代替对象，此时，需要先释放新分配的对象</li>
+<li>某些问题导致不能成功初始化，</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>tip 55 init…方法有轻重级别之分</p>
+</blockquote>
+<p>###写在后面<br>如果你觉得我写的不错，欢迎关注我的微信公众号</p>
+<div style="text-align: center"><br><img src="http://7xj5yf.com1.z0.glb.clouddn.com/qrcode_for_gh_62243782e36d_344.jpg" alt="微信公众号"><br></div>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/read/" rel="tag"># read</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/26/read/和时间做朋友/" rel="next" title="和时间做朋友">
+                <i class="fa fa-chevron-left"></i> 和时间做朋友
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/03/ios/iOS基础知识总结/" rel="prev" title="iOS基础知识总结">
+                iOS基础知识总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/author.jpg"
+               alt="kivi" />
+          <p class="site-author-name" itemprop="name">kivi</p>
+           
+              <p class="site-description motion-element" itemprop="description">nodejs | server</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kivi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 访客数量<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i> 浏览量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2128103"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("e99ORGgDvGxLUzH8mhKbAKu0-gzGzoHsz", "INsrz00YWhTssAqr5djkdMAS");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,953 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ansible,devops,automation,sre," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="自动化运维工具把运维人员常做的大量的重复的操作，通过一个工具很方便的去做，而运维人员只需要为这种工具提供必不可少的配置。这种工具就是自动化运维工具。（完全是个人理解） 什么是ansibleansbile是一个自动化运维工具，它可以帮助部署应用，管理系统，简化操作，构建devops基础设施。 上面是官方的解释，不够具体，通过两周的使用，我自己的感觉最能发挥ansible价值的场景（任务），满足这样的">
+<meta name="keywords" content="ansible,devops,automation,sre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ansible调研">
+<meta property="og:url" content="http://cocacola183.github.io/2017/02/21/ansible/ansible调研/index.html">
+<meta property="og:site_name" content="Kivi">
+<meta property="og:description" content="自动化运维工具把运维人员常做的大量的重复的操作，通过一个工具很方便的去做，而运维人员只需要为这种工具提供必不可少的配置。这种工具就是自动化运维工具。（完全是个人理解） 什么是ansibleansbile是一个自动化运维工具，它可以帮助部署应用，管理系统，简化操作，构建devops基础设施。 上面是官方的解释，不够具体，通过两周的使用，我自己的感觉最能发挥ansible价值的场景（任务），满足这样的">
+<meta property="og:image" content="http://7xj5yf.com1.z0.glb.clouddn.com//images/20170223-02.png?imageView2/2/w/1000">
+<meta property="og:image" content="http://7xj5yf.com1.z0.glb.clouddn.com//images/20170223-01.png?imageView2/2/w/1000">
+<meta property="og:updated_time" content="2017-07-02T02:28:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ansible调研">
+<meta name="twitter:description" content="自动化运维工具把运维人员常做的大量的重复的操作，通过一个工具很方便的去做，而运维人员只需要为这种工具提供必不可少的配置。这种工具就是自动化运维工具。（完全是个人理解） 什么是ansibleansbile是一个自动化运维工具，它可以帮助部署应用，管理系统，简化操作，构建devops基础设施。 上面是官方的解释，不够具体，通过两周的使用，我自己的感觉最能发挥ansible价值的场景（任务），满足这样的">
+<meta name="twitter:image" content="http://7xj5yf.com1.z0.glb.clouddn.com//images/20170223-02.png?imageView2/2/w/1000">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cocacola183.github.io/2017/02/21/ansible/ansible调研/"/>
+
+
+
+
+
+  <title> ansible调研 | Kivi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a26f6bf6f853fe7eb93344a17e0c094";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kivi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">没有什么远大理想，只是永远都不会满足而已</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cocacola183.github.io/2017/02/21/ansible/ansible调研/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kivi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kivi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ansible调研
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-21T07:57:33+08:00">
+                2017-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Automation/" itemprop="url" rel="index">
+                    <span itemprop="name">Automation</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/02/21/ansible/ansible调研/" class="leancloud_visitors" data-flag-title="ansible调研">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="自动化运维工具"><a href="#自动化运维工具" class="headerlink" title="自动化运维工具"></a>自动化运维工具</h2><p>把运维人员常做的大量的重复的操作，通过一个工具很方便的去做，而运维人员只需要为这种工具提供必不可少的配置。这种工具就是自动化运维工具。（完全是个人理解）</p>
+<h2 id="什么是ansible"><a href="#什么是ansible" class="headerlink" title="什么是ansible"></a>什么是ansible</h2><p>ansbile是一个自动化运维工具，它可以帮助部署应用，管理系统，简化操作，构建devops基础设施。</p>
+<p>上面是官方的解释，不够具体，通过两周的使用，我自己的感觉最能发挥ansible价值的场景（任务），满足这样的特点：重复而且大量</p>
+<p>首先是重复，借助ansible完成的任务一定是在某个层面（直观点的层面）是重复的，不然使用这个工具没有任何意义；其次是大量，这个比较能体现ansible轻便的优势</p>
+<a id="more"></a>
+<h2 id="为什么使用ansible"><a href="#为什么使用ansible" class="headerlink" title="为什么使用ansible"></a>为什么使用ansible</h2><h3 id="主流自动化运维工具对比调研"><a href="#主流自动化运维工具对比调研" class="headerlink" title="主流自动化运维工具对比调研"></a>主流自动化运维工具对比调研</h3><table>
+<thead>
+<tr>
+<th>工具</th>
+<th>语言</th>
+<th>架构</th>
+<th>协议</th>
+<th>学习曲线</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>puppet</td>
+<td>ruby</td>
+<td>c/s</td>
+<td>http</td>
+<td>上手难</td>
+</tr>
+<tr>
+<td>chef</td>
+<td>ruby</td>
+<td>c/s</td>
+<td>http</td>
+<td>上手难</td>
+</tr>
+<tr>
+<td>saltstack</td>
+<td>python</td>
+<td>c/s</td>
+<td>ssh/zmp</td>
+<td>难度低于上面两个，新技术</td>
+</tr>
+<tr>
+<td>ansible</td>
+<td>python</td>
+<td>no client</td>
+<td>ssh</td>
+<td>上手容易</td>
+</tr>
+</tbody>
+</table>
+<p>Puppet和Chef会吸引广大开发人员和注重开发的公司，而Salt和Ansible极其适合系统管理员的要求。Ansible的简洁界面和可用性非常迎合系统管理员的想法;而在拥有许多Linux和Unix系统的公司，Ansible运行起来一开始就快速又轻松。</p>
+<p>Salt是四款工具中最漂亮最稳健的;与Ansible一样，它也会博得系统管理员的芳心。Salt拥有高扩展性和强大功能，唯一的软肋就是Web用户界面，配置文件相对ansible复杂一些</p>
+<p>Puppet是这四款工具中最成熟的，从可用性的角度来看恐怕也最容易上手，不过竭力建议你对Ruby要有深入了解。Puppet不如Ansible或Salt来得精简，配置起来有时会变得错综复杂。对异构环境来说，Puppet是最稳妥的选择，但是你可能会发觉Ansible或Salt比较适合更庞大或更一致的基础设施。</p>
+<p>Chef拥有稳定的、精心设计的布局，虽然它在原始功能方面远未达到Puppet的水平，但这是款功能非常强大的解决方案。要是管理员缺乏丰富的编程经验，Chef学起来可能最困难，但它也许最适合注重开发的管理员和开发部门。 </p>
+<p>总结来说，ansbile相对于其他自动化运维工具而言，有以下优势：</p>
+<ul>
+<li>简单，上手快</li>
+<li>安全性好</li>
+<li>无需client，配置文件容易理解（相对于salt）</li>
+</ul>
+<h3 id="ansible使用相关信息调研"><a href="#ansible使用相关信息调研" class="headerlink" title="ansible使用相关信息调研"></a>ansible使用相关信息调研</h3><p><strong>环境依赖</strong><br>windows server不支持，linux server只需要安装了py2.6+ 和 openssl</p>
+<p><strong>升级机制</strong><br>推荐使用一个较新的稳定版，目前是2.2，升级多少都会因为api变动需要调整脚本<br>新的技术可能都会面临一个版本快速迭代的问题，不过目前ansible已经到了2.0（被红帽收购），应该算相对来说比较稳定了，不会频繁出现bug；另一方面，至于有没有非常完善的升级机制，官网上面只有一个2.2的安装方法。<br>这里确实存在一些问题，但是考虑到工具本身比较简单，升级带来的最大的问题就是之前使用的某些api会失效，这个可以通过不使用deprecated的api来尽量避免。<br>其实类似这种工具，应该尽量降低升级更新的频率，如果当前版本的功能，性能能够满足需求，可以考虑不升级。这也是为什么我们使用的Linux系统版本和node版本都比较低的原因。</p>
+<p><strong>学习成本</strong><br>四大自动化运维工具中，ansible是最低的，不需要学习新的编程语言（以后某些复杂场景可能需要py），只需要了解playbook语法（比较简单）。<br>这个观点是调研的时候得出的结论，事实上经过两周的使用，现在看来还是有py编程经验会更好一些，尤其是使用过jinja2，因为配置文件模板使用的这个语法，上来不明白得到话，非常难受。</p>
+<p><strong>社区活跃情况</strong><br>官方文档，初级问题在官方文档上基本都能找到答案<br>github开源项目（学习写法，因为各自公司往往有自己特定的需求，而开源项目大部分都会写成通用的，所以能直接用的不多。举个例子，开源项目中安装工具大都会使用yum，或者通过官方下载链接下载等网络途径去安装，然而我们有特定需求就是需要在不能访问公网的情况下安装）<br>google常见问题已经基本上都能找到答案（两周使用体验）</p>
+<p><strong>对当前工作流的影响</strong><br>开发： 无<br>测试： 无<br>发布： 可以改变手动发布的现状，针对需求实现自动化新功能发布<br>这里可以说ansible对开发测试的工作流程没有什么影响，因为针对工作流，ansible能发挥作用的地方可能就是发布。这里也可以看出ansible是一个负面影响范围很小的工具，你可以在其他开发者意识不到的情况下使用它，这一点在技术选型上是比较重要的。当然，这跟ansible本身就特别简单可能也有关系（相比salt，可能我就需要运维同学配合在初始化新机器的时候，帮忙准备一下salt被管理节点所需要的环境）</p>
+<h3 id="ansible原理"><a href="#ansible原理" class="headerlink" title="ansible原理"></a>ansible原理</h3><img title="ansible架构图" alt="ansible架构图" src="http://7xj5yf.com1.z0.glb.clouddn.com//images/20170223-02.png?imageView2/2/w/1000">
+<img title="ansible工作流程" alt="ansible工作流程" src="http://7xj5yf.com1.z0.glb.clouddn.com//images/20170223-01.png?imageView2/2/w/1000">
+<p>简单来说，ansible工作原来就是通过ssh将要执行的命令（python）发送到远程服务器，目标服务器执行这些命令，实现自动化运维的操作<br>这一点对于我们目前的情况来说，是能基本满足需求的</p>
+<h3 id="ansible的不足"><a href="#ansible的不足" class="headerlink" title="ansible的不足"></a>ansible的不足</h3><p>命令传输通过ssh，是没有salt快的（zmq），如果对命令执行的速度有比较严格的要求，不能使用ansible，体验过速度确实偏慢（目前）</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>综合以上调研情况，ansible是一个成本最低，而且又能满足基本自动化运维需求的选择。所以最终我们选择了ansible</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ansible/" rel="tag"># ansible</a>
+          
+            <a href="/tags/devops/" rel="tag"># devops</a>
+          
+            <a href="/tags/automation/" rel="tag"># automation</a>
+          
+            <a href="/tags/sre/" rel="tag"># sre</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/10/travel/冰雪大世界-黑龙江·哈尔滨/" rel="next" title="冰雪大世界-黑龙江·哈尔滨">
+                <i class="fa fa-chevron-left"></i> 冰雪大世界-黑龙江·哈尔滨
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/24/ansible/ansible入门/" rel="prev" title="ansible入门">
+                ansible入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/author.jpg"
+               alt="kivi" />
+          <p class="site-author-name" itemprop="name">kivi</p>
+           
+              <p class="site-description motion-element" itemprop="description">nodejs | server</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#自动化运维工具"><span class="nav-number">1.</span> <span class="nav-text">自动化运维工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是ansible"><span class="nav-number">2.</span> <span class="nav-text">什么是ansible</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么使用ansible"><span class="nav-number">3.</span> <span class="nav-text">为什么使用ansible</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主流自动化运维工具对比调研"><span class="nav-number">3.1.</span> <span class="nav-text">主流自动化运维工具对比调研</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ansible使用相关信息调研"><span class="nav-number">3.2.</span> <span class="nav-text">ansible使用相关信息调研</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ansible原理"><span class="nav-number">3.3.</span> <span class="nav-text">ansible原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ansible的不足"><span class="nav-number">3.4.</span> <span class="nav-text">ansible的不足</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kivi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 访客数量<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i> 浏览量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2128103"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("e99ORGgDvGxLUzH8mhKbAKu0-gzGzoHsz", "INsrz00YWhTssAqr5djkdMAS");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

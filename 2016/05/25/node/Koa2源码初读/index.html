@@ -1,0 +1,936 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,Node.js,Koa,源码," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="koa context在分析koa其他原理之前，首相需要理解koa中提出的context到底是什么，下面用一张图来说明   抽象和封装 抽象出Request, Response, Context三大类，封装常用操作  将Request，Response，部分方法代理到Context上 为了实现最终用一个`Context`实例携带全部属性方法，传递给中间件使用  实例化Request，Respons">
+<meta name="keywords" content="javascript,Node.js,Koa,源码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Koa2源码初读">
+<meta property="og:url" content="http://cocacola183.github.io/2016/05/25/node/Koa2源码初读/index.html">
+<meta property="og:site_name" content="Kivi">
+<meta property="og:description" content="koa context在分析koa其他原理之前，首相需要理解koa中提出的context到底是什么，下面用一张图来说明   抽象和封装 抽象出Request, Response, Context三大类，封装常用操作  将Request，Response，部分方法代理到Context上 为了实现最终用一个`Context`实例携带全部属性方法，传递给中间件使用  实例化Request，Respons">
+<meta property="og:image" content="http://7xj5yf.com1.z0.glb.clouddn.com//images/20150525-02.png?imageView2/2/w/1000">
+<meta property="og:image" content="http://7xj5yf.com1.z0.glb.clouddn.com//images/20160527-01.png?imageView2/2/w/1000">
+<meta property="og:updated_time" content="2017-07-02T02:32:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Koa2源码初读">
+<meta name="twitter:description" content="koa context在分析koa其他原理之前，首相需要理解koa中提出的context到底是什么，下面用一张图来说明   抽象和封装 抽象出Request, Response, Context三大类，封装常用操作  将Request，Response，部分方法代理到Context上 为了实现最终用一个`Context`实例携带全部属性方法，传递给中间件使用  实例化Request，Respons">
+<meta name="twitter:image" content="http://7xj5yf.com1.z0.glb.clouddn.com//images/20150525-02.png?imageView2/2/w/1000">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cocacola183.github.io/2016/05/25/node/Koa2源码初读/"/>
+
+
+
+
+
+  <title> Koa2源码初读 | Kivi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a26f6bf6f853fe7eb93344a17e0c094";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kivi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">没有什么远大理想，只是永远都不会满足而已</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cocacola183.github.io/2016/05/25/node/Koa2源码初读/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kivi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kivi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Koa2源码初读
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-25T20:54:43+08:00">
+                2016-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/05/25/node/Koa2源码初读/" class="leancloud_visitors" data-flag-title="Koa2源码初读">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="koa-context"><a href="#koa-context" class="headerlink" title="koa context"></a>koa context</h2><p>在分析<code>koa</code>其他原理之前，首相需要理解<code>koa</code>中提出的<code>context</code>到底是什么，下面用一张图来说明</p>
+<div style="text-align: center;"><img title="koa" alt="koa" src="http://7xj5yf.com1.z0.glb.clouddn.com//images/20150525-02.png?imageView2/2/w/1000"></div>
+
+<h3 id="抽象和封装"><a href="#抽象和封装" class="headerlink" title="抽象和封装"></a>抽象和封装</h3><ul>
+<li><p>抽象出<code>Request</code>, <code>Response</code>, <code>Context</code>三大类，封装常用操作</p>
+</li>
+<li><p>将<code>Request</code>，<code>Response</code>，部分方法代理到<code>Context</code>上</p>
+<pre><code>为了实现最终用一个`Context`实例携带全部属性方法，传递给中间件使用
+</code></pre></li>
+<li><p>实例化<code>Request</code>，<code>Response</code>，<code>Context</code>，并将其实例关联<code>Koa Application</code>实例（示例图中的<code>app</code>），<code>Node.js</code>的<code>http request</code>实例（示例图中的<code>req</code>），<code>Node.js</code>的<code>http response</code>实例（示例图中的<code>res</code>）关联起来</p>
+<pre><code>关联的部分原因是`Request`, `Response`, `Context`封装常用操作时，用到了`app`，`req`，`res`
+另一部分原因是保留原始`req`，`res`数据
+</code></pre></li>
+</ul>
+<p>这样一来，<code>Context</code>的实例就将一个<code>http server</code>常用的全部属性方法全部封装到一个上下文中，方便传递给中间件调用，完成了请求准备工作</p>
+<a id="more"></a>
+<h2 id="koa-middleware"><a href="#koa-middleware" class="headerlink" title="koa middleware"></a>koa middleware</h2><h3 id="启动过程分析"><a href="#启动过程分析" class="headerlink" title="启动过程分析"></a>启动过程分析</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">listen() &#123;</div><div class="line">  debug(<span class="string">'listen'</span>);</div><div class="line">  <span class="keyword">const</span> server = http.createServer(<span class="keyword">this</span>.callback());</div><div class="line">  <span class="keyword">return</span> server.listen.apply(server, <span class="built_in">arguments</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从上面可以看出，<code>callback</code>函数完成了所有的请求处理工作，这里是<code>callback</code>源码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">callback() &#123;</div><div class="line">  <span class="keyword">const</span> fn = compose(<span class="keyword">this</span>.middleware);</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.listeners(<span class="string">'error'</span>).length) <span class="keyword">this</span>.on(<span class="string">'error'</span>, <span class="keyword">this</span>.onerror);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</div><div class="line">    res.statusCode = <span class="number">404</span>;</div><div class="line">    <span class="keyword">const</span> ctx = <span class="keyword">this</span>.createContext(req, res);</div><div class="line">    onFinished(res, ctx.onerror);</div><div class="line">    fn(ctx).then(<span class="function"><span class="params">()</span> =&gt;</span> respond(ctx)).catch(ctx.onerror);</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>启动的过程：</p>
+<ul>
+<li><code>compose</code>中间件</li>
+<li>生成<code>Node.js</code>原生请求处理函数<pre><code>创建上下文实例ctx(也就是生成`koa context`实例)
+执行中间件函数
+</code></pre></li>
+</ul>
+<p>创建上下文中间件，也就是生成<code>Context</code>实例对象，上文已经详细描述过<br>执行中间件函数，这行代码就是执行<code>compose</code>中间件之后返回的<code>Pormise</code>对象，所以我们把重点放在<code>compose</code>的过程上</p>
+<h3 id="compose中间件"><a href="#compose中间件" class="headerlink" title="compose中间件"></a>compose中间件</h3><blockquote>
+<p><code>const fn = compose(this.middleware);</code></p>
+</blockquote>
+<p>简单来说，这行代码的作用就是将所有的中间件有序组合，成为一个<code>Promise</code>对象返回，<code>compose</code>函数来自<code>koa-compose</code>。这里是源码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="built_in">Promise</span> = <span class="built_in">require</span>(<span class="string">'any-promise'</span>)</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Expose compositor.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = compose</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Compose `middleware` returning</div><div class="line"> * a fully valid middleware comprised</div><div class="line"> * of all those which are passed.</div><div class="line"> *</div><div class="line"> * @param &#123;Array&#125; middleware</div><div class="line"> * @return &#123;Function&#125;</div><div class="line"> * @api public</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">compose</span> (<span class="params">middleware</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(middleware)) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Middleware stack must be an array!'</span>)</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> fn <span class="keyword">of</span> middleware) &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">'function'</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Middleware must be composed of functions!'</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line">   * @param &#123;Object&#125; context</div><div class="line">   * @return &#123;Promise&#125;</div><div class="line">   * @api public</div><div class="line">   */</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">context, next</span>) </span>&#123;</div><div class="line">    <span class="comment">// last called middleware #</span></div><div class="line">    <span class="keyword">let</span> index = <span class="number">-1</span></div><div class="line">    <span class="keyword">return</span> dispatch(<span class="number">0</span>)</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">dispatch</span> (<span class="params">i</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (i &lt;= index) <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'next() called multiple times'</span>))</div><div class="line">      index = i</div><div class="line">      <span class="keyword">const</span> fn = middleware[i] || next</div><div class="line">      <span class="keyword">if</span> (!fn) <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve()</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(fn(context, <span class="function"><span class="keyword">function</span> <span class="title">next</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="keyword">return</span> dispatch(i + <span class="number">1</span>)</div><div class="line">        &#125;))</div><div class="line">      &#125; <span class="keyword">catch</span> (err) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err)</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>首先看返回值，返回的是一个中间件函数<code>function (context, next)</code>，我们从前面<code>koa callback</code>函数的这行代码中可以观察到，（fn就是compose返回的中间件函数）一次fn的调用就结束了整个请求，所以fn最终的作用就是依次调用所有的中间件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fn(ctx).then(<span class="function"><span class="params">()</span> =&gt;</span> respond(ctx)).catch(ctx.onerror);</div></pre></td></tr></table></figure>
+</li>
+<li><p>然后是dispatch函数，这个函数的返回值是一个<code>Promise</code>对象(<code>Promise.resolve</code>和<code>Promise.reject</code>是将一个现有对象转化为一个promise对象，状态不同)，这个<code>Promise</code>对象是由原始的中间件函数构造而成的。</p>
+<pre><code>原始的中间件函数就是传递给`app.use()`的函数
+</code></pre></li>
+<li><p>将上下文<code>context</code>和<code>next</code>函数传递给原始中间件对象，<code>context</code>就是中间件函数的<code>context</code>，这里的<code>next</code>函数是递归的关键，<code>next</code>函数返回<code>dispatch</code>函数执行结果，也就是下一个被包装成<code>Promise</code>对象的中间件函数，这也就是为什么我们在<code>koa2</code>中执行完一个中间件，如果还需要执行下一个中间件的时候，需要执行<code>await next()</code>的原因</p>
+</li>
+</ul>
+<h3 id="中间件回逆特性"><a href="#中间件回逆特性" class="headerlink" title="中间件回逆特性"></a>中间件回逆特性</h3><p>先来看一张图</p>
+<p><div style="text-align: center;"><img title="koa" alt="koa" src="http://7xj5yf.com1.z0.glb.clouddn.com//images/20160527-01.png?imageView2/2/w/1000"></div><br>从上面的分析我们已经知道，<code>await next()</code>相当于在执行下一个中间件，那么在<code>await next()</code>之后我们执行的操作又是什么呢？这个就是<code>koa</code>中间件回逆的特性，在下一个中间件执行完成之后，在http请求响应完成之前，你还可以做一些非常有用的操作，这整个过程，称之为回逆。<br>这是个非常有用的特性，举个非常简单的例子，用下面这段代码可以非常简单的统计出中间件处理请求的时间<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">app.use(<span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">	log.http(<span class="string">`<span class="subst">$&#123;ctx.request.method&#125;</span> <span class="subst">$&#123;ctx.request.url&#125;</span>`</span>);</div><div class="line">	<span class="built_in">console</span>.time(<span class="string">'http request time'</span>);</div><div class="line">	<span class="keyword">await</span> next();</div><div class="line">	<span class="built_in">console</span>.timeEnd(<span class="string">'http request time'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>从koa2源码分析我们可以看出，koa最重要的两个知识点就是<code>context</code>和<code>middleware</code>，再实际使用过程中，深度感受这两点，一定能有更多的收获</p>
+<blockquote>
+<p>补充</p>
+</blockquote>
+<p>其实<code>async</code>函数就是<code>generator</code>函数的语法糖，要再深入的理解中间件的compose原理和回逆原理，还是需要koa@master源码的中去理解</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://github.com/berwin/Blog/issues/8" target="_blank" rel="external">深入浅出 Koa</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+          
+            <a href="/tags/Koa/" rel="tag"># Koa</a>
+          
+            <a href="/tags/源码/" rel="tag"># 源码</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/10/linux/linux端口号值多少/" rel="next" title="Linux端口号知多少">
+                <i class="fa fa-chevron-left"></i> Linux端口号知多少
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/07/tools/siege做简单压力测试/" rel="prev" title="siege做简单压力测试">
+                siege做简单压力测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/author.jpg"
+               alt="kivi" />
+          <p class="site-author-name" itemprop="name">kivi</p>
+           
+              <p class="site-description motion-element" itemprop="description">nodejs | server</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#koa-context"><span class="nav-number">1.</span> <span class="nav-text">koa context</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象和封装"><span class="nav-number">1.1.</span> <span class="nav-text">抽象和封装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#koa-middleware"><span class="nav-number">2.</span> <span class="nav-text">koa middleware</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动过程分析"><span class="nav-number">2.1.</span> <span class="nav-text">启动过程分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#compose中间件"><span class="nav-number">2.2.</span> <span class="nav-text">compose中间件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间件回逆特性"><span class="nav-number">2.3.</span> <span class="nav-text">中间件回逆特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kivi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 访客数量<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i> 浏览量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2128103"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("e99ORGgDvGxLUzH8mhKbAKu0-gzGzoHsz", "INsrz00YWhTssAqr5djkdMAS");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

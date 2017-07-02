@@ -1,0 +1,957 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ansible,devops,automation," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="5分钟造火箭环境说明 centos 6 python 2.6.6 一个控制节点，若干被管理节点  安装1yum install -y ansible 这里安装的版本是2.2.1.0，当前官网上的最新release也是2.2.1.0所以我们选择这个版本默认的配置文件: /etc/ansible/ansible.cfg默认的host文件: /etc/ansible/hosts 配置ssh免密登录在真正">
+<meta name="keywords" content="ansible,devops,automation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ansible入门">
+<meta property="og:url" content="http://cocacola183.github.io/2017/02/24/ansible/ansible入门/index.html">
+<meta property="og:site_name" content="Kivi">
+<meta property="og:description" content="5分钟造火箭环境说明 centos 6 python 2.6.6 一个控制节点，若干被管理节点  安装1yum install -y ansible 这里安装的版本是2.2.1.0，当前官网上的最新release也是2.2.1.0所以我们选择这个版本默认的配置文件: /etc/ansible/ansible.cfg默认的host文件: /etc/ansible/hosts 配置ssh免密登录在真正">
+<meta property="og:updated_time" content="2017-07-02T02:28:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ansible入门">
+<meta name="twitter:description" content="5分钟造火箭环境说明 centos 6 python 2.6.6 一个控制节点，若干被管理节点  安装1yum install -y ansible 这里安装的版本是2.2.1.0，当前官网上的最新release也是2.2.1.0所以我们选择这个版本默认的配置文件: /etc/ansible/ansible.cfg默认的host文件: /etc/ansible/hosts 配置ssh免密登录在真正">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cocacola183.github.io/2017/02/24/ansible/ansible入门/"/>
+
+
+
+
+
+  <title> ansible入门 | Kivi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a26f6bf6f853fe7eb93344a17e0c094";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kivi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">没有什么远大理想，只是永远都不会满足而已</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cocacola183.github.io/2017/02/24/ansible/ansible入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kivi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kivi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ansible入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-24T18:46:30+08:00">
+                2017-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Automation/" itemprop="url" rel="index">
+                    <span itemprop="name">Automation</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/02/24/ansible/ansible入门/" class="leancloud_visitors" data-flag-title="ansible入门">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="5分钟造火箭"><a href="#5分钟造火箭" class="headerlink" title="5分钟造火箭"></a>5分钟造火箭</h2><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><ul>
+<li>centos 6</li>
+<li>python 2.6.6</li>
+<li>一个控制节点，若干被管理节点</li>
+</ul>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y ansible</div></pre></td></tr></table></figure>
+<p>这里安装的版本是2.2.1.0，当前官网上的最新release也是2.2.1.0所以我们选择这个版本<br>默认的配置文件: <code>/etc/ansible/ansible.cfg</code><br>默认的host文件: <code>/etc/ansible/hosts</code></p>
+<h3 id="配置ssh免密登录"><a href="#配置ssh免密登录" class="headerlink" title="配置ssh免密登录"></a>配置ssh免密登录</h3><p>在真正使用前面，配置ssh免密登录是第一步<br><a href="https://ninjacn.com/2016-01-18-ansible-E5-85-A5-E9-97-A8" target="_blank" rel="external">这里</a>有篇博客分享了相关内容<br>执行的命令是下面这些<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ssh-keygen</div><div class="line">ssh-agent bash</div><div class="line">ssh-add ~/.ssh/id_rsa</div><div class="line">ssh-copy-id user@xxx.xxx.xxx.xxx</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<p>如果被管理节点的ssh启动端口不是22，分发key的命令这样：<code>ssh-copy-id &quot; -p 10022 xujw@xxx.xxx.xxx.xxx&quot;</code><br>详情参考<a href="http://www.cnblogs.com/xia/archive/2013/03/22/2975998.html" target="_blank" rel="external">这篇文章</a></p>
+<p>而且，ansible默认ssh端口也需要被修改，<a href="http://www.cnblogs.com/xia/archive/2013/03/22/2975998.html" target="_blank" rel="external">看这里</a></p>
+<h3 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible -m ping all</div></pre></td></tr></table></figure>
+<p>有sudo权限的话，可以获取管理员权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible all -m ping -u user -b --become-user root</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h3 id="复杂一点的例子"><a href="#复杂一点的例子" class="headerlink" title="复杂一点的例子"></a>复杂一点的例子</h3><p>新建以下项目结构的文件夹<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">test</span></div><div class="line">├── hosts</div><div class="line">├── roles</div><div class="line">│   └── common</div><div class="line">│       └── tasks</div><div class="line">│           └── main.yml</div><div class="line">└── site.yml</div></pre></td></tr></table></figure></p>
+<p>hosts<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[test]</div><div class="line">xxx.xxx.xxx.xxx</div></pre></td></tr></table></figure></p>
+<p>site.yml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">- hosts: test</div><div class="line">  roles:</div><div class="line">    - role: common</div></pre></td></tr></table></figure></p>
+<p>roles/common/tasks/main.yml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">- name: test connection</div><div class="line">  ping:</div></pre></td></tr></table></figure></p>
+<p>执行命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible-playbook -i hosts site.yml</div></pre></td></tr></table></figure></p>
+<p>运行结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">PLAY [test] ********************************************************************</div><div class="line"></div><div class="line">TASK [setup] *******************************************************************</div><div class="line">ok: [xxx.xxx.xxx.xxx]</div><div class="line"></div><div class="line">TASK [common : test connection] ************************************************</div><div class="line">ok: [xxx.xxx.xxx.xxx]</div><div class="line"></div><div class="line">PLAY RECAP *********************************************************************</div><div class="line">xxx.xxx.xxx.xxx             : ok=2    changed=0    unreachable=0    failed=0</div></pre></td></tr></table></figure></p>
+<h3 id="更多优质例子分享"><a href="#更多优质例子分享" class="headerlink" title="更多优质例子分享"></a>更多优质例子分享</h3><p>建议在看这些例子之前，写歇会，看看下面的基础知识补充说明</p>
+<ul>
+<li><a href="https://github.com/ansible/ansible-examples" target="_blank" rel="external">examples</a>（官方的例子）</li>
+<li><a href="https://github.com/leucos/ansible-tuto/tree/master/" target="_blank" rel="external">ansible-tuto</a>（开源朋友的例子，值得一看）</li>
+</ul>
+<h2 id="基础知识补充说明"><a href="#基础知识补充说明" class="headerlink" title="基础知识补充说明"></a>基础知识补充说明</h2><h3 id="ansible可执行命令"><a href="#ansible可执行命令" class="headerlink" title="ansible可执行命令"></a>ansible可执行命令</h3><p>安装完ansible后，发现ansible一共为我们提供了七个指令：ansible、ansible-doc、ansible-galaxy、ansible-lint、ansible-playbook、ansible-pull、ansible-vault 。命令详情请参考<a href="http://www.361way.com/ansible-framework/4393.html" target="_blank" rel="external">这篇博客</a></p>
+<p>实际使用中用的比较多的是<code>ansible</code>和<code>ansible-playbook</code>这两个命令</p>
+<p>1、ansible<br>ansible是指令核心部分，其主要用于执行ad-hoc命令，即单条命令。默认后面需要跟主机和选项部分，默认不指定模块时，使用的是command模块。如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ansible 192.168.0.102 -a <span class="string">'date'</span></div><div class="line">192.168.0.102 | success | rc=0 &gt;&gt;</div><div class="line">Tue May 12 22:57:24 CST 2015</div></pre></td></tr></table></figure></p>
+<p>2、ansible-playbook<br>该指令是使用最多的指令，其通过读取playbook 文件后，执行相应的动作。</p>
+<h3 id="ansible基本项目结构"><a href="#ansible基本项目结构" class="headerlink" title="ansible基本项目结构"></a>ansible基本项目结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">hosts                     # host配置文件</div><div class="line"></div><div class="line">group_vars/</div><div class="line">   group1                 # 组group1变量</div><div class="line">   group2                 # 组group2变量</div><div class="line">host_vars/</div><div class="line">   hostname1              # hostname1变量</div><div class="line">   hostname2              # hostname2变量</div><div class="line"></div><div class="line">library/                  # 目前我没有在项目中使用</div><div class="line">filter_plugins/           # 目前我没有在项目中使用</div><div class="line"></div><div class="line">site.yml                  # 主playbook，作用就是执行这个playbook将会完成当前项目所有的需要执行的任务</div><div class="line">webservers.yml            # 某个role的playbook</div><div class="line">dbservers.yml             # 某个role的playbook</div><div class="line"></div><div class="line">roles/</div><div class="line">    common/               # 这是一个名字是common的role</div><div class="line">        tasks/            #</div><div class="line">            main.yml      #  &lt;-- tasks file can include smaller files if warranted</div><div class="line">        handlers/         #</div><div class="line">            main.yml      #  &lt;-- handlers file</div><div class="line">        templates/        #  &lt;-- files for use with the template resource</div><div class="line">            ntp.conf.j2   #  &lt;------- templates end in .j2</div><div class="line">        files/            #</div><div class="line">            bar.txt       #  &lt;-- files for use with the copy resource</div><div class="line">            foo.sh        #  &lt;-- script files for use with the script resource</div><div class="line">        vars/             #</div><div class="line">            main.yml      #  &lt;-- variables associated with this role</div><div class="line">        defaults/         #</div><div class="line">            main.yml      #  &lt;-- default lower priority variables for this role</div><div class="line">        meta/             #</div><div class="line">            main.yml      #  &lt;-- role dependencies</div><div class="line">        library/          # roles can also include custom modules</div><div class="line">        lookup_plugins/   # or other types of plugins, like lookup in this case</div></pre></td></tr></table></figure>
+<h3 id="inventory概念"><a href="#inventory概念" class="headerlink" title="inventory概念"></a>inventory概念</h3><p>简单来说就是host配置，host文件里面至少包含所有服务器的ip（或域名）信息<br>这里面有几个概念：</p>
+<ul>
+<li>vars 全局变量</li>
+<li>group host组</li>
+<li>group_vars host变量</li>
+<li>host 被管理服务器</li>
+<li>host_vars 单个服务器变量</li>
+</ul>
+<p>一个最简单的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[group_name]</div><div class="line">xxx.xxx.xxx.xxx</div></pre></td></tr></table></figure></p>
+<h3 id="role概念"><a href="#role概念" class="headerlink" title="role概念"></a>role概念</h3><p>理解参考剧本里的角色，playbook是剧本，role是执行剧本的角色，role是一系列任务的集合，role通过配置执行一系列任务，实现特定的功能。<br>github上有很多开源的role，帮你实现一些特定功能，例如一键启动mongodb集群，一键启动consul集群等等</p>
+<p>ansible给出了一个role的best practice，使用这个命令可以新建一个role: <code>ansible-galaxy init common --offline</code><br>重要文件夹介绍：</p>
+<ul>
+<li>tasks 里面放的是role的playbook，会默认执行main.yml，最佳实践是功能拆开，在main.yml中引入</li>
+<li>templates 这个放的是文件模板，例如nginx的配置模板，可以根据相关信息生成配置文件</li>
+<li>defaluts 这里main.yml是role相关的默认配置</li>
+<li>files 这里面放的是静态文件，例如要复制到远程服务器的工具安装包</li>
+</ul>
+<p>总结来说，ansible项目就是通过一定的目录结构（经过实践检验的最佳实践），通过playbook定义任务，通过host相关文件进行ip配置，最后由ansible统一执行，实现自动化运维的功能</p>
+<h2 id="ansible高质量入门资料分享"><a href="#ansible高质量入门资料分享" class="headerlink" title="ansible高质量入门资料分享"></a>ansible高质量入门资料分享</h2><h3 id="入门简介"><a href="#入门简介" class="headerlink" title="入门简介"></a>入门简介</h3><ul>
+<li><a href="http://www.jianshu.com/p/f0cf027225df" target="_blank" rel="external">ansible超详细使用指南</a> 确实详细，看了这篇，不需要看我的了</li>
+<li><a href="http://blog.waterstrong.me/ansible-basic/" target="_blank" rel="external">入门博客1</a></li>
+<li><a href="http://sapser.github.io/ansible/2014/07/21/ansible-conditionals" target="_blank" rel="external">入门博客2</a></li>
+</ul>
+<h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><ul>
+<li><a href="http://ansible-tran.readthedocs.io/en/latest/" target="_blank" rel="external">官方文档</a>（中文）</li>
+<li><a href="http://docs.ansible.com/ansible/index.html" target="_blank" rel="external">官方文档</a>（尽量不要看中文版的，不全面，官方文档很重要，基本有一切新手问题的答案）</li>
+</ul>
+<h3 id="原理语法"><a href="#原理语法" class="headerlink" title="原理语法"></a>原理语法</h3><ul>
+<li><a href="http://www.361way.com/ansible-framework/4393.html" target="_blank" rel="external">ansible小结（二）ansible架构</a></li>
+<li><a href="http://www.10tiao.com/html/385/201612/2651696635/1.html" target="_blank" rel="external">ansible原理2</a></li>
+<li><a href="http://chuansong.me/n/775508751235" target="_blank" rel="external">jinja2语法</a> 之前没接触过py的我刚开始对这个语法不算太能接受（templates语法）</li>
+</ul>
+<h2 id="使用经验分享"><a href="#使用经验分享" class="headerlink" title="使用经验分享"></a>使用经验分享</h2><p>目前处于技术准备阶段，也就是在方案确定之后，需要验证是否确实可行，如果可行，需要构建一个可用的原型。</p>
+<h3 id="目前使用ansbile主要做两个方面的事情："><a href="#目前使用ansbile主要做两个方面的事情：" class="headerlink" title="目前使用ansbile主要做两个方面的事情："></a>目前使用ansbile主要做两个方面的事情：</h3><ul>
+<li>基础工具安装</li>
+<li>服务部署</li>
+</ul>
+<h3 id="目前使用ansbile过程中遇到的一些坑"><a href="#目前使用ansbile过程中遇到的一些坑" class="headerlink" title="目前使用ansbile过程中遇到的一些坑"></a>目前使用ansbile过程中遇到的一些坑</h3><ul>
+<li>hosts文件中，group列表，当在列表中的服务器上执行命令的时候，所有服务器是并行的，你没有简单的方法去控制执行的先后顺序（例如，按照列表先后顺序执行命令），所以在方案设计的时候，尽量不要让自己处在这种情况下</li>
+<li>hosts文件配置命名不要用中划线，要用下划线</li>
+<li>hosts文件中各个group的hostname最好不要重复，否则有可能导致意想不到的问题</li>
+<li>hosts文件中各个group的hostname最好写成ip，如果配置可访问域名也可以，最好不要写成最终无法解析成ip的字符串，因为这个信息比较重要</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ansible/" rel="tag"># ansible</a>
+          
+            <a href="/tags/devops/" rel="tag"># devops</a>
+          
+            <a href="/tags/automation/" rel="tag"># automation</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/21/ansible/ansible调研/" rel="next" title="ansible调研">
+                <i class="fa fa-chevron-left"></i> ansible调研
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/01/mongo/mongodb2-6-6升级至3-0-7/" rel="prev" title="mongodb2.6.9热升级至3.0.7">
+                mongodb2.6.9热升级至3.0.7 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/author.jpg"
+               alt="kivi" />
+          <p class="site-author-name" itemprop="name">kivi</p>
+           
+              <p class="site-description motion-element" itemprop="description">nodejs | server</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#5分钟造火箭"><span class="nav-number">1.</span> <span class="nav-text">5分钟造火箭</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境说明"><span class="nav-number">1.1.</span> <span class="nav-text">环境说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置ssh免密登录"><span class="nav-number">1.3.</span> <span class="nav-text">配置ssh免密登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始测试"><span class="nav-number">1.4.</span> <span class="nav-text">开始测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂一点的例子"><span class="nav-number">1.5.</span> <span class="nav-text">复杂一点的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更多优质例子分享"><span class="nav-number">1.6.</span> <span class="nav-text">更多优质例子分享</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础知识补充说明"><span class="nav-number">2.</span> <span class="nav-text">基础知识补充说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ansible可执行命令"><span class="nav-number">2.1.</span> <span class="nav-text">ansible可执行命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ansible基本项目结构"><span class="nav-number">2.2.</span> <span class="nav-text">ansible基本项目结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inventory概念"><span class="nav-number">2.3.</span> <span class="nav-text">inventory概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#role概念"><span class="nav-number">2.4.</span> <span class="nav-text">role概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ansible高质量入门资料分享"><span class="nav-number">3.</span> <span class="nav-text">ansible高质量入门资料分享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#入门简介"><span class="nav-number">3.1.</span> <span class="nav-text">入门简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档"><span class="nav-number">3.2.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原理语法"><span class="nav-number">3.3.</span> <span class="nav-text">原理语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用经验分享"><span class="nav-number">4.</span> <span class="nav-text">使用经验分享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目前使用ansbile主要做两个方面的事情："><span class="nav-number">4.1.</span> <span class="nav-text">目前使用ansbile主要做两个方面的事情：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目前使用ansbile过程中遇到的一些坑"><span class="nav-number">4.2.</span> <span class="nav-text">目前使用ansbile过程中遇到的一些坑</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kivi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 访客数量<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i> 浏览量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2128103"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("e99ORGgDvGxLUzH8mhKbAKu0-gzGzoHsz", "INsrz00YWhTssAqr5djkdMAS");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
