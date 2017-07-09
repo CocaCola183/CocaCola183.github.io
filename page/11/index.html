@@ -282,6 +282,308 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cocacola183.github.io/2015/03/02/nginx/新手常跳的一些nginx坑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kivi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kivi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/02/nginx/新手常跳的一些nginx坑/" itemprop="url">
+                  新手常跳的一些nginx坑
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-02T21:30:25+08:00">
+                2015-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2015/03/02/nginx/新手常跳的一些nginx坑/" class="leancloud_visitors" data-flag-title="新手常跳的一些nginx坑">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="新手常跳的一些nginx坑"><a href="#新手常跳的一些nginx坑" class="headerlink" title="新手常跳的一些nginx坑"></a>新手常跳的一些nginx坑</h2><h3 id="关于-header-和"><a href="#关于-header-和" class="headerlink" title="关于 header 和 _"></a>关于 <code>header</code> 和 <code>_</code></h3><p>客户端会经常在http header中放一些参数类似id version之类的，但是切记nginx会忽略掉header中带下划线的参数，所以在header中添加参数的时候切记不要写下划线，至于是否可以通过nginx配置解决这一问题，我还不清楚。</p>
+<h3 id="关于上传文件的大小限制"><a href="#关于上传文件的大小限制" class="headerlink" title="关于上传文件的大小限制"></a>关于上传文件的大小限制</h3><p>开发过程中遇到了个上传文件失败的错误，错误代码是413，并没有什么具体的提示，错误信息如图所示<br><img src="/images/4.png" alt="参考图片"><br>在stackoverflow上搜索，找到了解决方案<br>原来是nginx配置的原因，原来nginx配置如下：<br><img src="/images/5.png" alt="参考图片"><br>修改完成后，nginx配置如下：<br><img src="/images/6.png" alt="参考图片"><br>修改完成后，客户端的结果就显示正常了：<br><img src="/images/7.png" alt="参考图片"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cocacola183.github.io/2015/03/02/blog/hexo使用注意事项/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kivi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kivi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/02/blog/hexo使用注意事项/" itemprop="url">
+                  hexo使用注意事项
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-02T13:27:41+08:00">
+                2015-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2015/03/02/blog/hexo使用注意事项/" class="leancloud_visitors" data-flag-title="hexo使用注意事项">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="hexo使用注意事项"><a href="#hexo使用注意事项" class="headerlink" title="hexo使用注意事项"></a>hexo使用注意事项</h2><p>1.在<code>hexo d</code>之前，一定要先输入<code>hexo clean</code> ,字面上理解就是清一下缓存，不然会出问题。<br>我一直以为只需要在<code>hexo d</code>之前就OK，最近发现在<code>hexo s</code>之前也需要执行以下，否则预览有可能会遇到样式不正确的情况</p>
+<p>2.<code>hexo d</code> 出现 <code>deployer</code>错误，这个问题是由于hexo更新了3.0版本之后出现的问题，在项目目录下执行<code>npm install hexo-deployer-git --save</code>,hexo并把配置文件中 <code>deploy</code> 这一项下面的 <code>type</code> 由原来的 <code>github</code> 改为 <code>git</code> 即可</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://cocacola183.github.io/2015/02/28/node/如何利用nodejs获取访问者的公网IP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -636,7 +938,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
