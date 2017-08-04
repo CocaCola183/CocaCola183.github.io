@@ -1,0 +1,1055 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mongodb," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="MongoDB二进制文件支持的运行平台 x86_64 ARM64 PPC64LE (MongoDB Enterprise Edition) s390x (MongoDB Enterprise Edition)">
+<meta name="keywords" content="mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongodb生产部署建议">
+<meta property="og:url" content="http://cocacola183.github.io/2017/07/10/mongo/mongodb生产部署建议/index.html">
+<meta property="og:site_name" content="Kivi">
+<meta property="og:description" content="MongoDB二进制文件支持的运行平台 x86_64 ARM64 PPC64LE (MongoDB Enterprise Edition) s390x (MongoDB Enterprise Edition)">
+<meta property="og:updated_time" content="2017-08-04T00:26:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongodb生产部署建议">
+<meta name="twitter:description" content="MongoDB二进制文件支持的运行平台 x86_64 ARM64 PPC64LE (MongoDB Enterprise Edition) s390x (MongoDB Enterprise Edition)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cocacola183.github.io/2017/07/10/mongo/mongodb生产部署建议/"/>
+
+
+
+
+
+  <title> mongodb生产部署建议 | Kivi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a26f6bf6f853fe7eb93344a17e0c094";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kivi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">没有什么远大理想，只是永远都不会满足而已</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cocacola183.github.io/2017/07/10/mongo/mongodb生产部署建议/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kivi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kivi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                mongodb生产部署建议
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T11:34:35+08:00">
+                2017-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/10/mongo/mongodb生产部署建议/" class="leancloud_visitors" data-flag-title="mongodb生产部署建议">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="MongoDB二进制文件"><a href="#MongoDB二进制文件" class="headerlink" title="MongoDB二进制文件"></a>MongoDB二进制文件</h2><h3 id="支持的运行平台"><a href="#支持的运行平台" class="headerlink" title="支持的运行平台"></a>支持的运行平台</h3><ul>
+<li><a href="https://docs.mongodb.com/manual/administration/production-notes/#x86-64" target="_blank" rel="external">x86_64</a></li>
+<li><a href="https://docs.mongodb.com/manual/administration/production-notes/#arm64" target="_blank" rel="external">ARM64</a></li>
+<li><a href="https://docs.mongodb.com/manual/administration/production-notes/#ppc64le-mongodb-enterprise-edition" target="_blank" rel="external">PPC64LE (MongoDB Enterprise Edition)</a></li>
+<li><a href="https://docs.mongodb.com/manual/administration/production-notes/#s390x-mongodb-enterprise-edition" target="_blank" rel="external">s390x (MongoDB Enterprise Edition)</a></li>
+</ul>
+<a id="more"></a>
+<h4 id="推荐的运行平台"><a href="#推荐的运行平台" class="headerlink" title="推荐的运行平台"></a>推荐的运行平台</h4><ul>
+<li>Amazon Linux</li>
+<li>Debian 7.1</li>
+<li>RHEL / CentOS 6.2+</li>
+<li>SLES 11+</li>
+<li>Ubuntu LTS 12.04</li>
+<li>Ubuntu LTS 14.04</li>
+<li>Windows Server 2012 &amp; 2012 R2</li>
+</ul>
+<h4 id="推荐mongodb最新的release版本"><a href="#推荐mongodb最新的release版本" class="headerlink" title="推荐mongodb最新的release版本"></a>推荐mongodb最新的release版本</h4><h2 id="MongoDB-dbpath"><a href="#MongoDB-dbpath" class="headerlink" title="MongoDB dbpath"></a>MongoDB dbpath</h2><h3 id="并发性（基于不同的数据库引擎的比较）"><a href="#并发性（基于不同的数据库引擎的比较）" class="headerlink" title="并发性（基于不同的数据库引擎的比较）"></a>并发性（基于不同的数据库引擎的比较）</h3><h4 id="MMAPv1"><a href="#MMAPv1" class="headerlink" title="MMAPv1"></a>MMAPv1</h4><p>3.0之后的改动：3.0之后，MongoDB MMapv1提供文档级别的数据库锁：所有的集合都有一个唯一的读写锁，这意味着不同的集合可以同时执行更新操作</p>
+<p>在2.2到2.6之间，每个数据库都有一个读写锁，允许并发读操作，但每个database同一时刻只能有一个写操作。在更早的版本中，在一个mongod进程中，所有的写操作抢占一个写锁</p>
+<h4 id="WiredTiger"><a href="#WiredTiger" class="headerlink" title="WiredTiger"></a>WiredTiger</h4><p>wt单文档支持并发读写，客户端可在写操作执行期间进行读取操作，不同的线程也可以同时去修改一个集合的某一条数据</p>
+<h2 id="Data-Consistency-数据一致性"><a href="#Data-Consistency-数据一致性" class="headerlink" title="Data Consistency(数据一致性)"></a>Data Consistency(数据一致性)</h2><h3 id="Journaling-日志"><a href="#Journaling-日志" class="headerlink" title="Journaling(日志)"></a>Journaling(日志)</h3><p>MongoDB的日志持久化在磁盘，并且使用的是预写式日志。如果遇到意外故障（例如断电），日志信息保证了MongoDB可以迅速恢复记录在日志中的但还没有记录到数据文件中的写操作。</p>
+<h3 id="Read-Concern-数据读策略"><a href="#Read-Concern-数据读策略" class="headerlink" title="Read Concern(数据读策略)"></a>Read Concern(数据读策略)</h3><p><a href="http://www.mongoing.com/archives/3403" target="_blank" rel="external">这里</a>详细说明了数据度策略是什么以及解决的问题，以及<code>readConcern</code>和<code>readPreference</code>的比较。这里简单说明下：</p>
+<blockquote><p>readConcern 的初衷在于解决『脏读』的问题，比如用户从 MongoDB 的 primary 上读取了某一条数据，但这条数据并没有同步到大多数节点，然后 primary 就故障了，重新恢复后 这个primary 节点会将未同步到大多数节点的数据回滚掉，导致用户读到了『脏数据』。</p>
+<p>当指定 readConcern 级别为 majority 时，能保证用户读到的数据『已经写入到大多数节点』，而这样的数据肯定不会发生回滚，避免了脏读的问题。</p>
+<p>需要注意的是，readConcern 能保证读到的数据『不会发生回滚』，但并不能保证读到的数据是最新的，这个官网上也有说明。</p>
+<blockquote>
+<p>Regardless of the read concern level, the most recent data on a node may not reflect the most recent version of the data in the system.</p>
+</blockquote>
+<p>有用户误以为，readConcern 指定为 majority 时，客户端会从大多数的节点读取数据，然后返回最新的数据。</p>
+<p>实际上并不是这样，无论何种级别的 readConcern，客户端都只会从『某一个确定的节点』（具体是哪个节点由 readPreference 决定）读取数据，该节点根据自己看到的同步状态视图，只会返回已经同步到大多数节点的数据。</p>
+<footer><strong>mongodb中文社区</strong><cite><a href="http://www.mongoing.com/archives/3403" target="_blank" rel="external">www.mongoing.com/archives/3403</a></cite></footer></blockquote>
+<p>注意，读策略是MongoDB3.2加入的新特性，如果要使用读取『已经写入到大多数节点』的策略，除了要注意MongoDB的版本之外，还应该注意以下两点：</p>
+<ul>
+<li>启动mongod的时候，添加<code>--enableMajorityReadConcern</code>参数</li>
+<li>副本集必须使用wt存储引擎，而且选举协议为<code>protocol version 1</code></li>
+</ul>
+<h3 id="Write-Concern-数据写策略"><a href="#Write-Concern-数据写策略" class="headerlink" title="Write Concern(数据写策略)"></a>Write Concern(数据写策略)</h3><p>写策略主要讨论的问题是MongoDB写操作的确认等级，写请求确认等级影响了写操作的速度。如果写确认等级比较低，写速度快，随着确认等级的升高，客户端可能要花更多的时间等待MongoDB进行写确认。如果说配置的写确认等级较低，有可能会出现写操作返回成功，但是并没有数据发生改变的情况</p>
+<p>所以在生产环境使用MongoDB之前需要先考虑好合适的写操作确认等级</p>
+<h2 id="Networking-网络"><a href="#Networking-网络" class="headerlink" title="Networking(网络)"></a>Networking(网络)</h2><h3 id="Use-Trusted-Networking-Environments-使用可信任的网络环境"><a href="#Use-Trusted-Networking-Environments-使用可信任的网络环境" class="headerlink" title="Use Trusted Networking Environments(使用可信任的网络环境)"></a>Use Trusted Networking Environments(使用可信任的网络环境)</h3><p>请在可信任的环境下运行MongoDB，通过网络保护策略保护MongoDB被任何非法的机器，系统，或者是网络访问（一般就是指在内网环境中启动运行MongoDB，只有同一内网的机器才有权限访问MongoDB）。如果必须暴露在网络环境中，MongoDB必须要配合相应的权限系统，监控系统等去保证MongDB不被非法访问。</p>
+<blockquote>
+<p>默认情况下，MongoDB的权限认证系统不会开启</p>
+</blockquote>
+<p>关于MongoDB的安全性，还有以下文章参考：</p>
+<ul>
+<li><a href="https://docs.mongodb.com/manual/administration/security-checklist/" target="_blank" rel="external">Security Checklist</a></li>
+<li><a href="https://docs.mongodb.com/manual/core/security-mongodb-configuration/" target="_blank" rel="external">MongoDB Configuration Hardening</a></li>
+<li><a href="https://docs.mongodb.com/manual/core/security-network/" target="_blank" rel="external">Hardening Network Infrastructure</a></li>
+</ul>
+<h3 id="Disable-HTTP-Interface-禁用http接口"><a href="#Disable-HTTP-Interface-禁用http接口" class="headerlink" title="Disable HTTP Interface(禁用http接口)"></a>Disable HTTP Interface(禁用http接口)</h3><p>MongoDB提供了一个http接口，用于检查节点状态，而且也可以用来执行一些脚本。http接口默认关闭，不能在生产环境开启http接口</p>
+<h3 id="Manage-Connection-Pool-Sizes-连接池管理"><a href="#Manage-Connection-Pool-Sizes-连接池管理" class="headerlink" title="Manage Connection Pool Sizes(连接池管理)"></a>Manage Connection Pool Sizes(连接池管理)</h3><p>为了避免连接资源过载（常见的can not get resource from the pool），要预估连接池大小，设定一个比较合理的值。通常的经验是，在一开始的时候设定连接池的大小为当前平均数据库请求数量的110-115%，并且需要根据实际情况的改变而进行调整。参考<a href="https://docs.mongodb.com/manual/reference/connection-string/#connection-pool-options" target="_blank" rel="external">数据库连接池相关参数说明</a></p>
+<p><code>connPoolStats</code>命令可以用来查询当前数据库连接数</p>
+<h2 id="Hardware-Considerations-硬件注意事项"><a href="#Hardware-Considerations-硬件注意事项" class="headerlink" title="Hardware Considerations(硬件注意事项)"></a>Hardware Considerations(硬件注意事项)</h2><p>MongoDB对硬件的要求和限制相对较低</p>
+<h3 id="Allocate-Sufficient-RAM-and-CPU-充足的内存和cpu"><a href="#Allocate-Sufficient-RAM-and-CPU-充足的内存和cpu" class="headerlink" title="Allocate Sufficient RAM and CPU(充足的内存和cpu)"></a>Allocate Sufficient RAM and CPU(充足的内存和cpu)</h3><h4 id="MMAPv1-1"><a href="#MMAPv1-1" class="headerlink" title="MMAPv1"></a>MMAPv1</h4><p>由于<code>MMAPv1</code>自身的并发模型，它并不需要很多的CPU内核。当然，如果增加了CPU内核数量，可以提高一部分性能，但是并不会减少单次处理的相应时间，至少需要一个双核物理CPU。</p>
+<p>增加内存可以帮助MongoDB减少页交换次数，关于如何查看centos系统缺页信息，请参考<a href="https://github.com/chyyuu/ucore_os_lab/blob/master/related_info/lab2/watch_linux_pagefault.md" target="_blank" rel="external">这里</a></p>
+<h4 id="WiredTiger-1"><a href="#WiredTiger-1" class="headerlink" title="WiredTiger"></a>WiredTiger</h4><p>WiredTiger是一个多线程的存储引擎，能充分发挥出多核CPU的优势。当前活跃线程数和CPU数量的比例影响着wt的性能</p>
+<ul>
+<li>增加线程数量至CPU核数能提高吞吐量</li>
+<li>如果活跃线程数量超出CPU数量到达一定成都的时候，吞吐量会下降</li>
+</ul>
+<p><code>mongostat</code>可以用来查看当前活跃操作数</p>
+<p>WiredTiger存储引擎，既使用了WiredTiger内部缓存，也使用了文件系统缓存</p>
+<p>MongoDB3.4开始，WiredTiger将会内部缓存将会占用以下（较大的一个）内存空间：</p>
+<ul>
+<li>50%的内存减去1GB</li>
+<li>256MB</li>
+</ul>
+<p>由于使用了系统缓存，MongoDB实际上会使用掉所有没有被WiredTiger内部缓存和其他应用程序占用的内存空间。文件系统缓存中的数据是被压缩过的</p>
+<p>为了调整WiredTiger内部缓存大小，可以通过设定参数<code>storage.wiredTiger.engineConfig.cacheSizeGB</code>或者<code>--wiredTigerCacheSizeGB</code>。避免设置的内部缓存大小大于默认值（个人认为这样处理可能是为了防止内存溢出的问题）</p>
+<blockquote>
+<p>注意：<code>storage.wiredTiger.engineConfig.cacheSizeGB</code>限制的是WiredTiger内部缓存占用内存大小。因为使用文件系统缓存的原因，操作系统会使用剩余的全部内存空间（所以跑着大业务量的mongod的机器内存使用总会100%）。</p>
+</blockquote>
+<p>这个设定（WiredTiger内部缓存默认值）的前提是一个机器上只运行一个mongod实例，如果你的机器上运行了多个mongod实例的话，应该把这个配置相对调低。生产环境不推荐一个机器上启动多个mongod进程。</p>
+<p>如果是在容器中运行mongod实例（单个容器往往没有权限使用全部内存），这时候需要把<code>storage.wiredTiger.engineConfig.cacheSizeGB</code>的值设的小于容器可使用的内存空间大小</p>
+<p>查看WiredTiger内部缓存到底占用了多少内存的方式是，在mongo shell中之行以下命令：<code>db.runCommand( { serverStatus: 1 } ).wiredTiger.cache[&quot;bytes currently in the cache&quot;]</code></p>
+<h3 id="Compression-and-Encryption-压缩和加密"><a href="#Compression-and-Encryption-压缩和加密" class="headerlink" title="Compression and Encryption(压缩和加密)"></a>Compression and Encryption(压缩和加密)</h3><p>当开启加密功能的时候，配备AES-NI指令集扩展的CPU的性能表现最好。如果你使用的是企业级mongodb，而且使用了加密存储引擎，请选择配备AES-NI指令集扩展的CPU</p>
+<h3 id="Use-Solid-State-Disks-SSDs-使用固态硬盘"><a href="#Use-Solid-State-Disks-SSDs-使用固态硬盘" class="headerlink" title="Use Solid State Disks (SSDs)(使用固态硬盘)"></a>Use Solid State Disks (SSDs)(使用固态硬盘)</h3><p>推荐在生产环境中使用固态硬盘，这样能带来更高的性价比。固态硬盘的随机读写能力非常适合MMMapv1的更新模型。</p>
+<p><a href="https://zhidao.baidu.com/question/166368197.html" target="_blank" rel="external">SATA与SSD固态硬盘有什么区别</a></p>
+<h3 id="MongoDB-and-NUMA-Hardware-非均匀存储器访问"><a href="#MongoDB-and-NUMA-Hardware-非均匀存储器访问" class="headerlink" title="MongoDB and NUMA Hardware(非均匀存储器访问)"></a>MongoDB and NUMA Hardware(非均匀存储器访问)</h3><p>在一个非均匀内存访问的系统中运行MongoDB可能会带来比较多的问题。包括慢查询和高CPU占用。</p>
+<p>关于这部分详细内容，请具体参考<a href="https://docs.mongodb.com/manual/administration/production-notes/#mongodb-and-numa-hardware" target="_blank" rel="external">MongoDB Production Notes</a></p>
+<h3 id="Disk-and-Storage-Systems-磁盘和存储系统"><a href="#Disk-and-Storage-Systems-磁盘和存储系统" class="headerlink" title="Disk and Storage Systems(磁盘和存储系统)"></a>Disk and Storage Systems(磁盘和存储系统)</h3><h4 id="swap-交换空间"><a href="#swap-交换空间" class="headerlink" title="swap(交换空间)"></a>swap(交换空间)</h4><p>生产环境中要为的系统分配交换空间。配置交换空间可以避免内存争用问题，防止Linux中的<a href="理解和配置 Linux 下的 OOM Killer">OOM Killer</a>杀掉mongod进程</p>
+<p>当使用MMAPv1存储引擎的时候，mongod使用文件映射到内存的方法确保了操作系统不会将MongoDB数据存储在交换空间。在Windows系统上,因为一些限制，使用MMAPv1需要额外的交换空间在，参考<a href="https://docs.mongodb.com/manual/administration/production-notes/#production-windows-pagefile" target="_blank" rel="external">MongoDB on Windows</a></p>
+<p>WiredTiger存储引擎在内存不够用的情况下可能会将部分数据存储在交换空间</p>
+<h4 id="RAID-磁盘阵列"><a href="#RAID-磁盘阵列" class="headerlink" title="RAID(磁盘阵列)"></a>RAID(磁盘阵列)</h4><p>大部分生产环境中MongoDB运行环境中，磁盘阵列组合方式都是raid-10</p>
+<p>raid-5和raid-6组合方式性能不如raid-10</p>
+<p>不要在生产环境中使用raid-0，虽然raid-0提供了很好的写性能，但是它也存在一些缺点，例如会降低读性能。尤其是使用亚马DBS volumes</p>
+<p>关于raid，可以参考<a href="https://zh.wikipedia.org/wiki/RAID" target="_blank" rel="external">这里</a></p>
+<h4 id="Remote-Filesystems-远程文件系统"><a href="#Remote-Filesystems-远程文件系统" class="headerlink" title="Remote Filesystems(远程文件系统)"></a>Remote Filesystems(远程文件系统)</h4><p>总的来说，远程文件系统是不推荐在生产环境使用的，主要是因为性能问题</p>
+<p>如果使用MMAPv1存储引擎，不推荐网络文件系统(NFS)，如果数据文件和日志文件都托管在NFS会导致性能问题。如果将数据文件和日志文件放在本地性能将会提高很多</p>
+<p>当使用的是WiredTiger存储引擎的时候，如果远程文件系统符合ISO / IEC 9945 - 1:1996，WiredTiger对象就可以远程存储。因为通常情况下远程文件系统都比本地文件系统慢，所以使用远程文件系统会降低MongoDB的性能</p>
+<p>如果决定使用NFS，添加以下的NFS选项到<code>/etc/fstab</code>文件：<code>bg</code>, <code>nolock</code>, 和 <code>noatime</code></p>
+<h4 id="Separate-Components-onto-Different-Storage-Devices-不同组件使用不同的存储设备"><a href="#Separate-Components-onto-Different-Storage-Devices-不同组件使用不同的存储设备" class="headerlink" title="Separate Components onto Different Storage Devices(不同组件使用不同的存储设备)"></a>Separate Components onto Different Storage Devices(不同组件使用不同的存储设备)</h4><p>为了提高性能，可以根据应用程序的数据读写模式将数据库文件，journal文件，log文件等写到不同的存储设备上。将组件挂载为一个独立的文件系统，然后通过符号链接将对应的存储设备映射过去</p>
+<p>如果使用WiredTiger存储引擎，也可以将索引单独存储到不同的存储设备上。、</p>
+<blockquote>
+<p>注意，使用不同的存储设备将会影响数据库快照备份，因为文件需要被存储到不同的设备和数据卷上</p>
+</blockquote>
+<h3 id="Scheduling-调度"><a href="#Scheduling-调度" class="headerlink" title="Scheduling(调度)"></a>Scheduling(调度)</h3><h4 id="Scheduling-for-Virtual-or-Cloud-Hosted-Devices-虚拟设备或云托管设备的调度"><a href="#Scheduling-for-Virtual-or-Cloud-Hosted-Devices-虚拟设备或云托管设备的调度" class="headerlink" title="Scheduling for Virtual or Cloud Hosted Devices(虚拟设备或云托管设备的调度)"></a>Scheduling for Virtual or Cloud Hosted Devices(虚拟设备或云托管设备的调度)</h4><p>如果使用虚拟机或者是云服务运行MongoDB，操作系统应该使用等待调度方式以获得最佳性能。等待调度方式允许操作系统I/O调度遵从底层虚拟机监控程序。</p>
+<h4 id="Scheduling-for-Physical-Servers-物理机调度"><a href="#Scheduling-for-Physical-Servers-物理机调度" class="headerlink" title="Scheduling for Physical Servers(物理机调度)"></a>Scheduling for Physical Servers(物理机调度)</h4><p>如果使用物理机运行MongoDB，那么操作系统应该使用<code>deadline scheduler</code>的调度方式。<code>deadline scheduler</code>记录每个请求的最大延迟时间并且能够为磁盘敏感型数据库应用维持一个最合适的磁盘吞吐率</p>
+<h2 id="Architecture-架构"><a href="#Architecture-架构" class="headerlink" title="Architecture(架构)"></a>Architecture(架构)</h2><h3 id="Replica-Sets-副本集"><a href="#Replica-Sets-副本集" class="headerlink" title="Replica Sets(副本集)"></a><a href="https://docs.mongodb.com/manual/administration/production-notes/#replica-sets" target="_blank" rel="external">Replica Sets(副本集)</a></h3><h3 id="Sharded-Clusters-分片集群"><a href="#Sharded-Clusters-分片集群" class="headerlink" title="Sharded Clusters 分片集群"></a><a href="https://docs.mongodb.com/manual/administration/production-notes/#sharded-clusters" target="_blank" rel="external">Sharded Clusters 分片集群</a></h3><h2 id="Compression-压缩"><a href="#Compression-压缩" class="headerlink" title="Compression(压缩)"></a>Compression(压缩)</h2><p>WiredTiger可以使用<a href="https://docs.mongodb.com/manual/reference/glossary/#term-snappy" target="_blank" rel="external">snappy</a>和<a href="https://docs.mongodb.com/manual/reference/glossary/#term-zlib" target="_blank" rel="external">zlib</a>两种方式压缩数据。snappy拥有较低的压缩比，但是性能损耗小；zlib能获得更高的压缩比，但是性能损耗多</p>
+<p>默认情况下，WiredTiger使用snappy作为默认的压缩库，如果想改变默认的压缩设置，查看<a href="https://docs.mongodb.com/manual/reference/configuration-options/#storage.wiredTiger.collectionConfig.blockCompressor" target="_blank" rel="external">storage.wiredTiger.collectionConfig.blockCompressor</a></p>
+<h2 id="Platform-Specific-Considerations-不同平台注意事项"><a href="#Platform-Specific-Considerations-不同平台注意事项" class="headerlink" title="Platform Specific Considerations(不同平台注意事项)"></a>Platform Specific Considerations(不同平台注意事项)</h2><blockquote>
+<p>MongoDB会使用系统安装的glibc，并且要求glibc的版本至少在glibc-2.12-1.2.el6，否则会出现一些已知的bug，为了避免问题最好让glibc版本高于2.13</p>
+</blockquote>
+<h3 id="MongoDB-on-Linux-在linux上使用MongoDB"><a href="#MongoDB-on-Linux-在linux上使用MongoDB" class="headerlink" title="MongoDB on Linux(在linux上使用MongoDB)"></a>MongoDB on Linux(在linux上使用MongoDB)</h3><h4 id="Kernel-and-File-Systems-内核和文件系统"><a href="#Kernel-and-File-Systems-内核和文件系统" class="headerlink" title="Kernel and File Systems(内核和文件系统)"></a>Kernel and File Systems(内核和文件系统)</h4><p><strong>如果在Linux上使用MongoDB，那么Linux内核版本必须高于2.6.36，而且要使用XFS或者是EXT4文件系统。如果可能的话，尽量使用XFS，因为总体上MongoDB在XFS文件系统上运行地更好</strong></p>
+<p><strong>当使用WiredTiger存储引擎的时候，强烈推荐使用XFS文件系统，因为这样能够避免因为使用EXT4文件系统导致的性能问题</strong></p>
+<p>当使用MMapv1存储引擎的时候，MongoDB会预先创建数据库文件占用磁盘空间，虽然这时候还没有真的存储数据，而且通常创建的文件都比较大，基于这点考虑，同样推荐使用XFS和EXT4文件系统。如果可能的话，尽量使用XFS</p>
+<p>注意：</p>
+<ul>
+<li>通常情况下，如果使用XFS文件系统，Linux内核版本至低是2.6.25</li>
+<li>如果使用EXT4文件系统，Linux内核版本最低是2.6.28</li>
+<li>如果使用Red Hat Enterprise或者是CentOS，内核版本最低为2.6.18-194</li>
+</ul>
+<h4 id="fsync-on-Directories"><a href="#fsync-on-Directories" class="headerlink" title="fsync() on Directories"></a>fsync() on Directories</h4><blockquote>
+<p>MongoDB要求文件系统支持fsync()方法，HGFS和Virtual Box’s shared folders都不支持改方法</p>
+</blockquote>
+<h4 id="Recommended-Configuration-推荐配置"><a href="#Recommended-Configuration-推荐配置" class="headerlink" title="Recommended Configuration(推荐配置)"></a>Recommended Configuration(推荐配置)</h4><p><em>对于所有的MongoDB部署环境：</em></p>
+<ul>
+<li>主机必须使用Network Time Protocol (NTP)来同步时钟，这对于分片集群来说非常重要</li>
+</ul>
+<p>关于WiredTiger和MMAPv1存储引擎，有以下推荐配置：</p>
+<ul>
+<li>关掉存储数据文件的volumn的atime</li>
+<li>设定文件描述符限制<code>-n</code>和用户进程可占用文件描述符数量限制(ulimit)<code>-u</code>高于20000，相关内容参考<a href="https://docs.mongodb.com/manual/reference/ulimit/" target="_blank" rel="external">这里</a>。ulimit过低将可能会导致MongoDB在业务繁忙的时候产生错误，进而甚至导致数据库连接失败，服务不可用等严重情况</li>
+<li>关闭透明大页，MongoDB使用普通虚拟内存页性能表现更好</li>
+<li>在BIOS中关闭NUMA</li>
+<li>禁用SELinux，如果可能的话。如果已经在Red Hat操作系统中使用了SELinux，必须做好相应配置，参考<a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/#install-rhel-configure-selinux" target="_blank" rel="external">Configure SELinux for MongoDB</a>和<a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-enterprise-on-red-hat/#install-enterprise-rhel-configure-selinux" target="_blank" rel="external">Configure SELinux for MongoDB Enterprise</a></li>
+</ul>
+<blockquote>
+<p>如果使用SELinux，任何需要使用server-side javascript的MongoDB操作语句将会导致segfault errors。<a href="https://docs.mongodb.com/manual/core/server-side-javascript/#disable-server-side-js" target="_blank" rel="external">Disable Server-Side Execution of JavaScript</a>介绍了如何禁止执行server-side javascript</p>
+</blockquote>
+<p>补充说明：</p>
+<ul>
+<li>atime<br>参考<a href="http://jianjian.blog.51cto.com/35031/103231" target="_blank" rel="external">这篇文章</a>，因为数据库文件可能频繁被修改，如果关闭atime，这样避免文件改动带来的atime的修改影响部分性能</li>
+<li>ulimit<br>参考<a href="http://blog.csdn.net/cywosp/article/details/38965239" target="_blank" rel="external">这篇文章</a>，一般最大打开文件数会是系统内存的10%（以KB来计算）（称之为系统级限制），查看系统级别的最大打开文件数可以使用<code>sysctl -a | grep fs.file-max</code>命令查看。与此同时，内核为了不让某一个进程消耗掉所有的文件资源，其也会对单个进程最大打开文件数做默认值处理（称之为用户级限制），默认值一般是1024，使用<code>ulimit -n</code>命令可以查看。在Web服务器中，通过更改系统默认值文件描述符的最大值来优化服务器是最常见的方式之一，具体优化方式请查看<a href="http://blog.csdn.net/kumu_linux/article/details/7877770。" target="_blank" rel="external">http://blog.csdn.net/kumu_linux/article/details/7877770。</a></li>
+<li>关于<a href="http://www.cnblogs.com/kerrycode/p/4670931.html" target="_blank" rel="external">Transparent Huge Pages(透明大页)</a></li>
+<li><a href="https://baike.baidu.com/item/NUMA" target="_blank" rel="external">numa</a></li>
+</ul>
+<p><em>针对使用WiredTiger存储引擎的建议：</em></p>
+<ul>
+<li>不管使用什么类型的存储介质（机械硬盘，ssd），都要将linux系统readahead（文件预读）设置为0。设定更高等级的文件预读参数有利于连续的io操作，但是MongoDB的磁盘操作通常情况下都是随机的，调高文件预读等级只能带来有限的好处，而且会影响MongoDB本身的性能。因此，将readahead设置为0在大部分的工作场景中能让MonoDB获得最佳性能。</li>
+</ul>
+<p><em>针对使用MMAPv1存储引擎的建议：</em></p>
+<ul>
+<li>保证存储数据库文件的块设备的readahead是合适的。针对硬盘的随机读写操作类型，可以设定较低的readahead为32（16KB）。对于标准块设备，<code>sudo blockdev --report</code>可以获取当前readahead值，<code>sudo blockdev --setra &lt;value&gt; &lt;device&gt;</code>可以用于制定设备的值</li>
+</ul>
+<blockquote>
+<p>补充说明：<br>readahead（文件预读）: Linux的文件预读readahead，指Linux系统内核将指定文件的某区域预读进页缓存起来，便于接下来对该区域进行读取时，不会因缺页（page fault）而阻塞。因为从内存读取比从磁盘读取要快很多。预读可以有效的减少磁盘的寻道次数和应用程序的I/O等待时间，是改进磁盘读I/O性能的重要优化手段之一。</p>
+</blockquote>
+<h4 id="MongoDB-and-TLS-SSL-libraries"><a href="#MongoDB-and-TLS-SSL-libraries" class="headerlink" title="MongoDB and TLS/SSL libraries"></a>MongoDB and TLS/SSL libraries</h4><p>在Linux系统中可能会看到以下错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;path to SSL libs&gt;/libssl.so.&lt;version&gt;: no version information available (required by /usr/bin/mongod)</div><div class="line">&lt;path to SSL libs&gt;/libcrypto.so.&lt;version&gt;: no version information available (required by /usr/bin/mongod)</div></pre></td></tr></table></figure></p>
+<p>这个警告说明了系统的TLS/SSL库和编译MongoDB使用的不一致，通常情况下并不需要关注这个，但仍然可以使用以下命令来查看MongoDB需要的TLS/SSL库版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">objdump -T &lt;path to mongod&gt;/mongod | grep &quot; SSL_&quot;</div><div class="line">objdump -T &lt;path to mongod&gt;/mongod | grep &quot; CRYPTO_&quot;</div></pre></td></tr></table></figure></p>
+<p>上述命令将返回以下结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">0000000000000000      DF *UND*       0000000000000000  libssl.so.10 SSL_write</div><div class="line">0000000000000000      DF *UND*       0000000000000000  OPENSSL_1.0.0 SSL_write</div></pre></td></tr></table></figure></p>
+<p>接下来检测下系统中的TLS/SSL库的版本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">objdump -T &lt;path to TLS/SSL libs&gt;/libssl.so.1*</div><div class="line">objdump -T &lt;path to TLS/SSL libs&gt;/libcrypto.so.1*</div></pre></td></tr></table></figure></p>
+<p>上述方法，既不准确，也不完善，仅供参考</p>
+<h3 id="MongoDB-on-Windows"><a href="#MongoDB-on-Windows" class="headerlink" title="MongoDB on Windows"></a>MongoDB on Windows</h3><p>感兴趣的可以参考<a href="https://docs.mongodb.com/manual/administration/production-notes/#mongodb-on-windows" target="_blank" rel="external">这里</a></p>
+<h3 id="MongoDB-on-Virtual-Environments"><a href="#MongoDB-on-Virtual-Environments" class="headerlink" title="MongoDB on Virtual Environments"></a>MongoDB on Virtual Environments</h3><h4 id="EC2"><a href="#EC2" class="headerlink" title="EC2"></a>EC2</h4><p>MongoDB兼容EC2，<a href="https://www.mongodb.com/cloud/cloud-manager/?jmp=docs&amp;_ga=2.133439246.1051480522.1501766469-1069453493.1477385716" target="_blank" rel="external">MongoDB Cloud Manager</a>可以部署在AWS上，然后可以使用MongoDB Cloud Manager在EC2上部署mongod实例，详情参考<a href="Configure AWS Integration">Configure AWS Integration</a></p>
+<h4 id="Azure"><a href="#Azure" class="headerlink" title="Azure"></a><a href="https://docs.mongodb.com/manual/administration/production-notes/#azure" target="_blank" rel="external">Azure</a></h4><h4 id="VMWare"><a href="#VMWare" class="headerlink" title="VMWare"></a>VMWare</h4><p>MongoDB兼容VMWare</p>
+<p>VMWare支持内存过载，所以可以给虚拟机分配超出物理机实际内存大小的内存值。当内存过载时，管理程序会给虚拟机重新分配内存。VMWare balloon driver (vmmemctl)会自动回收它认为最没有价值的内存，balloon driver运行在虚拟机中，当balloon driver扩大时，会导致虚拟机回收应用的内存，这个会影响MongoDB的内存管理，影响MongoDB的内存</p>
+<p>可以通过关闭balloon driver和VMWare的内存过载功能来避免上述问题。但是，关闭balloon driver会导致管理程序使用交换分区，因为没有其他的能够用来执行内存回收的机制。从swap读写数据要比从内存慢得多，这也会影响性能。因此关闭balloon driver和VMWare的内存过载功能不是最佳方案，最佳方案是给运行MongoDB的虚拟机分配全部内存，这样就能保证MongoDB不会被影响</p>
+<p>使用VMWare的时候，确保每个物理CPU虚拟出来的CPU数量不超过2</p>
+<p>使用vMotion关闭VMWare的（动态迁移）。虚拟机的动态迁移会导致性能问题，而且会影响MongoDB副本集和分片集群机制</p>
+<p>可以克隆一个正在运行着MongoDB的虚拟机，也就是说可以使用这种方式快速的把一个MongoDB单点做成一个副本集。如果克隆一个开启了journaling的MongoDB的VM，直接克隆就能MongoDB就能启动。如果MongoDB没有开启，先关闭MongoDB，然后克隆VM，然后重启MongoDB</p>
+<h4 id="KVM"><a href="#KVM" class="headerlink" title="KVM"></a>KVM</h4><p>MongoDB兼容KVM</p>
+<p>KVM支持内存过载，所以可以给虚拟机分配超出物理机实际内存大小的内存值。当内存过载时，管理程序会给虚拟机重新分配内存。KVM balloon driver (vmmemctl)会自动回收它认为最没有价值的内存，balloon driver运行在虚拟机中，当balloon driver扩大时，会导致虚拟机回收应用的内存，这个会影响MongoDB的内存管理，影响MongoDB的内存</p>
+<p>可以通过关闭balloon driver和KVM的内存过载功能来避免上述问题。但是，关闭balloon driver会导致管理程序使用交换分区，因为没有其他的能够用来执行内存回收的机制。从swap读写数据要比从内存慢得多，这也会影响性能。因此关闭balloon driver和KVM的内存过载功能不是最佳方案，最佳方案是给运行MongoDB的虚拟机分配全部内存，这样就能保证MongoDB不会被影响</p>
+<p>使用KVM的时候，确保每个物理CPU虚拟出来的CPU数量不超过2</p>
+<h2 id="性能监控"><a href="#性能监控" class="headerlink" title="性能监控"></a>性能监控</h2><h3 id="iostat"><a href="#iostat" class="headerlink" title="iostat"></a>iostat</h3><p>在Linux系统中，可以使用iostat去检查数据库是否存在磁盘io瓶颈</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iostat -xmt 1</div></pre></td></tr></table></figure>
+<p>iostat关键字段：</p>
+<ul>
+<li>%util: 这个字段价值最大，它代表了当前指定时间磁盘使用百分比</li>
+<li>avgrq-sz: 平均请求大小，这个数值越小表示有越多的random IO</li>
+</ul>
+<h3 id="bwm-ng"><a href="#bwm-ng" class="headerlink" title="bwm-ng"></a>bwm-ng</h3><p>这是个监控网络状态的命令行工具，可以用来确认是否存在网络瓶颈</p>
+<h2 id="Backups"><a href="#Backups" class="headerlink" title="Backups"></a>Backups</h2><p>数据备份请参考<a href="https://docs.mongodb.com/manual/core/backups/" target="_blank" rel="external">这里</a></p>
+<h2 id="其他参考链接"><a href="#其他参考链接" class="headerlink" title="其他参考链接"></a>其他参考链接</h2><ul>
+<li><a href="Blog Post: Capacity Planning and Hardware Provisioning for MongoDB In Ten Minutes">Blog Post: Capacity Planning and Hardware Provisioning for MongoDB In Ten Minutes</a></li>
+<li><a href="http://www.mongodb.com/lp/white-paper/multi-dc?jmp=docs&amp;_ga=2.133419918.1051480522.1501766469-1069453493.1477385716" target="_blank" rel="external">Whitepaper: MongoDB Multi-Data Center Deployments</a></li>
+<li><a href="https://www.mongodb.com/lp/white-paper/mongodb-security-architecture?jmp=docs&amp;_ga=2.133419918.1051480522.1501766469-1069453493.1477385716" target="_blank" rel="external">Whitepaper: Security Architecture</a></li>
+<li><a href="https://www.mongodb.com/lp/whitepaper/architecture-guide?jmp=docs&amp;_ga=2.133419918.1051480522.1501766469-1069453493.1477385716" target="_blank" rel="external">Whitepaper: MongoDB Architecture Guide</a></li>
+<li><a href="http://www.mongodb.com/presentations/webinar-mongodb-administration-101?jmp=docs&amp;_ga=2.133419918.1051480522.1501766469-1069453493.1477385716" target="_blank" rel="external">Presentation: MongoDB Administration 101</a></li>
+<li><a href="https://www.mongodb.com/products/consulting?jmp=docs&amp;_ga=2.133419918.1051480522.1501766469-1069453493.1477385716#s_product_readiness" target="_blank" rel="external">MongoDB Production Readiness Consulting Package</a></li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://docs.mongodb.com/manual/administration/production-notes/" target="_blank" rel="external">MongoDB Production Notes</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mongodb/" rel="tag"># mongodb</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/08/mongo/mongodb-wt数据文件损坏解决方案/" rel="next" title="mongodb wt数据文件损坏解决方案">
+                <i class="fa fa-chevron-left"></i> mongodb wt数据文件损坏解决方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/author.jpg"
+               alt="kivi" />
+          <p class="site-author-name" itemprop="name">kivi</p>
+           
+              <p class="site-description motion-element" itemprop="description">nodejs | server</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB二进制文件"><span class="nav-number">1.</span> <span class="nav-text">MongoDB二进制文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#支持的运行平台"><span class="nav-number">1.1.</span> <span class="nav-text">支持的运行平台</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#推荐的运行平台"><span class="nav-number">1.1.1.</span> <span class="nav-text">推荐的运行平台</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#推荐mongodb最新的release版本"><span class="nav-number">1.1.2.</span> <span class="nav-text">推荐mongodb最新的release版本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB-dbpath"><span class="nav-number">2.</span> <span class="nav-text">MongoDB dbpath</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并发性（基于不同的数据库引擎的比较）"><span class="nav-number">2.1.</span> <span class="nav-text">并发性（基于不同的数据库引擎的比较）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MMAPv1"><span class="nav-number">2.1.1.</span> <span class="nav-text">MMAPv1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WiredTiger"><span class="nav-number">2.1.2.</span> <span class="nav-text">WiredTiger</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Consistency-数据一致性"><span class="nav-number">3.</span> <span class="nav-text">Data Consistency(数据一致性)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Journaling-日志"><span class="nav-number">3.1.</span> <span class="nav-text">Journaling(日志)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Concern-数据读策略"><span class="nav-number">3.2.</span> <span class="nav-text">Read Concern(数据读策略)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Write-Concern-数据写策略"><span class="nav-number">3.3.</span> <span class="nav-text">Write Concern(数据写策略)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Networking-网络"><span class="nav-number">4.</span> <span class="nav-text">Networking(网络)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-Trusted-Networking-Environments-使用可信任的网络环境"><span class="nav-number">4.1.</span> <span class="nav-text">Use Trusted Networking Environments(使用可信任的网络环境)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Disable-HTTP-Interface-禁用http接口"><span class="nav-number">4.2.</span> <span class="nav-text">Disable HTTP Interface(禁用http接口)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Manage-Connection-Pool-Sizes-连接池管理"><span class="nav-number">4.3.</span> <span class="nav-text">Manage Connection Pool Sizes(连接池管理)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hardware-Considerations-硬件注意事项"><span class="nav-number">5.</span> <span class="nav-text">Hardware Considerations(硬件注意事项)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Allocate-Sufficient-RAM-and-CPU-充足的内存和cpu"><span class="nav-number">5.1.</span> <span class="nav-text">Allocate Sufficient RAM and CPU(充足的内存和cpu)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MMAPv1-1"><span class="nav-number">5.1.1.</span> <span class="nav-text">MMAPv1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WiredTiger-1"><span class="nav-number">5.1.2.</span> <span class="nav-text">WiredTiger</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compression-and-Encryption-压缩和加密"><span class="nav-number">5.2.</span> <span class="nav-text">Compression and Encryption(压缩和加密)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-Solid-State-Disks-SSDs-使用固态硬盘"><span class="nav-number">5.3.</span> <span class="nav-text">Use Solid State Disks (SSDs)(使用固态硬盘)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB-and-NUMA-Hardware-非均匀存储器访问"><span class="nav-number">5.4.</span> <span class="nav-text">MongoDB and NUMA Hardware(非均匀存储器访问)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Disk-and-Storage-Systems-磁盘和存储系统"><span class="nav-number">5.5.</span> <span class="nav-text">Disk and Storage Systems(磁盘和存储系统)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#swap-交换空间"><span class="nav-number">5.5.1.</span> <span class="nav-text">swap(交换空间)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RAID-磁盘阵列"><span class="nav-number">5.5.2.</span> <span class="nav-text">RAID(磁盘阵列)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Remote-Filesystems-远程文件系统"><span class="nav-number">5.5.3.</span> <span class="nav-text">Remote Filesystems(远程文件系统)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Separate-Components-onto-Different-Storage-Devices-不同组件使用不同的存储设备"><span class="nav-number">5.5.4.</span> <span class="nav-text">Separate Components onto Different Storage Devices(不同组件使用不同的存储设备)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scheduling-调度"><span class="nav-number">5.6.</span> <span class="nav-text">Scheduling(调度)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Scheduling-for-Virtual-or-Cloud-Hosted-Devices-虚拟设备或云托管设备的调度"><span class="nav-number">5.6.1.</span> <span class="nav-text">Scheduling for Virtual or Cloud Hosted Devices(虚拟设备或云托管设备的调度)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scheduling-for-Physical-Servers-物理机调度"><span class="nav-number">5.6.2.</span> <span class="nav-text">Scheduling for Physical Servers(物理机调度)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Architecture-架构"><span class="nav-number">6.</span> <span class="nav-text">Architecture(架构)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Replica-Sets-副本集"><span class="nav-number">6.1.</span> <span class="nav-text">Replica Sets(副本集)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sharded-Clusters-分片集群"><span class="nav-number">6.2.</span> <span class="nav-text">Sharded Clusters 分片集群</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Compression-压缩"><span class="nav-number">7.</span> <span class="nav-text">Compression(压缩)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Platform-Specific-Considerations-不同平台注意事项"><span class="nav-number">8.</span> <span class="nav-text">Platform Specific Considerations(不同平台注意事项)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB-on-Linux-在linux上使用MongoDB"><span class="nav-number">8.1.</span> <span class="nav-text">MongoDB on Linux(在linux上使用MongoDB)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Kernel-and-File-Systems-内核和文件系统"><span class="nav-number">8.1.1.</span> <span class="nav-text">Kernel and File Systems(内核和文件系统)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fsync-on-Directories"><span class="nav-number">8.1.2.</span> <span class="nav-text">fsync() on Directories</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Recommended-Configuration-推荐配置"><span class="nav-number">8.1.3.</span> <span class="nav-text">Recommended Configuration(推荐配置)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MongoDB-and-TLS-SSL-libraries"><span class="nav-number">8.1.4.</span> <span class="nav-text">MongoDB and TLS/SSL libraries</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB-on-Windows"><span class="nav-number">8.2.</span> <span class="nav-text">MongoDB on Windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB-on-Virtual-Environments"><span class="nav-number">8.3.</span> <span class="nav-text">MongoDB on Virtual Environments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EC2"><span class="nav-number">8.3.1.</span> <span class="nav-text">EC2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Azure"><span class="nav-number">8.3.2.</span> <span class="nav-text">Azure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VMWare"><span class="nav-number">8.3.3.</span> <span class="nav-text">VMWare</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KVM"><span class="nav-number">8.3.4.</span> <span class="nav-text">KVM</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能监控"><span class="nav-number">9.</span> <span class="nav-text">性能监控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iostat"><span class="nav-number">9.1.</span> <span class="nav-text">iostat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bwm-ng"><span class="nav-number">9.2.</span> <span class="nav-text">bwm-ng</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backups"><span class="nav-number">10.</span> <span class="nav-text">Backups</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他参考链接"><span class="nav-number">11.</span> <span class="nav-text">其他参考链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">12.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kivi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 访客数量<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i> 浏览量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2128103"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("e99ORGgDvGxLUzH8mhKbAKu0-gzGzoHsz", "INsrz00YWhTssAqr5djkdMAS");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

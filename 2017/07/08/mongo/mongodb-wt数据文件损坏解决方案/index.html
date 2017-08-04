@@ -96,7 +96,7 @@
 <meta property="og:url" content="http://cocacola183.github.io/2017/07/08/mongo/mongodb-wt数据文件损坏解决方案/index.html">
 <meta property="og:site_name" content="Kivi">
 <meta property="og:description" content="原文链接译文链接，我看的这篇，因为没有给出来原文链接，所以刚开始没找到原文 背景 数据文件是wt文件，而且是通过snappy方式压缩的，如果不是通过snappy方式，也可以参考下这个方式，不过执行命令可能有所不同   这个解决方案非常适合这样的场景：服务器意外故障（例如断电），突然停机，导致mongodb数据文件损坏，进而导致了mongod进程无法启动">
-<meta property="og:updated_time" content="2017-07-09T14:27:29.000Z">
+<meta property="og:updated_time" content="2017-07-10T03:34:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongodb wt数据文件损坏解决方案">
 <meta name="twitter:description" content="原文链接译文链接，我看的这篇，因为没有给出来原文链接，所以刚开始没找到原文 背景 数据文件是wt文件，而且是通过snappy方式压缩的，如果不是通过snappy方式，也可以参考下这个方式，不过执行命令可能有所不同   这个解决方案非常适合这样的场景：服务器意外故障（例如断电），突然停机，导致mongodb数据文件损坏，进而导致了mongod进程无法启动">
@@ -424,7 +424,12 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> db.brokedCollection.find(&#123;&#125;, &#123;_id: 1&#125;)</span></div></pre></td></tr></table></figure>
 <h3 id="将数据dump出来，然后重新写进去"><a href="#将数据dump出来，然后重新写进去" class="headerlink" title="将数据dump出来，然后重新写进去"></a>将数据dump出来，然后重新写进去</h3><p><code>mongodump</code></p>
 <p><code>mongorestore</code></p>
+<blockquote>
+<p>注意，这里的<code>mongodump</code>和<code>mongorestore</code>都要使用3.2版本的</p>
+</blockquote>
 <p>数据经过导入导出之后就可以<code>count</code>出来了</p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>以上恢复过程是针对数据库文件被直接删掉的情况。假如说当前数据库启动无误，这时候一个误删，删掉了数据库文件应该如何处理呢？</p>
+<p><a href="https://blogs.gnome.org/raywang/2007/11/30/%E4%BD%BF%E7%94%A8lsof%E6%81%A2%E5%A4%8D%E8%AF%AF%E5%88%A0%E7%9A%84%E6%96%87%E4%BB%B6-%E8%BD%AC/" target="_blank" rel="external">使用lsof恢复误删的文件</a><br>这边文章写的清楚如何进行文件恢复</p>
 
       
     </div>
@@ -470,6 +475,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/10/mongo/mongodb生产部署建议/" rel="prev" title="mongodb生产部署建议">
+                mongodb生产部署建议 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -543,7 +552,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -603,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#恢复过程"><span class="nav-number">2.</span> <span class="nav-text">恢复过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工具"><span class="nav-number">2.1.</span> <span class="nav-text">准备工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备恢复目录mongo-bak"><span class="nav-number">2.2.</span> <span class="nav-text">准备恢复目录mongo-bak</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据文件修复（我没做这一步处理因为没有必要）"><span class="nav-number">2.3.</span> <span class="nav-text">数据文件修复（我没做这一步处理因为没有必要）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据格式调整"><span class="nav-number">2.4.</span> <span class="nav-text">数据格式调整</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在目标mongodb中创建一个集合（数据将会被恢复到这个mongodb中）"><span class="nav-number">2.5.</span> <span class="nav-text">在目标mongodb中创建一个集合（数据将会被恢复到这个mongodb中）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将collection-dump的数据写入xxx-wt"><span class="nav-number">2.6.</span> <span class="nav-text">将collection.dump的数据写入xxx.wt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看已经被恢复的数据"><span class="nav-number">2.7.</span> <span class="nav-text">查看已经被恢复的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将数据dump出来，然后重新写进去"><span class="nav-number">2.8.</span> <span class="nav-text">将数据dump出来，然后重新写进去</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#恢复过程"><span class="nav-number">2.</span> <span class="nav-text">恢复过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工具"><span class="nav-number">2.1.</span> <span class="nav-text">准备工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备恢复目录mongo-bak"><span class="nav-number">2.2.</span> <span class="nav-text">准备恢复目录mongo-bak</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据文件修复（我没做这一步处理因为没有必要）"><span class="nav-number">2.3.</span> <span class="nav-text">数据文件修复（我没做这一步处理因为没有必要）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据格式调整"><span class="nav-number">2.4.</span> <span class="nav-text">数据格式调整</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在目标mongodb中创建一个集合（数据将会被恢复到这个mongodb中）"><span class="nav-number">2.5.</span> <span class="nav-text">在目标mongodb中创建一个集合（数据将会被恢复到这个mongodb中）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将collection-dump的数据写入xxx-wt"><span class="nav-number">2.6.</span> <span class="nav-text">将collection.dump的数据写入xxx.wt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看已经被恢复的数据"><span class="nav-number">2.7.</span> <span class="nav-text">查看已经被恢复的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将数据dump出来，然后重新写进去"><span class="nav-number">2.8.</span> <span class="nav-text">将数据dump出来，然后重新写进去</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考"><span class="nav-number">3.</span> <span class="nav-text">思考</span></a></li></ol></div>
             
 
           </div>

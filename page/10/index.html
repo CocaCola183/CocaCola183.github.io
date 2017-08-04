@@ -282,6 +282,158 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cocacola183.github.io/2015/03/25/node/nodejs加密/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kivi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kivi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/25/node/nodejs加密/" itemprop="url">
+                  nodejs加密
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-25T17:06:21+08:00">
+                2015-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2015/03/25/node/nodejs加密/" class="leancloud_visitors" data-flag-title="nodejs加密">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="md5加密"><a href="#md5加密" class="headerlink" title="md5加密"></a>md5加密</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var crypto = require(&apos;crypto&apos;);</div><div class="line">function md5 (text) &#123;</div><div class="line">  return crypto.createHash(&apos;md5&apos;).update(text).digest(&apos;hex&apos;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="nodeclub的加密方法-amp-amp-解密方法"><a href="#nodeclub的加密方法-amp-amp-解密方法" class="headerlink" title="nodeclub的加密方法 &amp;&amp; 解密方法"></a>nodeclub的加密方法 &amp;&amp; 解密方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">exports.encrypt = function (str, secret) &#123;</div><div class="line">    var cipher = crypto.createCipher(&apos;aes192’, secret);</div><div class="line">    var enc = cipher.update(str, &apos;utf8’, ‘hex’);</div><div class="line">    enc += cipher.final(‘hex’);</div><div class="line">    return enc;</div><div class="line">&#125;;</div><div class="line">exports.decrypt = function (str, secret) &#123;</div><div class="line">    var decipher = crypto.createDecipher(&apos;aes192’, secret);</div><div class="line">    var dec = decipher.update(str, &apos;hex’, ‘utf8’);</div><div class="line">    dec += decipher.final(‘utf8’);</div><div class="line">    return dec;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="随机字符串的生成方法"><a href="#随机字符串的生成方法" class="headerlink" title="随机字符串的生成方法"></a>随机字符串的生成方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">exports.randomString = function (size) &#123;</div><div class="line">    size = size || 6;</div><div class="line">    var code_string = &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789’;</div><div class="line">    var max_num = code_string.length + 1;</div><div class="line">    var new_pass = &apos;’;</div><div class="line">    while (size &gt; 0) &#123;</div><div class="line">        new_pass += code_string.charAt(Math.floor(Math.random() * max_num));</div><div class="line">        size–;</div><div class="line">    &#125;</div><div class="line">    return new_pass;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://cocacola183.github.io/2015/03/25/javascript/javascript-Date/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -907,161 +1059,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cocacola183.github.io/2015/03/13/web/对session-cookie的理解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kivi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/author.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kivi">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/03/13/web/对session-cookie的理解/" itemprop="url">
-                  对session cookie的理解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-13T10:03:32+08:00">
-                2015-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web/" itemprop="url" rel="index">
-                    <span itemprop="name">web</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2015/03/13/web/对session-cookie的理解/" class="leancloud_visitors" data-flag-title="对session cookie的理解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.pureweber.com/article/how-session-works/" target="_blank" rel="external">Session原理简述</a>(<code>赞一下这个，毕竟是自己写的，而且博客风格很好，简单，清晰</code>)<br><a href="http://www.cnblogs.com/shiyangxt/articles/1305506.html" target="_blank" rel="external">cookie 和session 的区别详解</a><br><a href="http://zhanjia.iteye.com/blog/871021" target="_blank" rel="external">cookie机制和session机制的原理和区别[转]</a><br><a href="http://blog.csdn.net/colzer/article/details/8686966" target="_blank" rel="external">HTTP Session和Cookie工作原理</a><br><a href="http://blog.csdn.net/hongxing4hao/article/details/1492627" target="_blank" rel="external">Cookie和会话状态session的工作原理</a><br><a href="http://blog.csdn.net/wangzhkai/article/details/4187496" target="_blank" rel="external">session原理</a></p>
-<h2 id="为什么要使用session和cookie"><a href="#为什么要使用session和cookie" class="headerlink" title="为什么要使用session和cookie"></a>为什么要使用session和cookie</h2><p>为了解决HTTP是个无状态协议所带来的问题</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/03/13/web/对session-cookie的理解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1111,7 +1108,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
