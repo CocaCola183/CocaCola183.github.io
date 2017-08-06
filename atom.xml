@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cocacola183.github.io/"/>
-  <updated>2017-08-04T00:26:53.000Z</updated>
+  <updated>2017-08-06T16:05:00.000Z</updated>
   <id>http://cocacola183.github.io/</id>
   
   <author>
@@ -14,6 +14,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux磁盘压力测试</title>
+    <link href="http://cocacola183.github.io/2017/08/06/linux/Linux%E7%A3%81%E7%9B%98%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/"/>
+    <id>http://cocacola183.github.io/2017/08/06/linux/Linux磁盘压力测试/</id>
+    <published>2017-08-06T15:48:10.000Z</published>
+    <updated>2017-08-06T16:05:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这里主要就是介绍一个用于测试磁盘性能的命令</p>
+<h2 id="写性能测试"><a href="#写性能测试" class="headerlink" title="写性能测试"></a>写性能测试</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">time dd if=/dev/xvda1 of=/test.disk bs=8k count=300000</div></pre></td></tr></table></figure>
+<p>用dd命令进行测试，以每次写入8k的数据，执行300000次，time命令显示执行过程的时间，执行完成后生成/test.disk文件，大小为2.5G</p>
+<p>上面的命令其实是会将数据写入到文件系统缓存（系统默认操作，提高效率），而且是磁盘连续写，所以理论上是一个磁盘血素的极限值，如果是直接写入到磁盘，可以添加参数<code>oflag</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">time dd if=/dev/xvda1 of=/test.disk bs=8k count=300000 oflag=direct</div></pre></td></tr></table></figure></p>
+<h2 id="读性能测试"><a href="#读性能测试" class="headerlink" title="读性能测试"></a>读性能测试</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">time dd if=/test.disk of=/dev/xvda1 bs=8k</div></pre></td></tr></table></figure>
+<h2 id="读写联合测试"><a href="#读写联合测试" class="headerlink" title="读写联合测试"></a>读写联合测试</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">time dd if=/test.disk of=/tmp/test.disk2 bs=8k</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这里主要就是介绍一个用于测试磁盘性能的命令&lt;/p&gt;
+&lt;h2 id=&quot;写性能测试&quot;&gt;&lt;a href=&quot;#写性能测试&quot; class=&quot;headerlink&quot; title=&quot;写性能测试&quot;&gt;&lt;/a&gt;写性能测试&lt;/h2&gt;&lt;figure class=&quot;highlight shell&quot;&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://cocacola183.github.io/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://cocacola183.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nginx流量复制</title>
+    <link href="http://cocacola183.github.io/2017/08/06/nginx/nginx%E6%B5%81%E9%87%8F%E5%A4%8D%E5%88%B6/"/>
+    <id>http://cocacola183.github.io/2017/08/06/nginx/nginx流量复制/</id>
+    <published>2017-08-06T15:00:11.000Z</published>
+    <updated>2017-08-06T15:41:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h2><p><a href="http://www.crackedzone.com/testing-service-with-nginx-copy-request.html" target="_blank" rel="external">通过Nginx拷贝请求流量到测试环境测试</a></p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>nginx没有内置模块可以实现流量复制的功能，需要借助lua脚本实现流量复制的功能</p>
+<a id="more"></a>
+<h2 id="依赖安装和下载脚本"><a href="#依赖安装和下载脚本" class="headerlink" title="依赖安装和下载脚本"></a>依赖安装和下载脚本</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 首先download需要的nginx脚本，然后放到/opt/目录下（命名为nginx），并创建lib文件夹</span></div><div class="line"></div><div class="line">cd /opt/nginx/lib</div><div class="line"></div><div class="line">wget https://github.com/openresty/lua-nginx-module/archive/v0.10.9rc8.tar.gz</div><div class="line">mv v0.10.9rc8.tar.gz lua-nginx-module-v0.10.9rc8.tar.gz</div><div class="line"></div><div class="line">wget https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.tar.gz</div><div class="line">mv v0.3.0.tar.gz ngx_devel_kit-v0.3.0.tar.gz</div><div class="line"></div><div class="line">wget https://github.com/openresty/headers-more-nginx-module/archive/v0.32.tar.gz</div><div class="line">mv v0.32.tar.gz headers-more-nginx-module-v0.32.tar.gz</div><div class="line"></div><div class="line">wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.gz</div><div class="line">tar zxvf pcre-8.38.tar.gz</div><div class="line">cd pcre-8.38</div><div class="line">./configure --prefix=/opt/nginx/lib/pcre-8.38</div><div class="line">make</div><div class="line">make install</div><div class="line"></div><div class="line">wget https://zlib.net/zlib-1.2.11.tar.gz</div><div class="line">tar zxvf zlib-1.2.11.tar.gz</div><div class="line">cd zlib-1.2.11</div><div class="line">./configure --prefix=/opt/nginx/lib/zlib-1.2.11</div><div class="line">make</div><div class="line">make install</div><div class="line"></div><div class="line">wget http://luajit.org/download/LuaJIT-2.0.5.tar.gz</div><div class="line">tar zxvf LuaJIT-2.0.5.tar.gz</div><div class="line">cd LuaJIT-2.0.5</div><div class="line">make</div><div class="line">make install PREFIX=/opt/nginx/lib/LuaJIT-2.0.5</div><div class="line">export LUAJIT_LIB=/opt/nginx/lib/LuaJIT-2.0.5/lib</div><div class="line">export LUAJIT_INC=/opt/nginx/lib/LuaJIT-2.0.5/include/luajit-2.0</div><div class="line"></div><div class="line">cd /opt/nginx/lib</div><div class="line">tar zxvf lua-nginx-module-v0.10.9rc8.tar.gz</div><div class="line">tar zxvf ngx_devel_kit-v0.3.0.tar.gz</div><div class="line">tar zxvf headers-more-nginx-module-v0.32.tar.gz</div><div class="line"></div><div class="line">cd /opt/nginx</div><div class="line">./configure \</div><div class="line">--user=nginx --group=nginx --prefix=/opt/nginx \</div><div class="line">--with-http_stub_status_module \</div><div class="line">--with-http_ssl_module \</div><div class="line">--with-http_gzip_static_module \</div><div class="line">--with-http_realip_module \</div><div class="line">--with-http_addition_module \</div><div class="line">--with-pcre=/opt/nginx/lib/pcre-8.38 \</div><div class="line">--with-zlib=/opt/nginx/lib/zlib-1.2.11 \</div><div class="line">--with-ld-opt="-Wl,-rpath,$LUAJIT_LIB" \</div><div class="line">--add-module=/opt/nginx/lib/ngx_devel_kit-0.3.0 \</div><div class="line">--add-module=/opt/nginx/lib/headers-more-nginx-module-0.32 \</div><div class="line">--add-module=/opt/nginx/lib/lua-nginx-module-0.10.9rc8</div><div class="line">make</div></pre></td></tr></table></figure>
+<h2 id="lua脚本"><a href="#lua脚本" class="headerlink" title="lua脚本"></a>lua脚本</h2><p>创建文件: <code>/opt/nginx/conf/lua/copy_req.lua</code></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">local</span> res1, res2, action</div><div class="line">action = ngx.var.request_method</div><div class="line"><span class="keyword">if</span> action == <span class="string">"POST"</span> <span class="keyword">then</span></div><div class="line">        arry = &#123;method = ngx.HTTP_POST, body = ngx.req.read_body()&#125;</div><div class="line"><span class="keyword">else</span></div><div class="line">        arry = &#123;method = ngx.HTTP_GET&#125;</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> ngx.var.svr == <span class="string">"on"</span> <span class="keyword">then</span></div><div class="line">        res1, res2 = ngx.location.capture_multi &#123;</div><div class="line">                &#123; <span class="string">"/product"</span> .. ngx.var.request_uri , arry&#125;,</div><div class="line">                &#123; <span class="string">"/test"</span> .. ngx.var.request_uri , arry&#125;,</div><div class="line">        &#125;</div><div class="line"><span class="keyword">else</span></div><div class="line">        res1, res2 = ngx.location.capture_multi &#123;</div><div class="line">                &#123; <span class="string">"/product"</span> .. ngx.var.request_uri , arry&#125;,</div><div class="line">        &#125;</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> res1.<span class="built_in">status</span> == ngx.HTTP_OK <span class="keyword">then</span></div><div class="line">        <span class="keyword">local</span> header_list = &#123;<span class="string">"Content-Length"</span>, <span class="string">"Content-Type"</span>, <span class="string">"Content-Encoding"</span>, <span class="string">"Accept-Ranges"</span>, <span class="string">"set-cookie"</span>&#125;</div><div class="line">        <span class="keyword">for</span> _, i <span class="keyword">in</span> <span class="built_in">ipairs</span>(header_list) <span class="keyword">do</span></div><div class="line">                <span class="keyword">if</span> res1.header[i] <span class="keyword">then</span></div><div class="line">                        ngx.header[i] = res1.header[i]</div><div class="line">                <span class="keyword">end</span></div><div class="line">        <span class="keyword">end</span></div><div class="line">        ngx.say(res1.body)</div><div class="line"><span class="keyword">else</span></div><div class="line">        <span class="comment">-- ngx.status = ngx.HTTP_NOT_FOUND</span></div><div class="line">        <span class="comment">-- ngx.say(res1.body)</span></div><div class="line">        ngx.<span class="built_in">exit</span>(ngx.HTTP_NOT_FOUND) <span class="comment">-- 这里跟原文有点改动，我使用的1.10.0，需要这么写才能正常返回404页面</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h2 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="section">http</span> &#123;</div><div class="line"></div><div class="line">    <span class="comment"># 其他配置</span></div><div class="line"></div><div class="line">    <span class="attribute">upstream</span> product &#123;</div><div class="line">        <span class="attribute">server</span>  <span class="number">127.0.0.1:8001</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="attribute">upstream</span> test &#123;</div><div class="line">        <span class="attribute">server</span>  <span class="number">127.0.0.1:8002</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="section">server</span> &#123;</div><div class="line">      <span class="attribute">listen</span>       <span class="number">8000</span>;</div><div class="line">      <span class="attribute">server_name</span>  test;</div><div class="line"></div><div class="line">	    <span class="attribute">location</span> <span class="regexp">~* ^/product</span> &#123;</div><div class="line">            <span class="attribute">log_subrequest</span> <span class="literal">on</span>;</div><div class="line">            <span class="attribute">rewrite</span><span class="regexp"> ^/product(.*)$</span> <span class="variable">$1</span> <span class="literal">break</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">            <span class="attribute">proxy_pass</span> http://product;</div><div class="line">            <span class="attribute">access_log</span> logs/product-upstream.log;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"> 	      <span class="attribute">location</span> <span class="regexp">~* ^/test</span> &#123;</div><div class="line">            <span class="attribute">log_subrequest</span> <span class="literal">on</span>;</div><div class="line">            <span class="attribute">rewrite</span><span class="regexp"> ^/test(.*)$</span> <span class="variable">$1</span> <span class="literal">break</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">            <span class="attribute">proxy_pass</span> http://test;</div><div class="line">            <span class="attribute">access_log</span> logs/test-upstream.log;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="attribute">location</span> <span class="regexp">~* ^/(.*)$</span> &#123;</div><div class="line">            <span class="attribute">set</span> <span class="variable">$svr</span>     		<span class="string">"on"</span>;	<span class="comment">#开启或关闭copy功能</span></div><div class="line">            <span class="attribute">content_by_lua_file</span>   	<span class="string">"conf/lua/copy_req.lua"</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="attribute">error_page</span>   <span class="number">404</span>  /<span class="number">404</span>.html;</div><div class="line">            <span class="attribute">location</span> = /<span class="number">404</span>.html &#123;</div><div class="line">            <span class="attribute">root</span> html;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="attribute">error_page</span>   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /50x.html;</div><div class="line">        <span class="attribute">location</span> = /50x.html &#123;</div><div class="line">            <span class="attribute">root</span>   html;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>启动nginx，访问8000端口，负责响应请求的是8001端口的服务，所有打到8001端口的服务的post请求也会打到8002端口的服务上，这就通过nginx实现了流量复制的功能。上面只是demo，实际使用中可以根据实际条件调整·</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;参考连接&quot;&gt;&lt;a href=&quot;#参考连接&quot; class=&quot;headerlink&quot; title=&quot;参考连接&quot;&gt;&lt;/a&gt;参考连接&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://www.crackedzone.com/testing-service-with-nginx-copy-request.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;通过Nginx拷贝请求流量到测试环境测试&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot; title=&quot;原理&quot;&gt;&lt;/a&gt;原理&lt;/h2&gt;&lt;p&gt;nginx没有内置模块可以实现流量复制的功能，需要借助lua脚本实现流量复制的功能&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="nginx" scheme="http://cocacola183.github.io/categories/nginx/"/>
+    
+    
+      <category term="nginx" scheme="http://cocacola183.github.io/tags/nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>mongodb生产部署建议</title>
@@ -619,151 +678,6 @@
     
     
       <category term="mongodb" scheme="http://cocacola183.github.io/tags/mongodb/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>武当山-湖北·十堰</title>
-    <link href="http://cocacola183.github.io/2017/05/03/travel/%E6%AD%A6%E5%BD%93%E5%B1%B1-%E6%B9%96%E5%8C%97%C2%B7%E5%8D%81%E5%A0%B0/"/>
-    <id>http://cocacola183.github.io/2017/05/03/travel/武当山-湖北·十堰/</id>
-    <published>2017-05-03T15:10:09.000Z</published>
-    <updated>2017-07-02T02:27:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="参考行程"><a href="#参考行程" class="headerlink" title="参考行程"></a>参考行程</h2><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>如果和我有一样有以下相同出游前提</p>
-<ul>
-<li>游玩时间是五一节假日，出发地点是北京</li>
-<li>香客（去武当山的目的之一是烧香）</li>
-<li>出游时间仅有一天，而且有在山脚停留一晚的需要</li>
-</ul>
-<p>那么这个行程可能有一定的参考价值</p>
-<a id="more"></a>
-<h3 id="出游行程"><a href="#出游行程" class="headerlink" title="出游行程"></a>出游行程</h3><p><code>2017-04-28</code><br>晚卧铺从北京到十堰</p>
-<blockquote>
-<p>十堰市有个站是<code>武当山火车站</code>，可以直接买到这里的车票，出站坐<code>202路公交</code>就能直接去<code>武当山</code>了。如果买了<code>十堰火车站</code>的票，那就可以先从<code>武当山火车站</code>直接下车（先到武当山火车站）</p>
-</blockquote>
-<p><code>2017-04-29</code><br>下午三点半到达十堰市，从<code>十堰火车站</code>下车，乘坐202路公交（始发站），直达武当山，车程约<code>一个半</code>小时，到达住宿地点休息</p>
-<p>关于住宿，这里要多说一点，有三类酒店</p>
-<ul>
-<li>山脚下，大门外的，一般都不贵。环境都一般我们选择的是这类酒店，虽然节假日住宿费直接翻倍，价格也可以接受大约在220左右（普通大床房）</li>
-<li>山脚下，大门里的，这个并不推荐（有钱任性除外），外观豪华，位置一般。</li>
-<li>山上，武当山旅游路线图上，有很多景点都有住宿的场所，最高的旅店直接在金顶（终点）脚下。如果是过来有充足的时间，可以考虑山脚呆一天，山上呆一天，如果有幸看到日出，也是极好的。一般上山时间会很久，没有办法感受到山中清晨的景色</li>
-</ul>
-<p>我们选择的是山脚下大门外的酒店，原因是我们携带的行李较多，不方便拿到山上去。<br>另外还有一点需要注意的是行李的问题，我们住的旅馆提供免费“寄存”的服务，但是也没有号码牌也没有什么别的，大家的东西都放在一堆，我们下山拿的时候，也就是说了声，就拿走了，有非常大的安全隐患。我估计其他的旅店也差不多的情况，所以尽量不要带太多东西去，最好能拿上所有东西上山。</p>
-<p><code>2017-04-30</code><br>凌晨五点半起床，洗漱，准备<br>六点吃饭，吃完饭进门排队买票，等着走盘山路的车，大概花了一个小时<br>七点坐公交走盘山公路，这里有40分钟路程（蹒跚公路有两个选择，一个是坐车到<code>南岩</code>，爬山路金顶，另一个是直接坐到<code>琼台</code>，然后爬山，或者是坐索道上金顶）</p>
-<blockquote>
-<p>这40分钟盘山路走的会非常颠簸，动不动就会有180度的转弯，车会一直晃一只转，切记做好晕车准备</p>
-</blockquote>
-<p>我们选择的是爬上去，接近八点的时候开始从<code>南岩</code>往上爬，一直到11点到达金顶脚下，有三个小时的步行上山路程<br>上<code>金顶</code>的时候人特别多，堵到进门就要排队，<code>金顶</code>山峰非常陡峭，但是爬起来很快，慢的是排队的时间，正常上<code>金顶</code>，我觉得半个小时充足了，但是我们上去花了将近一个小时的时间<br>在<code>金顶</code>呆了大概20分钟<br>下<code>金顶</code>大概用了半个小时的时间，这里也是因为要排队<br>下了<code>金顶</code>之后我们选择坐索道回去，索道时间大概是10分钟，上索道之前会有免费照相服务，以武当山航拍图为背景，下了索道之后会免费送一张小照片，如果愿意付20元钱，会送一张大的留念卡<br>下了金顶之后就能迅速回到公交候车区，坐盘山公路回去了</p>
-<h3 id="出行消费（双人）"><a href="#出行消费（双人）" class="headerlink" title="出行消费（双人）"></a>出行消费（双人）</h3><p>双人来回路费 2000（北京来回高铁，双人）<br>住宿 225<br>武当山门票 248/人<br>武当山金顶门票 27/人</p>
-<h3 id="要带的东西"><a href="#要带的东西" class="headerlink" title="要带的东西"></a>要带的东西</h3><ul>
-<li>晕车药</li>
-<li>帽子</li>
-<li>墨镜</li>
-<li>太阳伞（雨伞）</li>
-<li>一条专门擦汗的毛巾</li>
-<li>防晒霜（女士）</li>
-<li>登山杖，驱蚊药（非必选）</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;参考行程&quot;&gt;&lt;a href=&quot;#参考行程&quot; class=&quot;headerlink&quot; title=&quot;参考行程&quot;&gt;&lt;/a&gt;参考行程&lt;/h2&gt;&lt;h3 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h3&gt;&lt;p&gt;如果和我有一样有以下相同出游前提&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;游玩时间是五一节假日，出发地点是北京&lt;/li&gt;
-&lt;li&gt;香客（去武当山的目的之一是烧香）&lt;/li&gt;
-&lt;li&gt;出游时间仅有一天，而且有在山脚停留一晚的需要&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;那么这个行程可能有一定的参考价值&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="travel" scheme="http://cocacola183.github.io/categories/travel/"/>
-    
-    
-      <category term="travel" scheme="http://cocacola183.github.io/tags/travel/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>consul简单集群搭建</title>
-    <link href="http://cocacola183.github.io/2017/03/15/consul/consul%E7%AE%80%E5%8D%95%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
-    <id>http://cocacola183.github.io/2017/03/15/consul/consul简单集群搭建/</id>
-    <published>2017-03-15T07:41:09.000Z</published>
-    <updated>2017-07-02T02:29:15.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>一个基于docker的consul集群demo（多数据中心），目的不是为了在docker中使用consul（这个以后会写），而是借助docker作为承载consul的容器来实现集群搭建，因为consul需要使用的端口比较多。这里有最简单和最基本的（我认为）consul集群配置，旨在解决初学者一开始不知道怎么下手搭建集群的问题。</p>
-<h2 id="集群架构"><a href="#集群架构" class="headerlink" title="集群架构"></a>集群架构</h2><ul>
-<li>两个数据中心dc1, dc2</li>
-<li>dc1中有4个节点, 三个server agent组成的server集群，和一个client agent作为客户端使用示例, dc1座位单个数据中示例</li>
-<li>dc2中有2个节点, 一个server, 一个agnet, dc2主要用于测试多数据中心</li>
-</ul>
-<h2 id="基础环境"><a href="#基础环境" class="headerlink" title="基础环境"></a>基础环境</h2><h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><p>macOS 10.12.2</p>
-<h3 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h3><p><code>docker version</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Client:</div><div class="line">  Version:      1.12.0</div><div class="line">  API version:  1.24</div><div class="line">  Go version:   go1.6.3</div><div class="line">  Git commit:   8eab29e</div><div class="line">  Built:        Thu Jul 28 21:15:28 2016</div><div class="line">  OS/Arch:      darwin/amd64</div><div class="line"></div><div class="line">Server:</div><div class="line">  Version:      1.12.0</div><div class="line">  API version:  1.24</div><div class="line">  Go version:   go1.6.3</div><div class="line">  Git commit:   8eab29e</div><div class="line">  Built:        Thu Jul 28 23:54:00 2016</div><div class="line">  OS/Arch:      linux/amd64</div></pre></td></tr></table></figure></p>
-<p><code>docker-compose version</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker-compose version 1.8.0, build f3628c7</div><div class="line">docker-py version: 1.9.0</div><div class="line">CPython version: 2.7.9</div><div class="line">OpenSSL version: OpenSSL 1.0.2h  3 May 2016</div></pre></td></tr></table></figure></p>
-<p>docker版本稍微有点老，不过docker并不是本文的重点</p>
-<a id="more"></a>
-<h2 id="分分钟造火箭"><a href="#分分钟造火箭" class="headerlink" title="分分钟造火箭"></a>分分钟造火箭</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p><a href="https://github.com/CocaCola183/docker-consul/tree/master/examples/get-start" target="_blank" rel="external">以下所有代码地址</a></p>
-<p>集群启动命令:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker network create consul</div><div class="line">./run.sh</div></pre></td></tr></table></figure></p>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><h4 id="consul下载和安装"><a href="#consul下载和安装" class="headerlink" title="consul下载和安装"></a>consul下载和安装</h4><p>因为这里使用的是docker，所以直接pull镜像就可以了，但是还是提一下不使用docker的情况。consul下载地址在<a href="https://www.consul.io/downloads.html" target="_blank" rel="external">这里</a>，选择你最喜欢（最新）的版本下载就行了。下载完成之后就只有一个二进制文件（如果你是windows，那就一个exe，双击就能运行），直接执行就可以了。映射到path里面就是安装了，非常的方便。</p>
-<h4 id="一个最简单的server配置"><a href="#一个最简单的server配置" class="headerlink" title="一个最简单的server配置"></a>一个最简单的server配置</h4><p>dc1-server1<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "ui": true,                                     # 开启ui</div><div class="line">  "ui_dir": "/consul/ui",                         # ui绝对路径，可以官网下载最新的</div><div class="line">  "data_dir": "/consul/data",                     # consul数据存放目录</div><div class="line">  "bind_addr": "0.0.0.0",                         # 这个在后面做详细解释</div><div class="line">  "bootstrap_expect": 3,                          # 集群预期server节点数量</div><div class="line">  "retry_join": ["dc1-server2", "dc1-server3"],   # 组成集群的另外两个节点</div><div class="line"></div><div class="line">  "encrypt": "HSDVV9epQyQ3wYIla5R2hA==",          # gossip密钥，后面说明</div><div class="line">  "server": true,                                 # 是否是server</div><div class="line">  "retry_interval": "30s",                        # retry_interval和retry_max都是配合retry_join的</div><div class="line">  "retry_max": 10,</div><div class="line">  "log_level": "INFO",                            # 日志级别(trace, debug, info, warn, err)</div><div class="line">  "datacenter": "dc1",                            # 数据中心名称</div><div class="line">  "rejoin_after_leave": true,                     # leave之后是否重新加入，这个在这边文章中不重要</div><div class="line">  "leave_on_terminate": true                      # 进程关闭后leave</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>dc1-server1启动成功输出结果<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">==&gt; WARNING: Expect Mode enabled, expecting 3 servers</div><div class="line">==&gt; Starting Consul agent...</div><div class="line">==&gt; Starting Consul agent RPC...</div><div class="line">==&gt; Consul agent running!</div><div class="line">           Version: 'v0.7.5'</div><div class="line">           Node ID: '6a6f4d95-fdd1-4663-8017-34e3ce6abe68'</div><div class="line">         Node name: 'af5238a133cd'</div><div class="line">        Datacenter: 'dc1'</div><div class="line">            Server: true (bootstrap: false)</div><div class="line">       Client Addr: 127.0.0.1 (HTTP: 8500, HTTPS: -1, DNS: 8600, RPC: 8400)</div><div class="line">      Cluster Addr: 172.19.0.5 (LAN: 8301, WAN: 8302)</div><div class="line">    Gossip encrypt: true, RPC-TLS: false, TLS-Incoming: false</div><div class="line">             Atlas: &lt;disabled&gt;</div></pre></td></tr></table></figure></p>
-<p>这里选择三点进行重点说明:</p>
-<blockquote>
-<p>bootstrap_expect</p>
-</blockquote>
-<p>因为我这里有三个容器作为consul server，所以这里设定bootstrap_expect为3，任一台启动后都retry_join另外两个节点。server一般推荐3～5个。另外，这里直接写了容器名，是因为docker自建bridge网络下，可以互相解析主机名。如果你是在服务器下使用，那直接写bind_addr的ip好了。</p>
-<blockquote>
-<p>bind_addr</p>
-</blockquote>
-<p>server agent，这个是consul服务绑定ip，还有一个配置叫advertise_addr，这个是用于和集群中其他节点通信的addr。如果不设置advertise_addr，默认bind_addr就是advertise_addr。还有一个配置叫做client_addr，这个是程序调用的地址，例如，通过http api获取集群信息，或者访问集群web ui，等等。</p>
-<p>server agent一般选用public ip作为advertise_addr，private作为client_addr，这样public ip用于多数据中心通信，内网用于调用http api。</p>
-<p>这里写0.0.0.0是为了让consul自己去获取ip，因为docker容器的ip不固定，我没法在一开始进行配置。设定0.0.0.0会自动bind机器上的所有ip，advertise第一个ipv4 address，容器起来就两个ip，一个127.0.0.1，一个就是局域网ip，这样就解决了ip问题</p>
-<blockquote>
-<p>encrypt</p>
-</blockquote>
-<p>这个值可以由consul生成，命令是<code>consul keygen</code>，使用这个值进行gossip encrypt。这里其实有一个简单的安全策略, server agent暴露集群ip为内网ip(前提是内网是值得信任的)，如果想要访问只能通过内网实现，如果是要添加client agent，则需要encrypt值。当然除了多数据中心无法实现（如果多个数据中心也组了一个内网也是可以实现的），这个策略提供了一个最基本的安全性保障</p>
-<h3 id="一个简单的client的配置"><a href="#一个简单的client的配置" class="headerlink" title="一个简单的client的配置"></a>一个简单的client的配置</h3><p>dc1-client1<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"bind_addr"</span>: <span class="string">"0.0.0.0"</span>,</div><div class="line">  <span class="attr">"retry_join"</span>: [<span class="string">"dc1-server1"</span>],</div><div class="line"></div><div class="line">  <span class="attr">"encrypt"</span>: <span class="string">"HSDVV9epQyQ3wYIla5R2hA=="</span>,</div><div class="line">  <span class="attr">"server"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="attr">"retry_interval"</span>: <span class="string">"30s"</span>,</div><div class="line">  <span class="attr">"retry_max"</span>: <span class="number">10</span>,</div><div class="line">  <span class="attr">"log_level"</span>: <span class="string">"INFO"</span>,</div><div class="line">  <span class="attr">"datacenter"</span>: <span class="string">"dc1"</span>,</div><div class="line">  <span class="attr">"rejoin_after_leave"</span>: <span class="literal">true</span>,</div><div class="line">  <span class="attr">"leave_on_terminate"</span>: <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>启动成功后输出<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">==&gt; Starting Consul agent...</div><div class="line">==&gt; Starting Consul agent RPC...</div><div class="line">==&gt; Consul agent running!</div><div class="line">           Version: 'v0.7.5'</div><div class="line">           Node ID: '6a6f4d95-fdd1-4663-8017-34e3ce6abe68'</div><div class="line">         Node name: '849f9a9af9e4'</div><div class="line">        Datacenter: 'dc1'</div><div class="line">            Server: false (bootstrap: false)</div><div class="line">       Client Addr: 127.0.0.1 (HTTP: 8500, HTTPS: -1, DNS: 8600, RPC: 8400)</div><div class="line">      Cluster Addr: 172.19.0.6 (LAN: 8301, WAN: 8302)</div><div class="line">    Gossip encrypt: true, RPC-TLS: false, TLS-Incoming: false</div><div class="line">             Atlas: &lt;disabled&gt;</div><div class="line"></div><div class="line">==&gt; Log data will now stream in as it occurs:</div><div class="line"></div><div class="line">    2017/03/16 02:06:55 [INFO] serf: EventMemberJoin: 849f9a9af9e4 172.19.0.6</div><div class="line">    2017/03/16 02:06:55 [WARN] manager: No servers available</div><div class="line">    2017/03/16 02:06:55 [ERR] agent: failed to sync remote state: No known Consul servers</div><div class="line">    2017/03/16 02:06:55 [INFO] agent: Joining cluster...</div><div class="line">    2017/03/16 02:06:55 [INFO] agent: (LAN) joining: [dc1-server1]</div><div class="line">    2017/03/16 02:06:55 [INFO] serf: EventMemberJoin: b54d8793677a 172.19.0.4</div><div class="line">    2017/03/16 02:06:55 [INFO] serf: EventMemberJoin: fa4d82838664 172.19.0.3</div><div class="line">    2017/03/16 02:06:55 [INFO] serf: EventMemberJoin: 0d816b9e0c1e 172.19.0.2</div><div class="line">    2017/03/16 02:06:55 [INFO] agent: (LAN) joined: 1 Err: &lt;nil&gt;</div><div class="line">    2017/03/16 02:06:55 [INFO] agent: Join completed. Synced with 1 initial agents</div><div class="line">    2017/03/16 02:06:55 [INFO] consul: adding server b54d8793677a (Addr: tcp/172.19.0.4:8300) (DC: dc1)</div><div class="line">    2017/03/16 02:06:55 [INFO] consul: adding server fa4d82838664 (Addr: tcp/172.19.0.3:8300) (DC: dc1)</div><div class="line">    2017/03/16 02:06:55 [INFO] consul: adding server 0d816b9e0c1e (Addr: tcp/172.19.0.2:8300) (DC: dc1)</div><div class="line">    2017/03/16 02:07:01 [INFO] consul: New leader elected: 0d816b9e0c1e</div><div class="line">    2017/03/16 02:07:01 [INFO] agent: Synced node info</div></pre></td></tr></table></figure></p>
-<p>配置基本上和上面一样的，这里只说一点，retry-join这个参数的配置，只需要配置任一server即可，因为其他的server会自动被发现。</p>
-<h4 id="ui的配置"><a href="#ui的配置" class="headerlink" title="ui的配置"></a>ui的配置</h4><p>ui的配置还是很有必要的，这个能非常直观的看到consul集群的信息，<a href="http://demo.consul.io/?_ga=1.9587189.1947061243.1483414531" target="_blank" rel="external">demo</a></p>
-<p>配置很简单，只需要把<a href="https://releases.hashicorp.com/consul/0.7.5/consul_0.7.5_web_ui.zip?_ga=1.1614321.1947061243.1483414531" target="_blank" rel="external">这里</a>下载下来的静态文件放到配置文件指定的目录即可。</p>
-<h4 id="多数据中心"><a href="#多数据中心" class="headerlink" title="多数据中心"></a>多数据中心</h4><p>dc2-server1配置中有这么一个配置: <code>&quot;retry_join&quot;: [&quot;dc1-server1&quot;]</code>，这样两个数据中心就有关联了。</p>
-<h4 id="集群搭建完成之后集群成员查看"><a href="#集群搭建完成之后集群成员查看" class="headerlink" title="集群搭建完成之后集群成员查看"></a>集群搭建完成之后集群成员查看</h4><p>dc1<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/ # consul members</div><div class="line">Node          Address          Status  Type    Build  Protocol  DC</div><div class="line">0d816b9e0c1e  172.19.0.2:8301  alive   server  0.7.5  2         dc1</div><div class="line">849f9a9af9e4  172.19.0.6:8301  alive   client  0.7.5  2         dc1</div><div class="line">b54d8793677a  172.19.0.4:8301  alive   server  0.7.5  2         dc1</div><div class="line">fa4d82838664  172.19.0.3:8301  alive   server  0.7.5  2         dc1</div></pre></td></tr></table></figure></p>
-<p>dc2<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/ # consul members</div><div class="line">Node          Address          Status  Type    Build  Protocol  DC</div><div class="line">be5a88e5badb  172.19.0.7:8301  alive   client  0.7.5  2         dc2</div><div class="line">db92c7930efb  172.19.0.5:8301  alive   server  0.7.5  2         dc2</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>注意</p>
-</blockquote>
-<p>这里只是提及了部分配置，所有的配置都写在项目的consul文件夹下，可以参考下不同，理解集群的原理。（很简单）</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>这里介绍集群搭建完成之后最简单的使用方法，以及一些相关的库</p>
-<h3 id="简单的消除配置文件的方法"><a href="#简单的消除配置文件的方法" class="headerlink" title="简单的消除配置文件的方法"></a>简单的消除配置文件的方法</h3><p>服务启动的时候，调用consul api将服务注册到consul集群中，这样其他依赖这个服务的服务就可以获取到前者的ip和port了。其他的一些配置，例如数据库连接数，可以提前注册在key-value store中，这样也能通过api调用获取。一般情况下，配置文件也就基本是这些信息</p>
-<h3 id="开发过程中正确的使用姿势"><a href="#开发过程中正确的使用姿势" class="headerlink" title="开发过程中正确的使用姿势"></a>开发过程中正确的使用姿势</h3><p>本地启动一个agent，加入到consul集群中，然后所有的信息，都从本地consul去获取。这里要强调的是开发过程中不要直接去使用集群中server节点，或者是使用其他client节点。所以任何时候应用需要调用consul api的时候，连接的都是localhost</p>
-<h3 id="推荐三方库"><a href="#推荐三方库" class="headerlink" title="推荐三方库"></a>推荐三方库</h3><p><a href="https://github.com/silas/node-consul" target="_blank" rel="external">node-consul</a> 已经实践过，简单的需求都能满足<br><a href="https://github.com/savagegus/ansible-consul" target="_blank" rel="external">ansible-consul</a> 如果想使用ansbile部署使用consul，推荐使用这个库，也经过实践验证（可能需要改写）</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;目的&quot;&gt;&lt;a href=&quot;#目的&quot; class=&quot;headerlink&quot; title=&quot;目的&quot;&gt;&lt;/a&gt;目的&lt;/h2&gt;&lt;p&gt;一个基于docker的consul集群demo（多数据中心），目的不是为了在docker中使用consul（这个以后会写），而是借助docker作为承载consul的容器来实现集群搭建，因为consul需要使用的端口比较多。这里有最简单和最基本的（我认为）consul集群配置，旨在解决初学者一开始不知道怎么下手搭建集群的问题。&lt;/p&gt;
-&lt;h2 id=&quot;集群架构&quot;&gt;&lt;a href=&quot;#集群架构&quot; class=&quot;headerlink&quot; title=&quot;集群架构&quot;&gt;&lt;/a&gt;集群架构&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;两个数据中心dc1, dc2&lt;/li&gt;
-&lt;li&gt;dc1中有4个节点, 三个server agent组成的server集群，和一个client agent作为客户端使用示例, dc1座位单个数据中示例&lt;/li&gt;
-&lt;li&gt;dc2中有2个节点, 一个server, 一个agnet, dc2主要用于测试多数据中心&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;基础环境&quot;&gt;&lt;a href=&quot;#基础环境&quot; class=&quot;headerlink&quot; title=&quot;基础环境&quot;&gt;&lt;/a&gt;基础环境&lt;/h2&gt;&lt;h3 id=&quot;操作系统&quot;&gt;&lt;a href=&quot;#操作系统&quot; class=&quot;headerlink&quot; title=&quot;操作系统&quot;&gt;&lt;/a&gt;操作系统&lt;/h3&gt;&lt;p&gt;macOS 10.12.2&lt;/p&gt;
-&lt;h3 id=&quot;docker&quot;&gt;&lt;a href=&quot;#docker&quot; class=&quot;headerlink&quot; title=&quot;docker&quot;&gt;&lt;/a&gt;docker&lt;/h3&gt;&lt;p&gt;&lt;code&gt;docker version&lt;/code&gt;&lt;br&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;Client:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  Version:      1.12.0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  API version:  1.24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  Go version:   go1.6.3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  Git commit:   8eab29e&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  Built:        Thu Jul 28 21:15:28 2016&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  OS/Arch:      darwin/amd64&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Server:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  Version:      1.12.0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  API version:  1.24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  Go version:   go1.6.3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  Git commit:   8eab29e&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  Built:        Thu Jul 28 23:54:00 2016&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  OS/Arch:      linux/amd64&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;docker-compose version&lt;/code&gt;&lt;br&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;docker-compose version 1.8.0, build f3628c7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;docker-py version: 1.9.0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;CPython version: 2.7.9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;OpenSSL version: OpenSSL 1.0.2h  3 May 2016&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;docker版本稍微有点老，不过docker并不是本文的重点&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="consul" scheme="http://cocacola183.github.io/categories/consul/"/>
-    
-    
-      <category term="consul" scheme="http://cocacola183.github.io/tags/consul/"/>
-    
-      <category term="微服务" scheme="http://cocacola183.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
-      <category term="注册发现" scheme="http://cocacola183.github.io/tags/%E6%B3%A8%E5%86%8C%E5%8F%91%E7%8E%B0/"/>
     
   </entry>
   
