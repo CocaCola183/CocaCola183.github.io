@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cocacola183.github.io/"/>
-  <updated>2017-08-12T09:20:59.000Z</updated>
+  <updated>2017-08-12T09:23:23.000Z</updated>
   <id>http://cocacola183.github.io/</id>
   
   <author>
@@ -20,10 +20,11 @@
     <link href="http://cocacola183.github.io/2017/08/07/linux/Linux%E7%9A%84CPU-%E5%86%85%E5%AD%98-%E7%A3%81%E7%9B%98IO-%E7%BD%91%E7%BB%9C%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/"/>
     <id>http://cocacola183.github.io/2017/08/07/linux/Linux的CPU-内存-磁盘IO-网络压力测试方法/</id>
     <published>2017-08-07T15:07:36.000Z</published>
-    <updated>2017-08-12T09:20:59.000Z</updated>
+    <updated>2017-08-12T09:23:23.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h2><p>centos</p>
 <h2 id="CPU和内存"><a href="#CPU和内存" class="headerlink" title="CPU和内存"></a>CPU和内存</h2><h3 id="stress"><a href="#stress" class="headerlink" title="stress"></a>stress</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install stress -y</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h4 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"># stress</div><div class="line">`stress&apos; imposes certain types of compute stress on your system</div><div class="line"></div><div class="line">Usage: stress [OPTION [ARG]] ...</div><div class="line"> -?, --help         show this help statement</div><div class="line">     --version      show version statement</div><div class="line"> -v, --verbose      be verbose</div><div class="line"> -q, --quiet        be quiet</div><div class="line"> -n, --dry-run      show what would have been done</div><div class="line"> -t, --timeout N    timeout after N seconds</div><div class="line">     --backoff N    wait factor of N microseconds before work starts</div><div class="line"> -c, --cpu N        spawn N workers spinning on sqrt()</div><div class="line"> -i, --io N         spawn N workers spinning on sync()</div><div class="line"> -m, --vm N         spawn N workers spinning on malloc()/free()</div><div class="line">     --vm-bytes B   malloc B bytes per vm worker (default is 256MB)</div><div class="line">     --vm-stride B  touch a byte every B bytes (default is 4096)</div><div class="line">     --vm-hang N    sleep N secs before free (default none, 0 is inf)</div><div class="line">     --vm-keep      redirty memory instead of freeing and reallocating</div><div class="line"> -d, --hdd N        spawn N workers spinning on write()/unlink()</div><div class="line">     --hdd-bytes B  write B bytes per hdd worker (default is 1GB)</div><div class="line"></div><div class="line">Example: stress --cpu 8 --io 4 --vm 2 --vm-bytes 128M --timeout 10s</div><div class="line"></div><div class="line">Note: Numbers may be suffixed with s,m,h,d,y (time) or B,K,M,G (size).</div></pre></td></tr></table></figure>
 <h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>stress可以从cpu，内存，磁盘io性能等指标综合起来，以系统负载为最终指标，来衡量单机的性能。这个命令更适合去评测综合能力，cpu，内存和磁盘io的同时负载能力</p>
 <h4 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">uptime</div><div class="line">stress -c 4 -i 1 -m 1 --vm-bytes 128M -t 10s</div><div class="line">uptime</div></pre></td></tr></table></figure>
@@ -97,7 +98,7 @@
     <summary type="html">
     
       &lt;h2 id=&quot;适用范围&quot;&gt;&lt;a href=&quot;#适用范围&quot; class=&quot;headerlink&quot; title=&quot;适用范围&quot;&gt;&lt;/a&gt;适用范围&lt;/h2&gt;&lt;p&gt;centos&lt;/p&gt;
-&lt;h2 id=&quot;CPU和内存&quot;&gt;&lt;a href=&quot;#CPU和内存&quot; class=&quot;headerlink
+&lt;h2 id=&quot;CPU和内存&quot;&gt;&lt;a href=&quot;#CPU和内存&quot; class=&quot;headerlink&quot; title=&quot;CPU和内存&quot;&gt;&lt;/a&gt;CPU和内存&lt;/h2&gt;&lt;h3 id=&quot;stress&quot;&gt;&lt;a href=&quot;#stress&quot; class=&quot;headerlink&quot; title=&quot;stress&quot;&gt;&lt;/a&gt;stress&lt;/h3&gt;&lt;h4 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h4&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;sudo yum install stress -y&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
