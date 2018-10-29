@@ -96,15 +96,15 @@
 <meta property="og:url" content="http://cocacola183.github.io/2015/03/25/linux/Linux虚拟机/index.html">
 <meta property="og:site_name" content="Kivi">
 <meta property="og:description" content="查看当前linux系统中运行所有虚拟机ssh登录服务器，输入以下命令 1sudo virsh list --all 便可查看当前虚拟机的状态，如下图所示">
-<meta property="og:image" content="http://cocacola183.github.io/images/8.png">
-<meta property="og:image" content="http://cocacola183.github.io/images/9.png">
-<meta property="og:image" content="http://cocacola183.github.io/images/10.png">
-<meta property="og:image" content="http://cocacola183.github.io/images/12.png">
+<meta property="og:image" content="http://cocacola183.github.io/2015/03/25/linux/Linux虚拟机/images/8.png">
+<meta property="og:image" content="http://cocacola183.github.io/2015/03/25/linux/Linux虚拟机/images/9.png">
+<meta property="og:image" content="http://cocacola183.github.io/2015/03/25/linux/Linux虚拟机/images/10.png">
+<meta property="og:image" content="http://cocacola183.github.io/2015/03/25/linux/Linux虚拟机/images/12.png">
 <meta property="og:updated_time" content="2017-07-02T02:32:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux虚拟机">
 <meta name="twitter:description" content="查看当前linux系统中运行所有虚拟机ssh登录服务器，输入以下命令 1sudo virsh list --all 便可查看当前虚拟机的状态，如下图所示">
-<meta name="twitter:image" content="http://cocacola183.github.io/images/8.png">
+<meta name="twitter:image" content="http://cocacola183.github.io/2015/03/25/linux/Linux虚拟机/images/8.png">
 
 
 
@@ -394,7 +394,7 @@
         <h2 id="查看当前linux系统中运行所有虚拟机"><a href="#查看当前linux系统中运行所有虚拟机" class="headerlink" title="查看当前linux系统中运行所有虚拟机"></a>查看当前linux系统中运行所有虚拟机</h2><p>ssh登录服务器，输入以下命令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo virsh list --all</div></pre></td></tr></table></figure>
 <p>便可查看当前虚拟机的状态，如下图所示</p>
-<p><img src="/images/8.png" alt="参考图片"></p>
+<p><img src="/2015/03/25/linux/Linux虚拟机/images/8.png" alt="参考图片"></p>
 <a id="more"></a>
 <h2 id="down掉虚拟机"><a href="#down掉虚拟机" class="headerlink" title="down掉虚拟机"></a>down掉虚拟机</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo virsh destroy 虚拟机名</div></pre></td></tr></table></figure>
 <p>然后就可以看到beidown掉的虚拟机显示着shut down的状态了</p>
@@ -413,10 +413,10 @@
 <li>–vnclisten           (暂时不太清楚)</li>
 </ul>
 <p>安装完成之后，会看到如下所示的提示，我开始也比较疑惑，不知道是否成功，list之后发现新建的虚拟机已经running了</p>
-<p><img src="/images/9.png" alt="参考图片"></p>
+<p><img src="/2015/03/25/linux/Linux虚拟机/images/9.png" alt="参考图片"></p>
 <h2 id="使用vnc给虚拟机安装系统"><a href="#使用vnc给虚拟机安装系统" class="headerlink" title="使用vnc给虚拟机安装系统"></a>使用vnc给虚拟机安装系统</h2><p>百度vnc即可下载了，我使用的是苹果系统，这里给出一个下载链接 <a href="http://www.macupdate.com/app/mac/9517/chicken-of-the-vnc" target="_blank" rel="external">chicken of vnc</a></p>
 <p>打开之后便可以直接使用了，我使用的服务器的内网ip为192.168.1.120，刚才新建的虚拟机的监听端口为5908，因此配置是这样的</p>
-<p><img src="/images/10.png" alt="参考图片"></p>
+<p><img src="/2015/03/25/linux/Linux虚拟机/images/10.png" alt="参考图片"></p>
 <p>点进去之后，就可以看到进入了ubuntu的系统安装页面，提示很人性化，根据需要，进行选择就OK</p>
 <h2 id="配置静态ip和dns"><a href="#配置静态ip和dns" class="headerlink" title="配置静态ip和dns"></a>配置静态ip和dns</h2><h3 id="配置静态ip完成后可以得到改虚拟机的局域网的内网ip，使用命令如下："><a href="#配置静态ip完成后可以得到改虚拟机的局域网的内网ip，使用命令如下：" class="headerlink" title="配置静态ip完成后可以得到改虚拟机的局域网的内网ip，使用命令如下："></a>配置静态ip完成后可以得到改虚拟机的局域网的内网ip，使用命令如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/network/interfaces</div></pre></td></tr></table></figure>
 <p>进入编辑页面之后，添加如下代码：</p>
@@ -426,7 +426,7 @@
 <p>添加如下代码：</p>
 <p>nameserver xxx.xxx.xxx.xxx (路由器的dns)</p>
 <h2 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h2><p>1.进入安装界面后可能会出现vnc的操作界面比较小，导致安装界面显示不完全的问题，不过凑合着应该能正确安装(我就是这么干的)</p>
-<p>2.我在虚拟机安装完成并配置域名等操作正常完成之后，ssh登录却显示失败，错误的信息是connection refused.刚开始是以为22端口没有打开，<br>但是在系统安装的时候，我选择的是openSSH server选项的，所以默认应该是打开的.如图：<br><img src="/images/12.png" alt="参考图片"><br>然后继续使用vnc登录，执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service ssh status</div></pre></td></tr></table></figure></p>
+<p>2.我在虚拟机安装完成并配置域名等操作正常完成之后，ssh登录却显示失败，错误的信息是connection refused.刚开始是以为22端口没有打开，<br>但是在系统安装的时候，我选择的是openSSH server选项的，所以默认应该是打开的.如图：<br><img src="/2015/03/25/linux/Linux虚拟机/images/12.png" alt="参考图片"><br>然后继续使用vnc登录，执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service ssh status</div></pre></td></tr></table></figure></p>
 <p>得到的信息是：ssh: unrecognized service</p>
 <p>所以猜测是服务器没有安装ssh</p>
 <p>然后执行如下命令：</p>
@@ -554,7 +554,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -563,7 +563,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -572,7 +572,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -96,12 +96,12 @@
 <meta property="og:url" content="http://cocacola183.github.io/2015/04/19/node/Node-Js异步特性入门级理解/index.html">
 <meta property="og:site_name" content="Kivi">
 <meta property="og:description" content="cnode论坛看到两个问题问题1问题2 参考链接Understanding process.nextTick()上一篇博客的中文翻译Node.js API process深入浅出Node.js 初探Node.js的异步I/O实现">
-<meta property="og:image" content="http://cocacola183.github.io/images/25.png">
+<meta property="og:image" content="http://cocacola183.github.io/2015/04/19/node/Node-Js异步特性入门级理解/images/25.png">
 <meta property="og:updated_time" content="2017-07-02T02:33:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js异步特性入门级理解">
 <meta name="twitter:description" content="cnode论坛看到两个问题问题1问题2 参考链接Understanding process.nextTick()上一篇博客的中文翻译Node.js API process深入浅出Node.js 初探Node.js的异步I/O实现">
-<meta name="twitter:image" content="http://cocacola183.github.io/images/25.png">
+<meta name="twitter:image" content="http://cocacola183.github.io/2015/04/19/node/Node-Js异步特性入门级理解/images/25.png">
 
 
 
@@ -418,7 +418,7 @@
 这是种相当推荐的写法，为什么能实现异步的效果呢？
 </code></pre></li>
 </ul>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>Once the current event loop turn runs to completion, call the callback function.，这是Node.js官网上的一句话，说明了，<code>process.nextTick(callback)</code>中的callback会在当前的事件循环队列执行结束后，准备开始新的事件循环的时候执行，这样就实现异步操作了。如下图所示的Node.js事件循环<br><img src="/images/25.png" alt="参考图片"></p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>Once the current event loop turn runs to completion, call the callback function.，这是Node.js官网上的一句话，说明了，<code>process.nextTick(callback)</code>中的callback会在当前的事件循环队列执行结束后，准备开始新的事件循环的时候执行，这样就实现异步操作了。如下图所示的Node.js事件循环<br><img src="/2015/04/19/node/Node-Js异步特性入门级理解/images/25.png" alt="参考图片"></p>
 <p>回到我们最初的问题，如果我们不使用<code>process.nextTick(callback)</code>，上面两个错误的解法就成了看似异步方法的同步方法了。</p>
 <p>官网上的另外一句话,This is not a simple alias to setTimeout(fn, 0), it’s much more efficient. It runs before any additional I/O events (including timers) fire in subsequent ticks of the event loop.这下我们就大概可以理解为什么setTimeOut也有类似的功能了，其实原理都是一样的。</p>
 <p>这里引用一段话来详细描述一下<code>process.nextTick()</code>这个方法</p>
@@ -548,7 +548,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -557,7 +557,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -566,7 +566,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

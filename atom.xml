@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cocacola183.github.io/"/>
-  <updated>2017-08-12T09:23:23.000Z</updated>
+  <updated>2018-10-29T10:57:33.860Z</updated>
   <id>http://cocacola183.github.io/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>峨眉山</title>
+    <link href="http://cocacola183.github.io/2018/10/28/shutterbug/%E5%B3%A8%E7%9C%89%E5%B1%B1/"/>
+    <id>http://cocacola183.github.io/2018/10/28/shutterbug/峨眉山/</id>
+    <published>2018-10-28T14:25:15.000Z</published>
+    <updated>2018-10-29T10:57:33.860Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/2018/10/28/shutterbug/峨眉山/1.jpg" alt="测试"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/2018/10/28/shutterbug/峨眉山/1.jpg&quot; alt=&quot;测试&quot;&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="shutterbug" scheme="http://cocacola183.github.io/categories/shutterbug/"/>
+    
+    
+      <category term="shutterbug" scheme="http://cocacola183.github.io/tags/shutterbug/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux的CPU,内存,磁盘IO,网络压力测试方法</title>
@@ -419,11 +443,11 @@
   </entry>
   
   <entry>
-    <title>天云山-北京平谷</title>
-    <link href="http://cocacola183.github.io/2017/07/02/travel/%E5%A4%A9%E4%BA%91%E5%B1%B1-%E5%8C%97%E4%BA%AC%E5%B9%B3%E8%B0%B7/"/>
-    <id>http://cocacola183.github.io/2017/07/02/travel/天云山-北京平谷/</id>
+    <title>天云山·北京平谷</title>
+    <link href="http://cocacola183.github.io/2017/07/02/travel/%E5%A4%A9%E4%BA%91%E5%B1%B1-%E5%8C%97%E4%BA%AC%C2%B7%E5%B9%B3%E8%B0%B7/"/>
+    <id>http://cocacola183.github.io/2017/07/02/travel/天云山-北京·平谷/</id>
     <published>2017-07-02T06:00:00.000Z</published>
-    <updated>2017-07-02T10:22:15.000Z</updated>
+    <updated>2018-10-28T14:26:34.368Z</updated>
     
     <content type="html"><![CDATA[<h2 id="参考行程"><a href="#参考行程" class="headerlink" title="参考行程"></a>参考行程</h2><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>如果和我有一样有以下相同出游前提</p>
 <ul>
@@ -697,46 +721,6 @@
 &lt;li&gt;牺牲写入性能，添加索引&lt;/li&gt;
 &lt;li&gt;让这部分数据常驻内存（占用内存空间）&lt;/li&gt;
 &lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="mongodb" scheme="http://cocacola183.github.io/categories/mongodb/"/>
-    
-    
-      <category term="mongodb" scheme="http://cocacola183.github.io/tags/mongodb/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分片对mongo curd的影响(小节)</title>
-    <link href="http://cocacola183.github.io/2017/05/04/mongo/mongodb%E5%88%86%E7%89%87%E5%AF%B9curd%E7%9A%84%E5%BD%B1%E5%93%8D/"/>
-    <id>http://cocacola183.github.io/2017/05/04/mongo/mongodb分片对curd的影响/</id>
-    <published>2017-05-04T07:17:47.000Z</published>
-    <updated>2017-07-02T02:33:17.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>mongodb测试版本3.0.7</p>
-<h2 id="分片对数据库操作的影响"><a href="#分片对数据库操作的影响" class="headerlink" title="分片对数据库操作的影响"></a>分片对数据库操作的影响</h2><h3 id="不受影响的api"><a href="#不受影响的api" class="headerlink" title="不受影响的api"></a>不受影响的api</h3><blockquote>
-<p>注意这里只考虑api是否能正常使用，忽略分片对curd性能的影响 </p>
-</blockquote>
-<p>所有的插入，查询，删除操作都没有影响</p>
-<h3 id="会受到影响的api"><a href="#会受到影响的api" class="headerlink" title="会受到影响的api"></a>会受到影响的api</h3><p><strong>更新(这里指的是update和所有类似update操作的方法，例如findAndModify等)</strong></p>
-<p>同时存在以上三个条件，更新操作就都会失败</p>
-<ul>
-<li>查询条件中没有索引或者只包含了非unique索引(最常见的unique索引是_id)</li>
-<li>查询条件中没有完整包含shard key</li>
-<li>更新条件设定multi为false（只更新一条）</li>
-</ul>
-<p><strong>聚合查询group</strong></p>
-<blockquote>
-<p>注意: 所有的<code>group</code>操作都会失败</p>
-</blockquote>
-<p>聚合查询<code>aggregate</code>和<code>map reduce</code>都以用于sharded collection，<code>group</code>不能用于sharded collection</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;mongodb测试版本3.0.7&lt;/p&gt;
-&lt;h2 id=&quot;分片对数据库操作的影响&quot;&gt;&lt;a href=&quot;#分片对数据库操作的影
     
     </summary>
     
