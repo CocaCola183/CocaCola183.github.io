@@ -2,139 +2,90 @@
 
 
 
-  
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="linux," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="适用范围centos CPU和内存stress安装1sudo yum install stress -y">
-<meta name="keywords" content="linux">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Linux的CPU,内存,磁盘IO,网络压力测试方法">
-<meta property="og:url" content="http://cocacola183.github.io/2017/08/07/linux/Linux的CPU-内存-磁盘IO-网络压力测试方法/index.html">
-<meta property="og:site_name" content="Kivi">
-<meta property="og:description" content="适用范围centos CPU和内存stress安装1sudo yum install stress -y">
-<meta property="og:updated_time" content="2017-08-12T09:23:23.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux的CPU,内存,磁盘IO,网络压力测试方法">
-<meta name="twitter:description" content="适用范围centos CPU和内存stress安装1sudo yum install stress -y">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: 'undefined',
-      author: '博主'
-    },
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     }
   };
 </script>
 
+  <meta name="description" content="适用范围centos CPU和内存stress安装1sudo yum install stress -y">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux的CPU,内存,磁盘IO,网络压力测试方法">
+<meta property="og:url" content="http://cocacola183.github.io/2017/08/07/linux/Linux的CPU-内存-磁盘IO-网络压力测试方法/index.html">
+<meta property="og:site_name" content="Kivi">
+<meta property="og:description" content="适用范围centos CPU和内存stress安装1sudo yum install stress -y">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-08T06:42:56.725Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux的CPU,内存,磁盘IO,网络压力测试方法">
+<meta name="twitter:description" content="适用范围centos CPU和内存stress安装1sudo yum install stress -y">
+  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml">
+  <link rel="canonical" href="http://cocacola183.github.io/2017/08/07/linux/Linux的CPU-内存-磁盘IO-网络压力测试方法/">
 
 
-  <link rel="canonical" href="http://cocacola183.github.io/2017/08/07/linux/Linux的CPU-内存-磁盘IO-网络压力测试方法/"/>
-
-
-
-
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
 
   <title>Linux的CPU,内存,磁盘IO,网络压力测试方法 | Kivi</title>
   
 
 
-
-
-
-  <script type="text/javascript">
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -147,37 +98,57 @@
 
 
 
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+  <div class="site-meta">
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Kivi</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
         <p class="site-subtitle">没有什么远大理想，只是永远都不会满足而已</p>
       
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -185,79 +156,73 @@
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
+  <ul id="menu" class="menu">
+      
+      
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
       
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
       
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            标签
-          </a>
-        </li>
+      
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            关于
-          </a>
-        </li>
       
+    
 
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
       
-    </ul>
-  
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
 
-  
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+            
+
+          <div id="content" class="content page-post-detail">
             
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -268,58 +233,55 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kivi">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="nodejs | server">
       <meta itemprop="image" content="/images/author.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Kivi">
     </span>
-
-    
       <header class="post-header">
 
         
-        
-          <h1 class="post-title" itemprop="name headline">Linux的CPU,内存,磁盘IO,网络压力测试方法</h1>
+          <h1 class="post-title" itemprop="name headline">Linux的CPU,内存,磁盘IO,网络压力测试方法
+
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">发表于</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T23:07:36+08:00">
-                2017-08-07
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="创建时间：2017-08-07 23:07:36" itemprop="dateCreated datePublished" datetime="2017-08-07T23:07:36+08:00">2017-08-07</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-08 14:42:56" itemprop="dateModified" datetime="2019-08-08T14:42:56+08:00">2019-08-08</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">分类于</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
 
                 
                 
@@ -328,42 +290,9 @@
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/07/linux/Linux的CPU-内存-磁盘IO-网络压力测试方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/08/07/linux/Linux的CPU-内存-磁盘IO-网络压力测试方法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/07/linux/Linux的CPU-内存-磁盘IO-网络压力测试方法/" class="leancloud_visitors" data-flag-title="Linux的CPU,内存,磁盘IO,网络压力测试方法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
@@ -371,23 +300,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
         <h2 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h2><p>centos</p>
-<h2 id="CPU和内存"><a href="#CPU和内存" class="headerlink" title="CPU和内存"></a>CPU和内存</h2><h3 id="stress"><a href="#stress" class="headerlink" title="stress"></a>stress</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install stress -y</div></pre></td></tr></table></figure>
+<h2 id="CPU和内存"><a href="#CPU和内存" class="headerlink" title="CPU和内存"></a>CPU和内存</h2><h3 id="stress"><a href="#stress" class="headerlink" title="stress"></a>stress</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install stress -y</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h4 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"># stress</div><div class="line">`stress&apos; imposes certain types of compute stress on your system</div><div class="line"></div><div class="line">Usage: stress [OPTION [ARG]] ...</div><div class="line"> -?, --help         show this help statement</div><div class="line">     --version      show version statement</div><div class="line"> -v, --verbose      be verbose</div><div class="line"> -q, --quiet        be quiet</div><div class="line"> -n, --dry-run      show what would have been done</div><div class="line"> -t, --timeout N    timeout after N seconds</div><div class="line">     --backoff N    wait factor of N microseconds before work starts</div><div class="line"> -c, --cpu N        spawn N workers spinning on sqrt()</div><div class="line"> -i, --io N         spawn N workers spinning on sync()</div><div class="line"> -m, --vm N         spawn N workers spinning on malloc()/free()</div><div class="line">     --vm-bytes B   malloc B bytes per vm worker (default is 256MB)</div><div class="line">     --vm-stride B  touch a byte every B bytes (default is 4096)</div><div class="line">     --vm-hang N    sleep N secs before free (default none, 0 is inf)</div><div class="line">     --vm-keep      redirty memory instead of freeing and reallocating</div><div class="line"> -d, --hdd N        spawn N workers spinning on write()/unlink()</div><div class="line">     --hdd-bytes B  write B bytes per hdd worker (default is 1GB)</div><div class="line"></div><div class="line">Example: stress --cpu 8 --io 4 --vm 2 --vm-bytes 128M --timeout 10s</div><div class="line"></div><div class="line">Note: Numbers may be suffixed with s,m,h,d,y (time) or B,K,M,G (size).</div></pre></td></tr></table></figure>
+<h4 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># stress</span><br><span class="line">`stress&apos; imposes certain types of compute stress on your system</span><br><span class="line"></span><br><span class="line">Usage: stress [OPTION [ARG]] ...</span><br><span class="line"> -?, --help         show this help statement</span><br><span class="line">     --version      show version statement</span><br><span class="line"> -v, --verbose      be verbose</span><br><span class="line"> -q, --quiet        be quiet</span><br><span class="line"> -n, --dry-run      show what would have been done</span><br><span class="line"> -t, --timeout N    timeout after N seconds</span><br><span class="line">     --backoff N    wait factor of N microseconds before work starts</span><br><span class="line"> -c, --cpu N        spawn N workers spinning on sqrt()</span><br><span class="line"> -i, --io N         spawn N workers spinning on sync()</span><br><span class="line"> -m, --vm N         spawn N workers spinning on malloc()/free()</span><br><span class="line">     --vm-bytes B   malloc B bytes per vm worker (default is 256MB)</span><br><span class="line">     --vm-stride B  touch a byte every B bytes (default is 4096)</span><br><span class="line">     --vm-hang N    sleep N secs before free (default none, 0 is inf)</span><br><span class="line">     --vm-keep      redirty memory instead of freeing and reallocating</span><br><span class="line"> -d, --hdd N        spawn N workers spinning on write()/unlink()</span><br><span class="line">     --hdd-bytes B  write B bytes per hdd worker (default is 1GB)</span><br><span class="line"></span><br><span class="line">Example: stress --cpu 8 --io 4 --vm 2 --vm-bytes 128M --timeout 10s</span><br><span class="line"></span><br><span class="line">Note: Numbers may be suffixed with s,m,h,d,y (time) or B,K,M,G (size).</span><br></pre></td></tr></table></figure>
 <h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>stress可以从cpu，内存，磁盘io性能等指标综合起来，以系统负载为最终指标，来衡量单机的性能。这个命令更适合去评测综合能力，cpu，内存和磁盘io的同时负载能力</p>
-<h4 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">uptime</div><div class="line">stress -c 4 -i 1 -m 1 --vm-bytes 128M -t 10s</div><div class="line">uptime</div></pre></td></tr></table></figure>
-<h2 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h2><h3 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h3><h4 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line">Usage: dd [OPERAND]...</div><div class="line">  or:  dd OPTION</div><div class="line">Copy a file, converting and formatting according to the operands.</div><div class="line"></div><div class="line">  bs=BYTES        read and write BYTES bytes at a time (also see ibs=,obs=)</div><div class="line">  cbs=BYTES       convert BYTES bytes at a time</div><div class="line">  conv=CONVS      convert the file as per the comma separated symbol list</div><div class="line">  count=N         copy only N input blocks</div><div class="line">  ibs=BYTES       read BYTES bytes at a time (default: 512)</div><div class="line">  if=FILE         read from FILE instead of stdin</div><div class="line">  iflag=FLAGS     read as per the comma separated symbol list</div><div class="line">  obs=BYTES       write BYTES bytes at a time (default: 512)</div><div class="line">  of=FILE         write to FILE instead of stdout</div><div class="line">  oflag=FLAGS     write as per the comma separated symbol list</div><div class="line">  seek=BLOCKS     skip BLOCKS obs-sized blocks at start of output</div><div class="line">  skip=BLOCKS     skip BLOCKS ibs-sized blocks at start of input</div><div class="line">  status=WHICH    WHICH info to suppress outputting to stderr;</div><div class="line">                  &apos;noxfer&apos; suppresses transfer stats, &apos;none&apos; suppresses all</div><div class="line"></div><div class="line">BLOCKS and BYTES may be followed by the following multiplicative suffixes:</div><div class="line">c =1, w =2, b =512, kB =1000, K =1024, MB =1000*1000, M =1024*1024, xM =M</div><div class="line">GB =1000*1000*1000, G =1024*1024*1024, and so on for T, P, E, Z, Y.</div><div class="line"></div><div class="line">Each CONV symbol may be:</div><div class="line"></div><div class="line">  ascii     from EBCDIC to ASCII</div><div class="line">  ebcdic    from ASCII to EBCDIC</div><div class="line">  ibm       from ASCII to alternate EBCDIC</div><div class="line">  block     pad newline-terminated records with spaces to cbs-size</div><div class="line">  unblock   replace trailing spaces in cbs-size records with newline</div><div class="line">  lcase     change upper case to lower case</div><div class="line">  nocreat   do not create the output file</div><div class="line">  excl      fail if the output file already exists</div><div class="line">  notrunc   do not truncate the output file</div><div class="line">  ucase     change lower case to upper case</div><div class="line">  sparse    try to seek rather than write the output for NUL input blocks</div><div class="line">  swab      swap every pair of input bytes</div><div class="line">  noerror   continue after read errors</div><div class="line">  sync      pad every input block with NULs to ibs-size; when used</div><div class="line">            with block or unblock, pad with spaces rather than NULs</div><div class="line">  fdatasync  physically write output file data before finishing</div><div class="line">  fsync     likewise, but also write metadata</div><div class="line"></div><div class="line">Each FLAG symbol may be:</div><div class="line"></div><div class="line">  append    append mode (makes sense only for output; conv=notrunc suggested)</div><div class="line">  direct    use direct I/O for data</div><div class="line">  directory  fail unless a directory</div><div class="line">  dsync     use synchronized I/O for data</div><div class="line">  sync      likewise, but also for metadata</div><div class="line">  fullblock  accumulate full blocks of input (iflag only)</div><div class="line">  nonblock  use non-blocking I/O</div><div class="line">  noatime   do not update access time</div><div class="line">  noctty    do not assign controlling terminal from file</div><div class="line">  nofollow  do not follow symlinks</div><div class="line">  count_bytes  treat &apos;count=N&apos; as a byte count (iflag only)</div><div class="line"></div><div class="line">Sending a USR1 signal to a running `dd&apos; process makes it</div><div class="line">print I/O statistics to standard error and then resume copying.</div><div class="line"></div><div class="line">  $ dd if=/dev/zero of=/dev/null&amp; pid=$!</div><div class="line">  $ kill -USR1 $pid; sleep 1; kill $pid</div><div class="line">  18335302+0 records in</div><div class="line">  18335302+0 records out</div><div class="line">  9387674624 bytes (9.4 GB) copied, 34.6279 seconds, 271 MB/s</div><div class="line"></div><div class="line">Options are:</div><div class="line"></div><div class="line">      --help     display this help and exit</div><div class="line">      --version  output version information and exit</div><div class="line"></div><div class="line">Report dd bugs to bug-coreutils@gnu.org</div><div class="line">GNU coreutils home page: &lt;http://www.gnu.org/software/coreutils/&gt;</div><div class="line">General help using GNU software: &lt;http://www.gnu.org/gethelp/&gt;</div><div class="line">For complete documentation, run: info coreutils &apos;dd invocation&apos;</div></pre></td></tr></table></figure>
+<h4 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uptime</span><br><span class="line">stress -c 4 -i 1 -m 1 --vm-bytes 128M -t 10s</span><br><span class="line">uptime</span><br></pre></td></tr></table></figure>
+<h2 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h2><h3 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h3><h4 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">Usage: dd [OPERAND]...</span><br><span class="line">  or:  dd OPTION</span><br><span class="line">Copy a file, converting and formatting according to the operands.</span><br><span class="line"></span><br><span class="line">  bs=BYTES        read and write BYTES bytes at a time (also see ibs=,obs=)</span><br><span class="line">  cbs=BYTES       convert BYTES bytes at a time</span><br><span class="line">  conv=CONVS      convert the file as per the comma separated symbol list</span><br><span class="line">  count=N         copy only N input blocks</span><br><span class="line">  ibs=BYTES       read BYTES bytes at a time (default: 512)</span><br><span class="line">  if=FILE         read from FILE instead of stdin</span><br><span class="line">  iflag=FLAGS     read as per the comma separated symbol list</span><br><span class="line">  obs=BYTES       write BYTES bytes at a time (default: 512)</span><br><span class="line">  of=FILE         write to FILE instead of stdout</span><br><span class="line">  oflag=FLAGS     write as per the comma separated symbol list</span><br><span class="line">  seek=BLOCKS     skip BLOCKS obs-sized blocks at start of output</span><br><span class="line">  skip=BLOCKS     skip BLOCKS ibs-sized blocks at start of input</span><br><span class="line">  status=WHICH    WHICH info to suppress outputting to stderr;</span><br><span class="line">                  &apos;noxfer&apos; suppresses transfer stats, &apos;none&apos; suppresses all</span><br><span class="line"></span><br><span class="line">BLOCKS and BYTES may be followed by the following multiplicative suffixes:</span><br><span class="line">c =1, w =2, b =512, kB =1000, K =1024, MB =1000*1000, M =1024*1024, xM =M</span><br><span class="line">GB =1000*1000*1000, G =1024*1024*1024, and so on for T, P, E, Z, Y.</span><br><span class="line"></span><br><span class="line">Each CONV symbol may be:</span><br><span class="line"></span><br><span class="line">  ascii     from EBCDIC to ASCII</span><br><span class="line">  ebcdic    from ASCII to EBCDIC</span><br><span class="line">  ibm       from ASCII to alternate EBCDIC</span><br><span class="line">  block     pad newline-terminated records with spaces to cbs-size</span><br><span class="line">  unblock   replace trailing spaces in cbs-size records with newline</span><br><span class="line">  lcase     change upper case to lower case</span><br><span class="line">  nocreat   do not create the output file</span><br><span class="line">  excl      fail if the output file already exists</span><br><span class="line">  notrunc   do not truncate the output file</span><br><span class="line">  ucase     change lower case to upper case</span><br><span class="line">  sparse    try to seek rather than write the output for NUL input blocks</span><br><span class="line">  swab      swap every pair of input bytes</span><br><span class="line">  noerror   continue after read errors</span><br><span class="line">  sync      pad every input block with NULs to ibs-size; when used</span><br><span class="line">            with block or unblock, pad with spaces rather than NULs</span><br><span class="line">  fdatasync  physically write output file data before finishing</span><br><span class="line">  fsync     likewise, but also write metadata</span><br><span class="line"></span><br><span class="line">Each FLAG symbol may be:</span><br><span class="line"></span><br><span class="line">  append    append mode (makes sense only for output; conv=notrunc suggested)</span><br><span class="line">  direct    use direct I/O for data</span><br><span class="line">  directory  fail unless a directory</span><br><span class="line">  dsync     use synchronized I/O for data</span><br><span class="line">  sync      likewise, but also for metadata</span><br><span class="line">  fullblock  accumulate full blocks of input (iflag only)</span><br><span class="line">  nonblock  use non-blocking I/O</span><br><span class="line">  noatime   do not update access time</span><br><span class="line">  noctty    do not assign controlling terminal from file</span><br><span class="line">  nofollow  do not follow symlinks</span><br><span class="line">  count_bytes  treat &apos;count=N&apos; as a byte count (iflag only)</span><br><span class="line"></span><br><span class="line">Sending a USR1 signal to a running `dd&apos; process makes it</span><br><span class="line">print I/O statistics to standard error and then resume copying.</span><br><span class="line"></span><br><span class="line">  $ dd if=/dev/zero of=/dev/null&amp; pid=$!</span><br><span class="line">  $ kill -USR1 $pid; sleep 1; kill $pid</span><br><span class="line">  18335302+0 records in</span><br><span class="line">  18335302+0 records out</span><br><span class="line">  9387674624 bytes (9.4 GB) copied, 34.6279 seconds, 271 MB/s</span><br><span class="line"></span><br><span class="line">Options are:</span><br><span class="line"></span><br><span class="line">      --help     display this help and exit</span><br><span class="line">      --version  output version information and exit</span><br><span class="line"></span><br><span class="line">Report dd bugs to bug-coreutils@gnu.org</span><br><span class="line">GNU coreutils home page: &lt;http://www.gnu.org/software/coreutils/&gt;</span><br><span class="line">General help using GNU software: &lt;http://www.gnu.org/gethelp/&gt;</span><br><span class="line">For complete documentation, run: info coreutils &apos;dd invocation&apos;</span><br></pre></td></tr></table></figure>
 <p>上面说明有很多，通畅情况下，用下面的命令去测试磁盘的读写性能</p>
-<h4 id="写性能测试"><a href="#写性能测试" class="headerlink" title="写性能测试"></a>写性能测试</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">time dd if=/dev/xvda1 of=/test.disk bs=8k count=300000</div></pre></td></tr></table></figure>
+<h4 id="写性能测试"><a href="#写性能测试" class="headerlink" title="写性能测试"></a>写性能测试</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time dd if=/dev/xvda1 of=/test.disk bs=8k count=300000</span><br></pre></td></tr></table></figure>
 <p>用dd命令进行测试，以每次写入8k的数据，执行300000次，time命令显示执行过程的时间，执行完成后生成/test.disk文件，大小为2.5G</p>
-<p>上面的命令其实是会将数据写入到文件系统缓存（系统默认操作，提高效率），而且是磁盘连续写，所以理论上是一个磁盘写入速度的极限值，如果是直接写入到磁盘，可以添加参数<code>oflag</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">time dd if=/dev/xvda1 of=/test.disk bs=8k count=300000 oflag=direct</div></pre></td></tr></table></figure></p>
-<h4 id="读性能测试"><a href="#读性能测试" class="headerlink" title="读性能测试"></a>读性能测试</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">time dd if=/test.disk of=/dev/xvda1 bs=8k</div></pre></td></tr></table></figure>
-<h4 id="读写联合测试"><a href="#读写联合测试" class="headerlink" title="读写联合测试"></a>读写联合测试</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">time dd if=/test.disk of=/tmp/test.disk2 bs=8k</div></pre></td></tr></table></figure>
-<h3 id="iostat"><a href="#iostat" class="headerlink" title="iostat"></a>iostat</h3><h4 id="显示所有设备负载情况"><a href="#显示所有设备负载情况" class="headerlink" title="显示所有设备负载情况"></a>显示所有设备负载情况</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iostat</div></pre></td></tr></table></figure>
+<p>上面的命令其实是会将数据写入到文件系统缓存（系统默认操作，提高效率），而且是磁盘连续写，所以理论上是一个磁盘写入速度的极限值，如果是直接写入到磁盘，可以添加参数<code>oflag</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time dd if=/dev/xvda1 of=/test.disk bs=8k count=300000 oflag=direct</span><br></pre></td></tr></table></figure></p>
+<h4 id="读性能测试"><a href="#读性能测试" class="headerlink" title="读性能测试"></a>读性能测试</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time dd if=/test.disk of=/dev/xvda1 bs=8k</span><br></pre></td></tr></table></figure>
+<h4 id="读写联合测试"><a href="#读写联合测试" class="headerlink" title="读写联合测试"></a>读写联合测试</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time dd if=/test.disk of=/tmp/test.disk2 bs=8k</span><br></pre></td></tr></table></figure>
+<h3 id="iostat"><a href="#iostat" class="headerlink" title="iostat"></a>iostat</h3><h4 id="显示所有设备负载情况"><a href="#显示所有设备负载情况" class="headerlink" title="显示所有设备负载情况"></a>显示所有设备负载情况</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iostat</span><br></pre></td></tr></table></figure>
 <p><strong>cpu属性值说明：</strong></p>
 <ul>
 <li>%user：CPU处在用户模式下的时间百分比。</li>
@@ -419,8 +345,8 @@
 <blockquote>
 <p>备注：如果 %util 接近 100%，说明产生的I/O请求太多，I/O系统已经满负荷，该磁盘可能存在瓶颈。如果 svctm 比较接近 await，说明 I/O 几乎没有等待时间；如果 await 远大于 svctm，说明I/O 队列太长，io响应太慢，则需要进行必要优化。如果avgqu-sz比较大，也表示有当量io在等待</p>
 </blockquote>
-<h4 id="定时显示所有信息"><a href="#定时显示所有信息" class="headerlink" title="定时显示所有信息"></a>定时显示所有信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 每2s打印一次，一共打印3次</span></div><div class="line">iostat 2 3</div></pre></td></tr></table></figure>
-<h4 id="查看TPS和吞吐量"><a href="#查看TPS和吞吐量" class="headerlink" title="查看TPS和吞吐量"></a>查看TPS和吞吐量</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iostat -d -k 1 1</div></pre></td></tr></table></figure>
+<h4 id="定时显示所有信息"><a href="#定时显示所有信息" class="headerlink" title="定时显示所有信息"></a>定时显示所有信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 每2s打印一次，一共打印3次</span></span><br><span class="line">iostat 2 3</span><br></pre></td></tr></table></figure>
+<h4 id="查看TPS和吞吐量"><a href="#查看TPS和吞吐量" class="headerlink" title="查看TPS和吞吐量"></a>查看TPS和吞吐量</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iostat -d -k 1 1</span><br></pre></td></tr></table></figure>
 <p>说明:</p>
 <ul>
 <li>tps：该设备每秒的传输次数（Indicate the number of transfers per second that were issued to the device.）。“一次传输”意思是“一次I/O请求”。多个逻辑请求可能会被合并为“一次I/O请求”。“一次传输”请求的大小是未知的。</li>
@@ -428,7 +354,7 @@
 <li>kB_wrtn/s：每秒向设备（drive expressed）写入的数据量；</li>
 <li>kB_read：读取的总数据量；kB_wrtn：写入的总数量数据量；</li>
 </ul>
-<h4 id="查看设备使用率（-util）和响应时间（await）"><a href="#查看设备使用率（-util）和响应时间（await）" class="headerlink" title="查看设备使用率（%util）和响应时间（await）"></a>查看设备使用率（%util）和响应时间（await）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iostat -d -x -k 1 1</div></pre></td></tr></table></figure>
+<h4 id="查看设备使用率（-util）和响应时间（await）"><a href="#查看设备使用率（-util）和响应时间（await）" class="headerlink" title="查看设备使用率（%util）和响应时间（await）"></a>查看设备使用率（%util）和响应时间（await）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iostat -d -x -k 1 1</span><br></pre></td></tr></table></figure>
 <p>rrqm/s： 每秒进行 merge 的读操作数目.即 delta(rmerge)/s<br>wrqm/s： 每秒进行 merge 的写操作数目.即 delta(wmerge)/s<br>r/s： 每秒完成的读 I/O 设备次数.即 delta(rio)/s<br>w/s： 每秒完成的写 I/O 设备次数.即 delta(wio)/s<br>rsec/s： 每秒读扇区数.即 delta(rsect)/s<br>wsec/s： 每秒写扇区数.即 delta(wsect)/s<br>rkB/s： 每秒读K字节数.是 rsect/s 的一半,因为每扇区大小为512字节.(需要计算)<br>wkB/s： 每秒写K字节数.是 wsect/s 的一半.(需要计算)<br>avgrq-sz：平均每次设备I/O操作的数据大小 (扇区).delta(rsect+wsect)/delta(rio+wio)<br>avgqu-sz：平均I/O队列长度.即 delta(aveq)/s/1000 (因为aveq的单位为毫秒).<br>await： 平均每次设备I/O操作的等待时间 (毫秒).即 delta(ruse+wuse)/delta(rio+wio)<br>svctm： 平均每次设备I/O操作的服务时间 (毫秒).即 delta(use)/delta(rio+wio)<br>%util： 一秒中有百分之多少的时间用于 I/O 操作,或者说一秒中有多少时间 I/O 队列是非空的，即 delta(use)/s/1000 (因为use的单位为毫秒)<br>如果 %util 接近 100%，说明产生的I/O请求太多，I/O系统已经满负荷，该磁盘可能存在瓶颈。 idle小于70% IO压力就较大了，一般读取速度有较多的wait。 同时可以结合vmstat 查看查看b参数(等待资源的进程数)和wa参数(IO等待所占用的CPU时间的百分比，高过30%时IO压力高)。</p>
 <p>另外 await 的参数也要多和 svctm 来参考。差的过高就一定有 IO 的问题。</p>
 <p>avgqu-sz 也是个做 IO 调优时需要注意的地方，这个就是直接每次操作的数据的大小，如果次数多，但数据拿的小的话，其实 IO 也会很小。如果数据拿的大，才IO 的数据会高。也可以通过 avgqu-sz × ( r/s or w/s ) = rsec/s or wsec/s。也就是讲，读定速度是这个来决定的。</p>
@@ -438,97 +364,73 @@
 <p>平均等待时间=单个I/O服务器时间*(1+2+…+请求总数-1)/请求总数</p>
 <p>每秒发出的I/0请求很多,但是平均队列就4,表示这些请求比较均匀,大部分处理还是比较及时。</p>
 <h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><h3 id="iperf"><a href="#iperf" class="headerlink" title="iperf"></a>iperf</h3><h4 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a>测试方法</h4><p>两台机器，先安装<code>iperf</code>工具，然后一台机器以<code>server</code>方式启动，另外一台以<code>client</code>方式运行，进行网络压力测试</p>
-<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">-s 以server模式启动，eg：iperf -s</div><div class="line">-c 以client模式启动，host是server端地址，eg：iperf -c 1.1.1.1</div><div class="line"></div><div class="line">通用参数</div><div class="line">-f [k|m|K|M] 分别表示以Kbits, Mbits, KBytes, MBytes显示报告，默认以Mbits为单位,eg:iperf -c 222.35.11.23 -f K</div><div class="line"></div><div class="line">-i sec 以秒为单位显示报告间隔，eg:iperf -c 222.35.11.23 -i 2</div><div class="line">iperf是client端向server端发送数据</div><div class="line">server端显示的是接收速率，最好加i参数，进行速率跟踪</div><div class="line">client 显示的是发送速率</div><div class="line">server 显示接收速率</div><div class="line"></div><div class="line">-l 缓冲区大小，默认是8KB,eg: iperf -c 1.1.1.1 -l 16 可以使用不同的包长，进行测试</div><div class="line"></div><div class="line">-m 显示tcp最大mtu值</div><div class="line">-o 将报告和错误信息输出到文件 eg: iperf -c 1.1.1.1 -o c:iperflog.txt</div><div class="line">-p 指定服务器端使用的端口或客户端所连接的端口 eg: iperf -s -p 9999;iperf -c 222.35.11.23 -p 9999</div><div class="line"></div><div class="line">-u 使用udp协议， 测试htb的时候最好用udp，udp通信开销小，测试的带宽更准确</div><div class="line">-w 指定TCP窗口大小，默认是8KB，如果窗口太小，有可能丢包</div><div class="line"></div><div class="line">-B 绑定一个主机地址或接口（当主机有多个地址或接口时使用该参数）</div><div class="line">-C 兼容旧版本（当server端和client端版本不一样时使用）</div><div class="line">-M 设定TCP数据包的最大mtu值</div><div class="line">-N 设定TCP不延时</div><div class="line">-V 传输ipv6数据包</div><div class="line"></div><div class="line">server专用参数</div><div class="line">-D 以服务方式运行ipserf，eg: iperf -s -D</div><div class="line">-R 停止iperf服务，针对-D，eg: iperf -s -R</div><div class="line"></div><div class="line">client端专用参数</div><div class="line">-d 同时进行双向传输测试</div><div class="line">-n 指定传输的字节数，eg: iperf -c 222.35.11.23 -n 100000</div><div class="line">-r 单独进行双向传输测试</div><div class="line"></div><div class="line">-b 指定发送带宽，默认是1Mbit/s</div><div class="line"></div><div class="line">在测试qos的时候，这是最有用的参数。</div><div class="line">-t 测试时间，默认10秒, eg: iperf -c 222.35.11.23 -t 5</div><div class="line"></div><div class="line">默认是10s</div><div class="line"></div><div class="line">-F 指定需要传输的文件</div><div class="line">-T 指定ttl值</div></pre></td></tr></table></figure>
-<p>###@ 使用示例<br>服务端：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iperf -s -u</div></pre></td></tr></table></figure></p>
+<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">-s 以server模式启动，eg：iperf -s</span><br><span class="line">-c 以client模式启动，host是server端地址，eg：iperf -c 1.1.1.1</span><br><span class="line"></span><br><span class="line">通用参数</span><br><span class="line">-f [k|m|K|M] 分别表示以Kbits, Mbits, KBytes, MBytes显示报告，默认以Mbits为单位,eg:iperf -c 222.35.11.23 -f K</span><br><span class="line"></span><br><span class="line">-i sec 以秒为单位显示报告间隔，eg:iperf -c 222.35.11.23 -i 2</span><br><span class="line">iperf是client端向server端发送数据</span><br><span class="line">server端显示的是接收速率，最好加i参数，进行速率跟踪</span><br><span class="line">client 显示的是发送速率</span><br><span class="line">server 显示接收速率</span><br><span class="line"></span><br><span class="line">-l 缓冲区大小，默认是8KB,eg: iperf -c 1.1.1.1 -l 16 可以使用不同的包长，进行测试</span><br><span class="line"></span><br><span class="line">-m 显示tcp最大mtu值</span><br><span class="line">-o 将报告和错误信息输出到文件 eg: iperf -c 1.1.1.1 -o c:iperflog.txt</span><br><span class="line">-p 指定服务器端使用的端口或客户端所连接的端口 eg: iperf -s -p 9999;iperf -c 222.35.11.23 -p 9999</span><br><span class="line"></span><br><span class="line">-u 使用udp协议， 测试htb的时候最好用udp，udp通信开销小，测试的带宽更准确</span><br><span class="line">-w 指定TCP窗口大小，默认是8KB，如果窗口太小，有可能丢包</span><br><span class="line"></span><br><span class="line">-B 绑定一个主机地址或接口（当主机有多个地址或接口时使用该参数）</span><br><span class="line">-C 兼容旧版本（当server端和client端版本不一样时使用）</span><br><span class="line">-M 设定TCP数据包的最大mtu值</span><br><span class="line">-N 设定TCP不延时</span><br><span class="line">-V 传输ipv6数据包</span><br><span class="line"></span><br><span class="line">server专用参数</span><br><span class="line">-D 以服务方式运行ipserf，eg: iperf -s -D</span><br><span class="line">-R 停止iperf服务，针对-D，eg: iperf -s -R</span><br><span class="line"></span><br><span class="line">client端专用参数</span><br><span class="line">-d 同时进行双向传输测试</span><br><span class="line">-n 指定传输的字节数，eg: iperf -c 222.35.11.23 -n 100000</span><br><span class="line">-r 单独进行双向传输测试</span><br><span class="line"></span><br><span class="line">-b 指定发送带宽，默认是1Mbit/s</span><br><span class="line"></span><br><span class="line">在测试qos的时候，这是最有用的参数。</span><br><span class="line">-t 测试时间，默认10秒, eg: iperf -c 222.35.11.23 -t 5</span><br><span class="line"></span><br><span class="line">默认是10s</span><br><span class="line"></span><br><span class="line">-F 指定需要传输的文件</span><br><span class="line">-T 指定ttl值</span><br></pre></td></tr></table></figure>
+<p>###@ 使用示例<br>服务端：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iperf -s -u</span><br></pre></td></tr></table></figure></p>
 <p>-s 标记此端为服务端<br>-u 标记自己为UDP监听<br>-p 指定自己监听端口</p>
-<p>客户端：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iperf -c 1.1.1.1 -i 1 -u -t 60 -F /root/a.zip -P 5</div></pre></td></tr></table></figure></p>
+<p>客户端：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iperf -c 1.1.1.1 -i 1 -u -t 60 -F /root/a.zip -P 5</span><br></pre></td></tr></table></figure></p>
 <p>-c 标记自己为客户端<br>-i 设定输出值间隔<br>-u 使用传输协议为UDP<br>-t 设定测试时间为60秒<br>-F 指定传输文件(该项可有可无)<br>-P 指定进程数，如果设置为5，那么也就相当与对端建立五个连接</p>
 <p>注意事项：<br>1.发包测试需要分为UDP测试与TCP测试，其中服务端需要用-u命令去区分监听协议。<br>2.TCP协议测试不能计算出时延与丢包率，而且还不能指定发送带宽。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.cyberciti.biz/faq/stress-test-linux-unix-server-with-stress-ng/" target="_blank" rel="external">How To Stress Test CPU and Memory (VM) On a Linux and Unix With Stress-ng</a><br><a href="http://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/iostat.html" target="_blank" rel="external">iostat 监视I/O子系统</a>，这个连接下面有非常多实用的Linux工具使用说明<br><a href="http://blog.csdn.net/evenness/article/details/7371845" target="_blank" rel="external">使用iperf测试网络性能</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.cyberciti.biz/faq/stress-test-linux-unix-server-with-stress-ng/" target="_blank" rel="noopener">How To Stress Test CPU and Memory (VM) On a Linux and Unix With Stress-ng</a><br><a href="http://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/iostat.html" target="_blank" rel="noopener">iostat 监视I/O子系统</a>，这个连接下面有非常多实用的Linux工具使用说明<br><a href="http://blog.csdn.net/evenness/article/details/7371845" target="_blank" rel="noopener">使用iperf测试网络性能</a></p>
 
-      
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
+        
       
-        <div class="post-tags">
+
+      <footer class="post-footer">
           
-            <a href="/tags/linux/" rel="tag"># linux</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/06/nginx/nginx流量复制/" rel="next" title="nginx流量复制">
-                <i class="fa fa-chevron-left"></i> nginx流量复制
-              </a>
+          
+          <div class="post-tags">
+            
+              <a href="/tags/linux/" rel="tag"># linux</a>
             
           </div>
+        
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/28/shutterbug/峨眉山/" rel="prev" title="峨眉山">
-                峨眉山 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2017/08/06/nginx/nginx流量复制/" rel="next" title="nginx流量复制">
+                  <i class="fa fa-chevron-left"></i> nginx流量复制
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2018/10/28/shutterbug/峨眉山/" rel="prev" title="峨眉山">
+                  峨眉山 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
           </div>
-        </div>
-      
-
-      
-      
-    </footer>
+        
+      </footer>
+    
   </div>
   
   
   
   </article>
 
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
-
-
-          
-
+    
+    <div class="comments" id="gitalk-container"></div>
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
-
-  
-
-
 
         </div>
-        
           
   
   <div class="sidebar-toggle">
@@ -540,12 +442,7 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
-
-      
-
-      
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
@@ -556,84 +453,172 @@
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
+
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/author.jpg"
-                alt="kivi" />
-            
-              <p class="site-author-name" itemprop="name">kivi</p>
-              <p class="site-description motion-element" itemprop="description">nodejs | server</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">58</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
+    <img class="site-author-image" itemprop="image"
+      src="/images/author.jpg"
+      alt="kivi">
+  <p class="site-author-name" itemprop="name">kivi</p>
+  <div class="site-description motion-element" itemprop="description">nodejs | server</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
           
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
+            <a href="/categories/">
           
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
 
-          
 
-          
-          
-
-          
-          
-
-          
 
         </div>
-      </section>
-
-      
+      </div>
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
 
             
-              
+            
+            
             
 
             
@@ -641,64 +626,33 @@
             
 
           </div>
-        </section>
+        </div>
       <!--/noindex-->
-      
-
       
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">kivi</span>
-
-  
 </div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
 
         
 <div class="busuanzi-count">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i> 访客数量
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i> 浏览量
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
-    </span>
-  
 </div>
 
 
@@ -711,25 +665,54 @@
         
       </div>
     </footer>
-
-    
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
-        
       </div>
-    
 
     
 
   </div>
 
   
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -741,278 +724,35 @@
 
   
 
-
-
-
-
-
-
-
-
-
-
-
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
 
   
 
 
   
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            // id: window.location.pathname, 
-            id: '1502118456000', 
-            owner: 'CocaCola183',
-            repo: 'CocaCola183.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                proxy_gateway: 'https://dev1pc.7moor.com',
-            
-                client_id: '9aa9571446f523fd0c7f'
-            }});
-        gitment.render('gitment-container');
-      }
-
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+    var gitalk = new Gitalk({
+      clientID: '9aa9571446f523fd0c7f',
+      clientSecret: '237884fa7cb94f497a3da8211fbadfded147b531',
+      repo: 'CocaCola183.github.io',
+      owner: 'CocaCola183',
+      admin: ['CocaCola183'],
+      id: 'b57542758aa38426689a551605105155',
+        language: 'zh-CN',
       
-      renderGitment();
-      
-      </script>
-    
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("e99ORGgDvGxLUzH8mhKbAKu0-gzGzoHsz", "INsrz00YWhTssAqr5djkdMAS");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
+      distractionFreeMode: 'true'
     });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
 
 </body>
 </html>

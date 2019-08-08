@@ -2,139 +2,90 @@
 
 
 
-  
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="mongodb," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="升级相关cluster upgrade from 2.6.9 to 3.0.3 error: no such cmd: _getUserCacheGeneration参考链接 这个问题是因为config-server在2.6.10中才加入这个api  configdb error： bad serverID set in setShardVersion and none升级3.0就能解决这个问题">
-<meta name="keywords" content="mongodb">
-<meta property="og:type" content="article">
-<meta property="og:title" content="mongodb常见Q&amp;A整理">
-<meta property="og:url" content="http://cocacola183.github.io/2017/03/07/mongo/mongodb常见Q-A整理/index.html">
-<meta property="og:site_name" content="Kivi">
-<meta property="og:description" content="升级相关cluster upgrade from 2.6.9 to 3.0.3 error: no such cmd: _getUserCacheGeneration参考链接 这个问题是因为config-server在2.6.10中才加入这个api  configdb error： bad serverID set in setShardVersion and none升级3.0就能解决这个问题">
-<meta property="og:updated_time" content="2017-07-08T02:31:59.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mongodb常见Q&amp;A整理">
-<meta name="twitter:description" content="升级相关cluster upgrade from 2.6.9 to 3.0.3 error: no such cmd: _getUserCacheGeneration参考链接 这个问题是因为config-server在2.6.10中才加入这个api  configdb error： bad serverID set in setShardVersion and none升级3.0就能解决这个问题">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: 'undefined',
-      author: '博主'
-    },
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     }
   };
 </script>
 
+  <meta name="description" content="升级相关cluster upgrade from 2.6.9 to 3.0.3 error: no such cmd: _getUserCacheGeneration参考链接 这个问题是因为config-server在2.6.10中才加入这个api  configdb error： bad serverID set in setShardVersion and none升级3.0就能解决这个问题">
+<meta name="keywords" content="mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongodb常见Q&amp;A整理">
+<meta property="og:url" content="http://cocacola183.github.io/2017/03/07/mongo/mongodb常见Q-A整理/index.html">
+<meta property="og:site_name" content="Kivi">
+<meta property="og:description" content="升级相关cluster upgrade from 2.6.9 to 3.0.3 error: no such cmd: _getUserCacheGeneration参考链接 这个问题是因为config-server在2.6.10中才加入这个api  configdb error： bad serverID set in setShardVersion and none升级3.0就能解决这个问题">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-07-08T02:31:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongodb常见Q&amp;A整理">
+<meta name="twitter:description" content="升级相关cluster upgrade from 2.6.9 to 3.0.3 error: no such cmd: _getUserCacheGeneration参考链接 这个问题是因为config-server在2.6.10中才加入这个api  configdb error： bad serverID set in setShardVersion and none升级3.0就能解决这个问题">
+  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml">
+  <link rel="canonical" href="http://cocacola183.github.io/2017/03/07/mongo/mongodb常见Q-A整理/">
 
 
-  <link rel="canonical" href="http://cocacola183.github.io/2017/03/07/mongo/mongodb常见Q-A整理/"/>
-
-
-
-
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
 
   <title>mongodb常见Q&A整理 | Kivi</title>
   
 
 
-
-
-
-  <script type="text/javascript">
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -147,37 +98,57 @@
 
 
 
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+  <div class="site-meta">
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Kivi</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
         <p class="site-subtitle">没有什么远大理想，只是永远都不会满足而已</p>
       
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -185,79 +156,73 @@
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
+  <ul id="menu" class="menu">
+      
+      
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
       
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
       
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            标签
-          </a>
-        </li>
+      
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            关于
-          </a>
-        </li>
       
+    
 
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
       
-    </ul>
-  
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
 
-  
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+            
+
+          <div id="content" class="content page-post-detail">
             
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -268,58 +233,55 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kivi">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="nodejs | server">
       <meta itemprop="image" content="/images/author.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Kivi">
     </span>
-
-    
       <header class="post-header">
 
         
-        
-          <h1 class="post-title" itemprop="name headline">mongodb常见Q&A整理</h1>
+          <h1 class="post-title" itemprop="name headline">mongodb常见Q&A整理
+
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">发表于</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T10:34:28+08:00">
-                2017-03-07
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="创建时间：2017-03-07 10:34:28" itemprop="dateCreated datePublished" datetime="2017-03-07T10:34:28+08:00">2017-03-07</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2017-07-08 10:31:59" itemprop="dateModified" datetime="2017-07-08T10:31:59+08:00">2017-07-08</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">分类于</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mongodb/" itemprop="url" rel="index">
-                    <span itemprop="name">mongodb</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mongodb/" itemprop="url" rel="index"><span itemprop="name">mongodb</span></a></span>
 
                 
                 
@@ -328,42 +290,9 @@
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/07/mongo/mongodb常见Q-A整理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/03/07/mongo/mongodb常见Q-A整理/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/07/mongo/mongodb常见Q-A整理/" class="leancloud_visitors" data-flag-title="mongodb常见Q&A整理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
@@ -371,15 +300,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        <h3 id="升级相关"><a href="#升级相关" class="headerlink" title="升级相关"></a>升级相关</h3><h4 id="cluster-upgrade-from-2-6-9-to-3-0-3-error-no-such-cmd-getUserCacheGeneration"><a href="#cluster-upgrade-from-2-6-9-to-3-0-3-error-no-such-cmd-getUserCacheGeneration" class="headerlink" title="cluster upgrade from 2.6.9 to 3.0.3 error: no such cmd: _getUserCacheGeneration"></a>cluster upgrade from 2.6.9 to 3.0.3 error: no such cmd: _getUserCacheGeneration</h4><p><a href="https://jira.mongodb.org/browse/SERVER-18651" target="_blank" rel="external">参考链接</a></p>
+        <h3 id="升级相关"><a href="#升级相关" class="headerlink" title="升级相关"></a>升级相关</h3><h4 id="cluster-upgrade-from-2-6-9-to-3-0-3-error-no-such-cmd-getUserCacheGeneration"><a href="#cluster-upgrade-from-2-6-9-to-3-0-3-error-no-such-cmd-getUserCacheGeneration" class="headerlink" title="cluster upgrade from 2.6.9 to 3.0.3 error: no such cmd: _getUserCacheGeneration"></a>cluster upgrade from 2.6.9 to 3.0.3 error: no such cmd: _getUserCacheGeneration</h4><p><a href="https://jira.mongodb.org/browse/SERVER-18651" target="_blank" rel="noopener">参考链接</a></p>
 <p>这个问题是因为config-server在2.6.10中才加入这个api</p>
 <hr>
 <h4 id="configdb-error：-bad-serverID-set-in-setShardVersion-and-none"><a href="#configdb-error：-bad-serverID-set-in-setShardVersion-and-none" class="headerlink" title="configdb error： bad serverID set in setShardVersion and none"></a>configdb error： bad serverID set in setShardVersion and none</h4><p>升级3.0就能解决这个问题</p>
 <hr>
-<h4 id="2-6-primary-连接不上-3-0的seconary-errno-111-Connection-refused"><a href="#2-6-primary-连接不上-3-0的seconary-errno-111-Connection-refused" class="headerlink" title="2.6 primary 连接不上 3.0的seconary errno:111 Connection refused"></a>2.6 primary 连接不上 3.0的seconary errno:111 Connection refused</h4><p><a href="http://stackoverflow.com/questions/24899849/connection-refused-to-mongodb-errno-111" target="_blank" rel="external">参考链接</a></p>
+<h4 id="2-6-primary-连接不上-3-0的seconary-errno-111-Connection-refused"><a href="#2-6-primary-连接不上-3-0的seconary-errno-111-Connection-refused" class="headerlink" title="2.6 primary 连接不上 3.0的seconary errno:111 Connection refused"></a>2.6 primary 连接不上 3.0的seconary errno:111 Connection refused</h4><p><a href="http://stackoverflow.com/questions/24899849/connection-refused-to-mongodb-errno-111" target="_blank" rel="noopener">参考链接</a></p>
 <p>问题是mongodb没有正常关闭，删掉dbpath所有内容，重启mongodb，问题就解决了</p>
 <hr>
 <h4 id="mongorestore-no-reachable-servers"><a href="#mongorestore-no-reachable-servers" class="headerlink" title="mongorestore no reachable servers"></a>mongorestore no reachable servers</h4><p>这个问题是因为节点启动指定了rs name，但是却没有正确初始化replica set</p>
@@ -389,27 +315,27 @@
 <hr>
 <h4 id="the-collection-lacks-a-unique-index-on-id"><a href="#the-collection-lacks-a-unique-index-on-id" class="headerlink" title="the collection lacks a unique index on _id"></a>the collection lacks a unique index on _id</h4><p>这个是我遇到的一个比较奇怪的问题，下面是我查到的一些信息</p>
 <ul>
-<li><a href="https://jira.mongodb.org/browse/SERVER-19998" target="_blank" rel="external">参考链接1</a></li>
-<li><a href="https://docs.mongodb.com/master/tutorial/build-indexes-on-replica-sets/" target="_blank" rel="external">参考链接2</a></li>
-<li><a href="https://docs.mongodb.com/master/release-notes/3.0-upgrade/#change-replica-set-storage-engine-to-wiredtiger" target="_blank" rel="external">参考链接3</a></li>
-<li><a href="https://docs.mongodb.com/master/tutorial/change-replica-set-wiredtiger/" target="_blank" rel="external">参考链接4</a></li>
+<li><a href="https://jira.mongodb.org/browse/SERVER-19998" target="_blank" rel="noopener">参考链接1</a></li>
+<li><a href="https://docs.mongodb.com/master/tutorial/build-indexes-on-replica-sets/" target="_blank" rel="noopener">参考链接2</a></li>
+<li><a href="https://docs.mongodb.com/master/release-notes/3.0-upgrade/#change-replica-set-storage-engine-to-wiredtiger" target="_blank" rel="noopener">参考链接3</a></li>
+<li><a href="https://docs.mongodb.com/master/tutorial/change-replica-set-wiredtiger/" target="_blank" rel="noopener">参考链接4</a></li>
 </ul>
 <p>讨论里面说的是因为服务器突然宕机导致的数据问题，查了半天没有解决方案，最后我应该是直接删掉了这个实例的dbpath，然后用副本集的机制重新同步的数据</p>
 <hr>
-<h4 id="rename-replset-name（重命名副本集，亲测可用）"><a href="#rename-replset-name（重命名副本集，亲测可用）" class="headerlink" title="rename replset name（重命名副本集，亲测可用）"></a>rename replset name（重命名副本集，亲测可用）</h4><p><a href="http://stackoverflow.com/questions/11265997/can-i-change-the-name-of-my-replica-set-while-mongod-processes-are-running" target="_blank" rel="external">参考链接</a></p>
+<h4 id="rename-replset-name（重命名副本集，亲测可用）"><a href="#rename-replset-name（重命名副本集，亲测可用）" class="headerlink" title="rename replset name（重命名副本集，亲测可用）"></a>rename replset name（重命名副本集，亲测可用）</h4><p><a href="http://stackoverflow.com/questions/11265997/can-i-change-the-name-of-my-replica-set-while-mongod-processes-are-running" target="_blank" rel="noopener">参考链接</a></p>
 <hr>
 <h4 id="MongoDB-Assertion-10334-BSONObj-size-1852142352-0x1073656E-is-invalid"><a href="#MongoDB-Assertion-10334-BSONObj-size-1852142352-0x1073656E-is-invalid" class="headerlink" title="MongoDB Assertion: 10334:BSONObj size: 1852142352 (0x1073656E) is invalid"></a>MongoDB Assertion: 10334:BSONObj size: 1852142352 (0x1073656E) is invalid</h4><p>这个问题有可能也是服务器突然关闭导致的（例如断电），解决方案如下</p>
 <ul>
 <li>清除oplog</li>
 <li>repair数据库</li>
 </ul>
-<p><a href="http://8858975.blog.51cto.com/8848975/1785142" target="_blank" rel="external">参考链接</a></p>
+<p><a href="http://8858975.blog.51cto.com/8848975/1785142" target="_blank" rel="noopener">参考链接</a></p>
 <hr>
-<h4 id="关闭3-0警告方法"><a href="#关闭3-0警告方法" class="headerlink" title="关闭3.0警告方法"></a>关闭3.0警告方法</h4><p><a href="https://docs.mongodb.com/manual/tutorial/transparent-huge-pages/" target="_blank" rel="external">参考链接1</a><br><a href="http://stackoverflow.com/questions/28911634/how-to-avoid-transparent-hugepage-defrag-warning-from-mongodb" target="_blank" rel="external">参考链接2</a></p>
+<h4 id="关闭3-0警告方法"><a href="#关闭3-0警告方法" class="headerlink" title="关闭3.0警告方法"></a>关闭3.0警告方法</h4><p><a href="https://docs.mongodb.com/manual/tutorial/transparent-huge-pages/" target="_blank" rel="noopener">参考链接1</a><br><a href="http://stackoverflow.com/questions/28911634/how-to-avoid-transparent-hugepage-defrag-warning-from-mongodb" target="_blank" rel="noopener">参考链接2</a></p>
 <hr>
-<h3 id="分片相关"><a href="#分片相关" class="headerlink" title="分片相关"></a>分片相关</h3><h4 id="chunk-move-failed"><a href="#chunk-move-failed" class="headerlink" title="chunk move failed"></a>chunk move failed</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">moveChunk failed to engage TO-shard in the data transfer: can&apos;t accept new chunks because  there are still 59 deletes from previous migration</div></pre></td></tr></table></figure>
-<p>意思是说，当前正要去接受新chunk 的shard正在删除上一次数据迁移出的数据，不能接受新Chunk，于是本次迁移失败。这种log里显示的是warning，但有时候会发现shard的删除持续了十几天都没完成，查看日志，可以发现同一个chunk的删除在不断重复执行，重启所有无法接受新chunk的shard可以解决这个问题。<br>参考：<br><a href="http://stackoverflow.com/questions/26640861/movechunk-failed-to-engage-to-shard-in-the-data-transfer-cant-accept-new-chunk" target="_blank" rel="external">http://stackoverflow.com/questions/26640861/movechunk-failed-to-engage-to-shard-in-the-data-transfer-cant-accept-new-chunk</a><br>如果采用了balancer自动均衡，那么可以加上_waitForDelete参数，如：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123; <span class="attr">"_id"</span> : <span class="string">"balancer"</span>, <span class="attr">"activeWindow"</span> : &#123; <span class="attr">"start"</span> : <span class="string">"12:00"</span>, <span class="attr">"stop"</span> : <span class="string">"19:30"</span> &#125;, <span class="attr">"stopped"</span> : <span class="literal">false</span>, <span class="attr">"_waitForDelete"</span> : <span class="literal">true</span> &#125;</div></pre></td></tr></table></figure></p>
-<p>，这样就不会因delete堆积而导致后续migrate失败，当然，需要考虑到这里的阻塞是否会影响到程序正常运转，在实践中慎重采用使用waitForDelete，因为发现加上它之后迁移性能非常差，可能出现卡住十几个小时的情况，外界拿住了被迁移chunk的游标句柄，这时候删除不能执行，阻塞了后续其它迁移操作。<br>游标被打开而导致被迁移数据无法及时删除时的日志：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2015-03-07T10:21:20.118+0800 [RangeDeleter] rangeDeleter waiting for open cursors in: cswuyg_test.cswuyg_test, min: &#123; _id: -6665031702664277348 &#125;, max: &#123; _id: -6651575076051867067 &#125;, elapsedSecs: 6131244, cursors: [ 220477635588 ]</div></pre></td></tr></table></figure></p>
+<h3 id="分片相关"><a href="#分片相关" class="headerlink" title="分片相关"></a>分片相关</h3><h4 id="chunk-move-failed"><a href="#chunk-move-failed" class="headerlink" title="chunk move failed"></a>chunk move failed</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">moveChunk failed to engage TO-shard in the data transfer: can&apos;t accept new chunks because  there are still 59 deletes from previous migration</span><br></pre></td></tr></table></figure>
+<p>意思是说，当前正要去接受新chunk 的shard正在删除上一次数据迁移出的数据，不能接受新Chunk，于是本次迁移失败。这种log里显示的是warning，但有时候会发现shard的删除持续了十几天都没完成，查看日志，可以发现同一个chunk的删除在不断重复执行，重启所有无法接受新chunk的shard可以解决这个问题。<br>参考：<br><a href="http://stackoverflow.com/questions/26640861/movechunk-failed-to-engage-to-shard-in-the-data-transfer-cant-accept-new-chunk" target="_blank" rel="noopener">http://stackoverflow.com/questions/26640861/movechunk-failed-to-engage-to-shard-in-the-data-transfer-cant-accept-new-chunk</a><br>如果采用了balancer自动均衡，那么可以加上_waitForDelete参数，如：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">"_id"</span> : <span class="string">"balancer"</span>, <span class="attr">"activeWindow"</span> : &#123; <span class="attr">"start"</span> : <span class="string">"12:00"</span>, <span class="attr">"stop"</span> : <span class="string">"19:30"</span> &#125;, <span class="attr">"stopped"</span> : <span class="literal">false</span>, <span class="attr">"_waitForDelete"</span> : <span class="literal">true</span> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>，这样就不会因delete堆积而导致后续migrate失败，当然，需要考虑到这里的阻塞是否会影响到程序正常运转，在实践中慎重采用使用waitForDelete，因为发现加上它之后迁移性能非常差，可能出现卡住十几个小时的情况，外界拿住了被迁移chunk的游标句柄，这时候删除不能执行，阻塞了后续其它迁移操作。<br>游标被打开而导致被迁移数据无法及时删除时的日志：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2015-03-07T10:21:20.118+0800 [RangeDeleter] rangeDeleter waiting for open cursors in: cswuyg_test.cswuyg_test, min: &#123; _id: -6665031702664277348 &#125;, max: &#123; _id: -6651575076051867067 &#125;, elapsedSecs: 6131244, cursors: [ 220477635588 ]</span><br></pre></td></tr></table></figure></p>
 <p>这可能会卡住几十小时，甚至一直卡住，影响后续的moveChunk操作，导致数据不均衡。<br>解决方法还是：重启。</p>
 <hr>
 <h4 id="数据表已经分片，但是磁盘空间没有释放"><a href="#数据表已经分片，但是磁盘空间没有释放" class="headerlink" title="数据表已经分片，但是磁盘空间没有释放"></a>数据表已经分片，但是磁盘空间没有释放</h4><p>分片完成，数据chunk移动完成，其他分片已经分得当前分片的数据了，但是当前分片磁盘占用还是和之前一样大，问题在在于这个</p>
@@ -417,17 +343,17 @@
 <p>The file size, once allocated, does not go down – that space will be re-used by Mongo if your shard continues to grow. So if you truly want to get disk space back, repairDatabase is the way to go. You can take your secondary out of the replica set, run the repairDatabase, and bring it back into the replica set.<br>原因是磁盘空间一旦释放，mongo不会释放磁盘空间，以后来数据的时候会复用，如果需要立刻释放磁盘空间，使用repairDatabase或者是先删掉数据目录，利用副本集的机制重新导入一遍就能释放戴㷣磁盘空间</p>
 </blockquote>
 <hr>
-<h4 id="大表分片卡住的问题"><a href="#大表分片卡住的问题" class="headerlink" title="大表分片卡住的问题"></a>大表分片卡住的问题</h4><p>大表分片的时候卡住不动，数据库读写都被阻塞<br><a href="https://jira.mongodb.org/browse/SERVER-10853" target="_blank" rel="external">https://jira.mongodb.org/browse/SERVER-10853</a><br>这个目前没有找到好的解决办法，一定要在业务量小的时候进行分片</p>
+<h4 id="大表分片卡住的问题"><a href="#大表分片卡住的问题" class="headerlink" title="大表分片卡住的问题"></a>大表分片卡住的问题</h4><p>大表分片的时候卡住不动，数据库读写都被阻塞<br><a href="https://jira.mongodb.org/browse/SERVER-10853" target="_blank" rel="noopener">https://jira.mongodb.org/browse/SERVER-10853</a><br>这个目前没有找到好的解决办法，一定要在业务量小的时候进行分片</p>
 <hr>
 <h3 id="索引相关"><a href="#索引相关" class="headerlink" title="索引相关"></a>索引相关</h3><h4 id="mongodb添加索引注意事项"><a href="#mongodb添加索引注意事项" class="headerlink" title="mongodb添加索引注意事项"></a>mongodb添加索引注意事项</h4><p>mongodb 添加索引<br>By default, MongoDB builds indexes in the foreground, which prevents all read and write operations to the database while the index builds. Also, no operation that requires a read or write lock on all databases (e.g. listDatabases) can occur during a foreground index build.<br>Background index construction allows read and write operations to continue while building the index.<br>默认<code>createIndex</code>会阻塞当前数据库所有的读写操作和另外一些依赖所有数据的的读写操作的命令（例如listdatabase），如果创建索引时候加上background，就能避免读写失败的问题</p>
 <hr>
-<h3 id="副本集相关"><a href="#副本集相关" class="headerlink" title="副本集相关"></a>副本集相关</h3><h4 id="replica-set-protocolVersion的问题"><a href="#replica-set-protocolVersion的问题" class="headerlink" title="replica set protocolVersion的问题"></a>replica set protocolVersion的问题</h4><p>[ReplicationExecutor] Error in heartbeat request to 127.0.0.1:27017; BadValue Unexpected field protocolVersion in replica set configuration<br>mongodb3.2之前replset的默认protocolVersion是0，3.2之后默认是1，所以当副本集中各个节点mongod版本不同时，要改为一致，修改的方法如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var cfg = rs.conf(); </div><div class="line">cfg.protocolVersion=1; </div><div class="line">rs.reconfig(cfg);</div></pre></td></tr></table></figure></p>
+<h3 id="副本集相关"><a href="#副本集相关" class="headerlink" title="副本集相关"></a>副本集相关</h3><h4 id="replica-set-protocolVersion的问题"><a href="#replica-set-protocolVersion的问题" class="headerlink" title="replica set protocolVersion的问题"></a>replica set protocolVersion的问题</h4><p>[ReplicationExecutor] Error in heartbeat request to 127.0.0.1:27017; BadValue Unexpected field protocolVersion in replica set configuration<br>mongodb3.2之前replset的默认protocolVersion是0，3.2之后默认是1，所以当副本集中各个节点mongod版本不同时，要改为一致，修改的方法如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var cfg = rs.conf(); </span><br><span class="line">cfg.protocolVersion=1; </span><br><span class="line">rs.reconfig(cfg);</span><br></pre></td></tr></table></figure></p>
 <hr>
 <h4 id="修改副本集名称（需要停止数据库）"><a href="#修改副本集名称（需要停止数据库）" class="headerlink" title="修改副本集名称（需要停止数据库）"></a>修改副本集名称（需要停止数据库）</h4><ul>
 <li>关闭副本集所有节点（注意要先关闭authentication）</li>
 <li>不使用–replSet参数，启动所有节点</li>
 <li><p>更新本地local数据库代码，代码如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">use local  </div><div class="line"><span class="keyword">var</span> doc = db.system.replset.findOne()  </div><div class="line">doc._id = <span class="string">'NewReplicaSetName'</span></div><div class="line">db.system.replset.save(doc)  </div><div class="line">db.system.replset.remove(&#123;<span class="attr">_id</span>:<span class="string">'OldReplicaSetName'</span>&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use local  </span><br><span class="line"><span class="keyword">var</span> doc = db.system.replset.findOne()  </span><br><span class="line">doc._id = <span class="string">'NewReplicaSetName'</span></span><br><span class="line">db.system.replset.save(doc)  </span><br><span class="line">db.system.replset.remove(&#123;<span class="attr">_id</span>:<span class="string">'OldReplicaSetName'</span>&#125;)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>再次关闭所有节点</p>
 </li>
@@ -440,7 +366,7 @@
 <h4 id="副本集中主从节点数据量大小不同的原因"><a href="#副本集中主从节点数据量大小不同的原因" class="headerlink" title="副本集中主从节点数据量大小不同的原因"></a>副本集中主从节点数据量大小不同的原因</h4><p>Brief: Because of different amount of not reclaimed memory space on secondary and different padding factor on secondary and primary.</p>
 <p>Long: It could be the case if you have long running primary node where some documents were deleted and inserted, and no compact operation was run. This space would no be reclaimed, and would be counted in dataSize, avgObjSize and storageSize. Secondary could be fully resynced from primary, but only operations from current oplog would be replayed. In this case secondary could have lower values for dataSize, avgObjSize and storageSize. If after that secondary is elected as primary, you could see described difference in sizes. In addition each server has it’s own padding factor, that is why you see difference in dataSize.</p>
 <p>Concrete scenario could be different, but there are two main causes: amount of not reclaimed memory space and different padding factor.</p>
-<p><a href="http://stackoverflow.com/questions/23509840/mongodb-replica-set-database-size-difference" target="_blank" rel="external">参考链接1</a><br><a href="https://dba.stackexchange.com/questions/96962/size-of-data-in-secondary-exceeded-primary-after-its-initial-resync-from-primary" target="_blank" rel="external">参考链接2</a></p>
+<p><a href="http://stackoverflow.com/questions/23509840/mongodb-replica-set-database-size-difference" target="_blank" rel="noopener">参考链接1</a><br><a href="https://dba.stackexchange.com/questions/96962/size-of-data-in-secondary-exceeded-primary-after-its-initial-resync-from-primary" target="_blank" rel="noopener">参考链接2</a></p>
 <hr>
 <h4 id="Fatal-assertion-15915-OplogOperationUnsupported-Applying-renameCollection-not-supported-in-initial-sync"><a href="#Fatal-assertion-15915-OplogOperationUnsupported-Applying-renameCollection-not-supported-in-initial-sync" class="headerlink" title="Fatal assertion 15915 OplogOperationUnsupported: Applying renameCollection not supported in initial sync"></a>Fatal assertion 15915 OplogOperationUnsupported: Applying renameCollection not supported in initial sync</h4><p>这个是因为副本集在initsync的过程中遇到了更改集合名称的操作，遇到这个操作，initsync会中断，手动重启即可</p>
 <h3 id="导入导出"><a href="#导入导出" class="headerlink" title="导入导出"></a>导入导出</h3><h4 id="读写性能影响"><a href="#读写性能影响" class="headerlink" title="读写性能影响"></a>读写性能影响</h4><blockquote>
@@ -461,104 +387,80 @@
 <h4 id="mongodb-lockpinger"><a href="#mongodb-lockpinger" class="headerlink" title="mongodb lockpinger"></a>mongodb lockpinger</h4><blockquote><p>There are distributed locks used in a sharded environment. The balancer takes a lock (only one migration is active at a time), the shards will take out meta data locks when doing splits also. Those live in the config.locks collection.</p>
 <p>As for the lock pinger, the config.lockpings collection keeps track of the active components in the cluster, so it is an informational collection. The lock pinger is what populates this collection and you have pasted what looks to be the result of a successful ping.</p>
 <p>Note: please do not use these collections for anything in your application or elsewhere. These collections (as noted on the linked pages) are considered internal only and can (and will) be changed/removed/updated without notice.</p>
-<footer><strong>stackoverflow</strong><cite><a href="https://dba.stackexchange.com/questions/58272/what-is-lock-pinger-in-mongodb" target="_blank" rel="external">dba.stackexchange.com/questions/58272/what-is-lock-pinger-in-mongodb</a></cite></footer></blockquote>
+<footer><strong>stackoverflow</strong><cite><a href="https://dba.stackexchange.com/questions/58272/what-is-lock-pinger-in-mongodb" target="_blank" rel="noopener">dba.stackexchange.com/questions/58272/what-is-lock-pinger-in-mongodb</a></cite></footer></blockquote>
 <hr>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="Incompatible-to-update-capped-collection-after-upgrade-to-mongo3-2"><a href="#Incompatible-to-update-capped-collection-after-upgrade-to-mongo3-2" class="headerlink" title="Incompatible to update capped collection after upgrade to mongo3.2"></a>Incompatible to update capped collection after upgrade to mongo3.2</h4><p>这是我升级的时候发现的一个问题，副本集<code>init-sync</code>的时候出现问题了，提示<code>can not change the size of a document in a capped collection</code>，搜了一下发现了<a href="https://jira.mongodb.org/browse/SERVER-23981" target="_blank" rel="external">这个</a></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="Incompatible-to-update-capped-collection-after-upgrade-to-mongo3-2"><a href="#Incompatible-to-update-capped-collection-after-upgrade-to-mongo3-2" class="headerlink" title="Incompatible to update capped collection after upgrade to mongo3.2"></a>Incompatible to update capped collection after upgrade to mongo3.2</h4><p>这是我升级的时候发现的一个问题，副本集<code>init-sync</code>的时候出现问题了，提示<code>can not change the size of a document in a capped collection</code>，搜了一下发现了<a href="https://jira.mongodb.org/browse/SERVER-23981" target="_blank" rel="noopener">这个</a></p>
 <blockquote><p>MongoDB 3.2 behaivor<br>MongoDB-3.2 added on a new condition check when update a capped collection, this is suitable for all storage engines. Which means user “Cannot change the size of a document in a capped collection”.</p>
 <p>MongoDB 3.0 behaivor<br>In mongodb 3.0, only mmapv1 have limitation to update a capped collection, that is “objects in a capped ns cannot grow(no need have the same size with old document”.</p>
-<footer><strong>mongo jira</strong><cite><a href="https://jira.mongodb.org/browse/SERVER-23981" target="_blank" rel="external">jira.mongodb.org/browse/SERVER-23981</a></cite></footer></blockquote>
-<p>另外，有api可以让一个普通表转为固定大小表，却没有命令可以让固定大小表转为普通表，所以切换钱要小心，如果必须要转回去，可以参考<a href="https://stackoverflow.com/questions/3971689/undo-converttocapped-to-a-collection" target="_blank" rel="external">这个</a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">db.createCollection(<span class="string">"norm_coll"</span>);</div><div class="line"><span class="keyword">var</span> cur = db.cap_col.find()</div><div class="line"><span class="keyword">while</span> (cur.hasNext()) &#123;obj = cur.next(); db.norm_coll.insert(obj);&#125;</div></pre></td></tr></table></figure>
+<footer><strong>mongo jira</strong><cite><a href="https://jira.mongodb.org/browse/SERVER-23981" target="_blank" rel="noopener">jira.mongodb.org/browse/SERVER-23981</a></cite></footer></blockquote>
+<p>另外，有api可以让一个普通表转为固定大小表，却没有命令可以让固定大小表转为普通表，所以切换钱要小心，如果必须要转回去，可以参考<a href="https://stackoverflow.com/questions/3971689/undo-converttocapped-to-a-collection" target="_blank" rel="noopener">这个</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.createCollection(<span class="string">"norm_coll"</span>);</span><br><span class="line"><span class="keyword">var</span> cur = db.cap_col.find()</span><br><span class="line"><span class="keyword">while</span> (cur.hasNext()) &#123;obj = cur.next(); db.norm_coll.insert(obj);&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="更多错误总结文章"><a href="#更多错误总结文章" class="headerlink" title="更多错误总结文章"></a>更多错误总结文章</h3><ul>
-<li><a href="http://www.lifeba.org/arch/mongodb_errors.html" target="_blank" rel="external">MongoDB错误和使用总结2013-02-16（持续更新）</a></li>
-<li><a href="https://docs.mongodb.com/manual/faq/storage/" target="_blank" rel="external">FAQ: MongoDB Storage</a></li>
-<li><a href="http://www.cnblogs.com/cswuyg/p/4355948.html" target="_blank" rel="external">MongoDB使用小结：一些不常见的经验分享</a></li>
+<li><a href="http://www.lifeba.org/arch/mongodb_errors.html" target="_blank" rel="noopener">MongoDB错误和使用总结2013-02-16（持续更新）</a></li>
+<li><a href="https://docs.mongodb.com/manual/faq/storage/" target="_blank" rel="noopener">FAQ: MongoDB Storage</a></li>
+<li><a href="http://www.cnblogs.com/cswuyg/p/4355948.html" target="_blank" rel="noopener">MongoDB使用小结：一些不常见的经验分享</a></li>
 </ul>
 
-      
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
+        
       
-        <div class="post-tags">
+
+      <footer class="post-footer">
           
-            <a href="/tags/mongodb/" rel="tag"># mongodb</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/06/mongo/authSchema升级/" rel="next" title="authSchema升级">
-                <i class="fa fa-chevron-left"></i> authSchema升级
-              </a>
+          
+          <div class="post-tags">
+            
+              <a href="/tags/mongodb/" rel="tag"># mongodb</a>
             
           </div>
+        
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/08/consul/consul调研/" rel="prev" title="consul调研">
-                consul调研 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2017/03/06/mongo/authSchema升级/" rel="next" title="authSchema升级">
+                  <i class="fa fa-chevron-left"></i> authSchema升级
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2017/03/08/consul/consul调研/" rel="prev" title="consul调研">
+                  consul调研 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
           </div>
-        </div>
-      
-
-      
-      
-    </footer>
+        
+      </footer>
+    
   </div>
   
   
   
   </article>
 
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
-
-
-          
-
+    
+    <div class="comments" id="gitalk-container"></div>
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
-
-  
-
-
 
         </div>
-        
           
   
   <div class="sidebar-toggle">
@@ -570,12 +472,7 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
-
-      
-
-      
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
@@ -586,84 +483,172 @@
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
+
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/author.jpg"
-                alt="kivi" />
-            
-              <p class="site-author-name" itemprop="name">kivi</p>
-              <p class="site-description motion-element" itemprop="description">nodejs | server</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">58</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
+    <img class="site-author-image" itemprop="image"
+      src="/images/author.jpg"
+      alt="kivi">
+  <p class="site-author-name" itemprop="name">kivi</p>
+  <div class="site-description motion-element" itemprop="description">nodejs | server</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
           
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
+            <a href="/categories/">
           
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
 
-          
 
-          
-          
-
-          
-          
-
-          
 
         </div>
-      </section>
-
-      
+      </div>
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
 
             
-              
+            
+            
             
 
             
@@ -671,64 +656,33 @@
             
 
           </div>
-        </section>
+        </div>
       <!--/noindex-->
-      
-
       
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">kivi</span>
-
-  
 </div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
 
         
 <div class="busuanzi-count">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i> 访客数量
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i> 浏览量
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
-    </span>
-  
 </div>
 
 
@@ -741,25 +695,54 @@
         
       </div>
     </footer>
-
-    
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
-        
       </div>
-    
 
     
 
   </div>
 
   
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -771,278 +754,35 @@
 
   
 
-
-
-
-
-
-
-
-
-
-
-
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
 
   
 
 
   
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            // id: window.location.pathname, 
-            id: '1488854068000', 
-            owner: 'CocaCola183',
-            repo: 'CocaCola183.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                proxy_gateway: 'https://dev1pc.7moor.com',
-            
-                client_id: '9aa9571446f523fd0c7f'
-            }});
-        gitment.render('gitment-container');
-      }
-
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+    var gitalk = new Gitalk({
+      clientID: '9aa9571446f523fd0c7f',
+      clientSecret: '237884fa7cb94f497a3da8211fbadfded147b531',
+      repo: 'CocaCola183.github.io',
+      owner: 'CocaCola183',
+      admin: ['CocaCola183'],
+      id: '727d1823af095d6d72f252a8c9eb8108',
+        language: 'zh-CN',
       
-      renderGitment();
-      
-      </script>
-    
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("e99ORGgDvGxLUzH8mhKbAKu0-gzGzoHsz", "INsrz00YWhTssAqr5djkdMAS");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
+      distractionFreeMode: 'true'
     });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
 
 </body>
 </html>

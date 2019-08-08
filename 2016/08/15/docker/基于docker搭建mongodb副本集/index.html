@@ -2,141 +2,92 @@
 
 
 
-  
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="docker,mongodb," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="什么是mognodb副本集官网上这么描述  A replica set in MongoDB is a group of mongod processes that maintain the same data set. Replica sets provide redundancy and high availability, and are the basis for all producti">
-<meta name="keywords" content="docker,mongodb">
-<meta property="og:type" content="article">
-<meta property="og:title" content="基于docker搭建mongodb副本集">
-<meta property="og:url" content="http://cocacola183.github.io/2016/08/15/docker/基于docker搭建mongodb副本集/index.html">
-<meta property="og:site_name" content="Kivi">
-<meta property="og:description" content="什么是mognodb副本集官网上这么描述  A replica set in MongoDB is a group of mongod processes that maintain the same data set. Replica sets provide redundancy and high availability, and are the basis for all producti">
-<meta property="og:image" content="https://docs.mongodb.com/manual/_images/replica-set-read-write-operations-primary.bakedsvg.svg">
-<meta property="og:updated_time" content="2017-07-02T02:26:45.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于docker搭建mongodb副本集">
-<meta name="twitter:description" content="什么是mognodb副本集官网上这么描述  A replica set in MongoDB is a group of mongod processes that maintain the same data set. Replica sets provide redundancy and high availability, and are the basis for all producti">
-<meta name="twitter:image" content="https://docs.mongodb.com/manual/_images/replica-set-read-write-operations-primary.bakedsvg.svg">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: 'undefined',
-      author: '博主'
-    },
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     }
   };
 </script>
 
+  <meta name="description" content="什么是mognodb副本集官网上这么描述  A replica set in MongoDB is a group of mongod processes that maintain the same data set. Replica sets provide redundancy and high availability, and are the basis for all producti">
+<meta name="keywords" content="docker,mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于docker搭建mongodb副本集">
+<meta property="og:url" content="http://cocacola183.github.io/2016/08/15/docker/基于docker搭建mongodb副本集/index.html">
+<meta property="og:site_name" content="Kivi">
+<meta property="og:description" content="什么是mognodb副本集官网上这么描述  A replica set in MongoDB is a group of mongod processes that maintain the same data set. Replica sets provide redundancy and high availability, and are the basis for all producti">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://docs.mongodb.com/manual/_images/replica-set-read-write-operations-primary.bakedsvg.svg">
+<meta property="og:updated_time" content="2017-07-02T02:26:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于docker搭建mongodb副本集">
+<meta name="twitter:description" content="什么是mognodb副本集官网上这么描述  A replica set in MongoDB is a group of mongod processes that maintain the same data set. Replica sets provide redundancy and high availability, and are the basis for all producti">
+<meta name="twitter:image" content="https://docs.mongodb.com/manual/_images/replica-set-read-write-operations-primary.bakedsvg.svg">
+  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml">
+  <link rel="canonical" href="http://cocacola183.github.io/2016/08/15/docker/基于docker搭建mongodb副本集/">
 
 
-  <link rel="canonical" href="http://cocacola183.github.io/2016/08/15/docker/基于docker搭建mongodb副本集/"/>
-
-
-
-
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
 
   <title>基于docker搭建mongodb副本集 | Kivi</title>
   
 
 
-
-
-
-  <script type="text/javascript">
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -149,37 +100,57 @@
 
 
 
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+  <div class="site-meta">
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Kivi</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
         <p class="site-subtitle">没有什么远大理想，只是永远都不会满足而已</p>
       
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -187,79 +158,73 @@
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
+  <ul id="menu" class="menu">
+      
+      
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
       
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
       
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            标签
-          </a>
-        </li>
+      
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            关于
-          </a>
-        </li>
       
+    
 
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
       
-    </ul>
-  
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
 
-  
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+            
+
+          <div id="content" class="content page-post-detail">
             
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -270,58 +235,55 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kivi">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="nodejs | server">
       <meta itemprop="image" content="/images/author.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Kivi">
     </span>
-
-    
       <header class="post-header">
 
         
-        
-          <h1 class="post-title" itemprop="name headline">基于docker搭建mongodb副本集</h1>
+          <h1 class="post-title" itemprop="name headline">基于docker搭建mongodb副本集
+
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">发表于</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-15T17:43:25+08:00">
-                2016-08-15
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="创建时间：2016-08-15 17:43:25" itemprop="dateCreated datePublished" datetime="2016-08-15T17:43:25+08:00">2016-08-15</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2017-07-02 10:26:45" itemprop="dateModified" datetime="2017-07-02T10:26:45+08:00">2017-07-02</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">分类于</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mongodb/" itemprop="url" rel="index">
-                    <span itemprop="name">mongodb</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mongodb/" itemprop="url" rel="index"><span itemprop="name">mongodb</span></a></span>
 
                 
                 
@@ -330,50 +292,14 @@
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/08/15/docker/基于docker搭建mongodb副本集/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2016/08/15/docker/基于docker搭建mongodb副本集/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/08/15/docker/基于docker搭建mongodb副本集/" class="leancloud_visitors" data-flag-title="基于docker搭建mongodb副本集">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
 
       
         <h2 id="什么是mognodb副本集"><a href="#什么是mognodb副本集" class="headerlink" title="什么是mognodb副本集"></a>什么是mognodb副本集</h2><p>官网上这么描述</p>
@@ -400,36 +326,36 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="副本集复制原理"><a href="#副本集复制原理" class="headerlink" title="副本集复制原理"></a>副本集复制原理</h2><p>参考这个博客<a href="http://www.cnblogs.com/zhoujinyi/p/3554010.html" target="_blank" rel="external">MongoDB 副本集的原理、搭建、应用</a><br>副本集中数据同步过程：Primary节点写入数据，Secondary通过读取Primary的oplog得到复制信息，开始复制数据并且将复制信息写入到自己的oplog。如果某个操作失败，则备份节点停止从当前数据源复制数据。如果某个备份节点由于某些原因挂掉了，当重新启动后，就会自动从oplog的最后一个操作开始同步，同步完成后，将信息写入自己的oplog，由于复制操作是先复制数据，复制完成后再写入oplog，有可能相同的操作会同步两份，不过MongoDB在设计之初就考虑到这个问题，将oplog的同一个操作执行多次，与执行一次的效果是一样的。简单的说就是：</p>
+<h2 id="副本集复制原理"><a href="#副本集复制原理" class="headerlink" title="副本集复制原理"></a>副本集复制原理</h2><p>参考这个博客<a href="http://www.cnblogs.com/zhoujinyi/p/3554010.html" target="_blank" rel="noopener">MongoDB 副本集的原理、搭建、应用</a><br>副本集中数据同步过程：Primary节点写入数据，Secondary通过读取Primary的oplog得到复制信息，开始复制数据并且将复制信息写入到自己的oplog。如果某个操作失败，则备份节点停止从当前数据源复制数据。如果某个备份节点由于某些原因挂掉了，当重新启动后，就会自动从oplog的最后一个操作开始同步，同步完成后，将信息写入自己的oplog，由于复制操作是先复制数据，复制完成后再写入oplog，有可能相同的操作会同步两份，不过MongoDB在设计之初就考虑到这个问题，将oplog的同一个操作执行多次，与执行一次的效果是一样的。简单的说就是：</p>
 <p>当Primary节点完成数据操作后，Secondary会做出一系列的动作保证数据的同步：<br>1：检查自己local库的oplog.rs集合找出最近的时间戳。<br>2：检查Primary节点local库oplog.rs集合，找出大于此时间戳的记录。<br>3：将找到的记录插入到自己的oplog.rs集合中，并执行这些操作。</p>
 <p>副本集的同步和主从同步一样，都是异步同步的过程，不同的是副本集有个自动故障转移的功能。其原理是：slave端从primary端获取日志，然后在自己身上完全顺序的执行日志所记录的各种操作（该日志是不记录查询操作的），这个日志就是local数据 库中的oplog.rs表，默认在64位机器上这个表是比较大的，占磁盘大小的5%，oplog.rs的大小可以在启动参数中设 定：–oplogSize 1000,单位是M。</p>
 <p>注意：在副本集的环境中，要是所有的Secondary都宕机了，只剩下Primary。最后Primary会变成Secondary，不能提供服务。</p>
 <h2 id="基于docker搭建最简单的副本集"><a href="#基于docker搭建最简单的副本集" class="headerlink" title="基于docker搭建最简单的副本集"></a>基于docker搭建最简单的副本集</h2><h3 id="基本思路是这个"><a href="#基本思路是这个" class="headerlink" title="基本思路是这个"></a>基本思路是这个</h3><p><img src="https://docs.mongodb.com/manual/_images/replica-set-read-write-operations-primary.bakedsvg.svg" alt="mongodb副本集"></p>
-<p>以下所有文件的项目地址在<a href="https://github.com/CocaCola183/docker-mongo/tree/master/replset" target="_blank" rel="external">这里</a></p>
-<h3 id="配置docker环境"><a href="#配置docker环境" class="headerlink" title="配置docker环境"></a>配置docker环境</h3><p>这里省略，我当前的环境如下:<br><code>docker version</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Client:</div><div class="line">	Version:      1.12.0</div><div class="line">	API version:  1.24</div><div class="line">	Go version:   go1.6.3</div><div class="line">	Git commit:   8eab29e</div><div class="line">	Built:        Thu Jul 28 21:15:28 2016</div><div class="line">	OS/Arch:      darwin/amd64</div><div class="line"></div><div class="line">Server:</div><div class="line">	Version:      1.12.0</div><div class="line">	API version:  1.24</div><div class="line">	Go version:   go1.6.3</div><div class="line">	Git commit:   8eab29e</div><div class="line">	Built:        Thu Jul 28 23:54:00 2016</div><div class="line">	OS/Arch:      linux/amd64</div></pre></td></tr></table></figure></p>
-<p><code>docker-compose version</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker-compose version 1.8.0, build f3628c7</div><div class="line">docker-py version: 1.9.0</div><div class="line">CPython version: 2.7.9</div><div class="line">OpenSSL version: OpenSSL 1.0.2h  3 May 2016</div></pre></td></tr></table></figure></p>
-<p><code>mongo</code>, 用的版本较新，稳定版是3.2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MongoDB shell version: 3.3.10</div><div class="line">MongoDB server version: 3.3.10</div></pre></td></tr></table></figure></p>
-<h3 id="编写Dockerfile"><a href="#编写Dockerfile" class="headerlink" title="编写Dockerfile"></a>编写Dockerfile</h3><p>思路是把配置过程通过一个docker container执行，不用自己动手了，先build自己的image，源项目是这个<a href="https://hub.docker.com/r/axnux/mongo-replset-config/" target="_blank" rel="external">mongo-replset-config</a><br><code>Dockerfile</code><br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">FROM</span> mongo:<span class="number">3.3</span></div><div class="line"><span class="keyword">MAINTAINER</span> <span class="string">"kivi"</span></div><div class="line"></div><div class="line"><span class="keyword">RUN</span><span class="bash"> mkdir -p /opt/mongo-replset-script</span></div><div class="line"><span class="keyword">COPY</span><span class="bash"> ./replset.sh /opt/mongo-replset-script</span></div><div class="line"><span class="keyword">WORKDIR</span><span class="bash"> /opt/mongo-replset-script</span></div><div class="line"><span class="keyword">RUN</span><span class="bash"> chmod +x replset.sh</span></div><div class="line"></div><div class="line"><span class="keyword">ENV</span> MONGO_REPLSET_NAME=mongoreplset</div><div class="line"><span class="keyword">ENV</span> MONGO_MASTER=mongo1</div><div class="line"><span class="keyword">ENV</span> MONGO_SECONDARY=mongo2</div><div class="line"><span class="keyword">ENV</span> MONGO_ARBITER=mongo3</div><div class="line"></div><div class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"/bin/bash"</span>, <span class="string">"./replset.sh"</span>]</span></div></pre></td></tr></table></figure></p>
-<p><code>replset.sh</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line"></div><div class="line">mongo $MONGO_MASTER:27017/admin --eval "rs.initiate(&#123;\"_id\": \"$MONGO_REPLSET_NAME\", \"members\": [&#123;\"_id\": 0, \"host\": \"$MONGO_MASTER:27017\"&#125;]&#125;);"</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> secondary</span></div><div class="line">hosts=$(echo $MONGO_SECONDARY | tr "," "\n")</div><div class="line"></div><div class="line">for hst in $hosts</div><div class="line">do</div><div class="line">  mongo $MONGO_MASTER:27017/admin --eval "rs.add(\"$hst:27017\")";</div><div class="line">done</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> arbiter</span></div><div class="line">arbiters=$(echo $MONGO_ARBITER | tr "," "\n")</div><div class="line"></div><div class="line">for arbiter in $arbiters</div><div class="line">do</div><div class="line">  mongo $MONGO_MASTER:27017/admin --eval "rs.addArb(\"$arbiter:27017\")";</div><div class="line">done</div></pre></td></tr></table></figure></p>
+<p>以下所有文件的项目地址在<a href="https://github.com/CocaCola183/docker-mongo/tree/master/replset" target="_blank" rel="noopener">这里</a></p>
+<h3 id="配置docker环境"><a href="#配置docker环境" class="headerlink" title="配置docker环境"></a>配置docker环境</h3><p>这里省略，我当前的环境如下:<br><code>docker version</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Client:</span><br><span class="line">	Version:      1.12.0</span><br><span class="line">	API version:  1.24</span><br><span class="line">	Go version:   go1.6.3</span><br><span class="line">	Git commit:   8eab29e</span><br><span class="line">	Built:        Thu Jul 28 21:15:28 2016</span><br><span class="line">	OS/Arch:      darwin/amd64</span><br><span class="line"></span><br><span class="line">Server:</span><br><span class="line">	Version:      1.12.0</span><br><span class="line">	API version:  1.24</span><br><span class="line">	Go version:   go1.6.3</span><br><span class="line">	Git commit:   8eab29e</span><br><span class="line">	Built:        Thu Jul 28 23:54:00 2016</span><br><span class="line">	OS/Arch:      linux/amd64</span><br></pre></td></tr></table></figure></p>
+<p><code>docker-compose version</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker-compose version 1.8.0, build f3628c7</span><br><span class="line">docker-py version: 1.9.0</span><br><span class="line">CPython version: 2.7.9</span><br><span class="line">OpenSSL version: OpenSSL 1.0.2h  3 May 2016</span><br></pre></td></tr></table></figure></p>
+<p><code>mongo</code>, 用的版本较新，稳定版是3.2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MongoDB shell version: 3.3.10</span><br><span class="line">MongoDB server version: 3.3.10</span><br></pre></td></tr></table></figure></p>
+<h3 id="编写Dockerfile"><a href="#编写Dockerfile" class="headerlink" title="编写Dockerfile"></a>编写Dockerfile</h3><p>思路是把配置过程通过一个docker container执行，不用自己动手了，先build自己的image，源项目是这个<a href="https://hub.docker.com/r/axnux/mongo-replset-config/" target="_blank" rel="noopener">mongo-replset-config</a><br><code>Dockerfile</code><br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> mongo:<span class="number">3.3</span></span><br><span class="line"><span class="keyword">MAINTAINER</span> <span class="string">"kivi"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir -p /opt/mongo-replset-script</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> ./replset.sh /opt/mongo-replset-script</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /opt/mongo-replset-script</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> chmod +x replset.sh</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ENV</span> MONGO_REPLSET_NAME=mongoreplset</span><br><span class="line"><span class="keyword">ENV</span> MONGO_MASTER=mongo1</span><br><span class="line"><span class="keyword">ENV</span> MONGO_SECONDARY=mongo2</span><br><span class="line"><span class="keyword">ENV</span> MONGO_ARBITER=mongo3</span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"/bin/bash"</span>, <span class="string">"./replset.sh"</span>]</span></span><br></pre></td></tr></table></figure></p>
+<p><code>replset.sh</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">mongo $MONGO_MASTER:27017/admin --eval "rs.initiate(&#123;\"_id\": \"$MONGO_REPLSET_NAME\", \"members\": [&#123;\"_id\": 0, \"host\": \"$MONGO_MASTER:27017\"&#125;]&#125;);"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> secondary</span></span><br><span class="line">hosts=$(echo $MONGO_SECONDARY | tr "," "\n")</span><br><span class="line"></span><br><span class="line">for hst in $hosts</span><br><span class="line">do</span><br><span class="line">  mongo $MONGO_MASTER:27017/admin --eval "rs.add(\"$hst:27017\")";</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> arbiter</span></span><br><span class="line">arbiters=$(echo $MONGO_ARBITER | tr "," "\n")</span><br><span class="line"></span><br><span class="line">for arbiter in $arbiters</span><br><span class="line">do</span><br><span class="line">  mongo $MONGO_MASTER:27017/admin --eval "rs.addArb(\"$arbiter:27017\")";</span><br><span class="line">done</span><br></pre></td></tr></table></figure></p>
 <h3 id="编写docker-compose-yml"><a href="#编写docker-compose-yml" class="headerlink" title="编写docker-compose.yml"></a>编写<code>docker-compose.yml</code></h3><p>一次性把所有事情做了，让副本集直接可用</p>
 <blockquote>
 <p>这里说明一下net参数的配置, 这是一个自建的网络，docker1.9之后的版本可以手动创建网络，详情参考命令<code>docker network create</code>，我这里使用自定义的网络，主要的目的是让容器可以通过container_name互联，也就是在这种网络模式下，hosts是docker帮忙配置解析的，为什么要这么做呢？因为docker container的ip不是固定的，一旦down掉然后重启，ip有可能会发生变化，但是hostname是不会变的。</p>
 </blockquote>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="attr">mongo1:</span></div><div class="line"><span class="attr">  image:</span> <span class="attr">mongo:3.3</span></div><div class="line"><span class="attr">  container_name:</span> <span class="string">"mongo1"</span></div><div class="line"><span class="attr">  net:</span> <span class="string">"mongo-cluster"</span></div><div class="line"><span class="attr">  ports:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">"30001:27017"</span></div><div class="line"><span class="attr">  command:</span> <span class="string">mongod</span> <span class="bullet">--replSet</span> <span class="string">mongoreplset</span></div><div class="line"><span class="attr">mongo2:</span></div><div class="line"><span class="attr">  image:</span> <span class="attr">mongo:3.3</span></div><div class="line"><span class="attr">  container_name:</span> <span class="string">"mongo2"</span></div><div class="line"><span class="attr">  net:</span> <span class="string">"mongo-cluster"</span></div><div class="line"><span class="attr">  ports:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">"30002:27017"</span></div><div class="line"><span class="attr">  command:</span> <span class="string">mongod</span> <span class="bullet">--replSet</span> <span class="string">mongoreplset</span></div><div class="line"><span class="attr">mongo3:</span></div><div class="line"><span class="attr">  image:</span> <span class="attr">mongo:3.3</span></div><div class="line"><span class="attr">  container_name:</span> <span class="string">"mongo3"</span></div><div class="line"><span class="attr">  net:</span> <span class="string">"mongo-cluster"</span></div><div class="line"><span class="attr">  ports:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">"30003:27017"</span></div><div class="line"><span class="attr">  command:</span> <span class="string">mongod</span> <span class="bullet">--replSet</span> <span class="string">mongoreplset</span></div><div class="line"><span class="attr">mongo-repl:</span></div><div class="line"><span class="attr">  image:</span> <span class="string">mongo-replset-config</span></div><div class="line"><span class="attr">  container_name:</span> <span class="string">mongo-repl</span></div><div class="line"><span class="attr">  net:</span> <span class="string">"mongo-cluster"</span></div><div class="line"><span class="attr">  links:</span></div><div class="line"><span class="attr">    - mongo1:</span><span class="string">mongo1</span></div><div class="line"><span class="attr">    - mongo2:</span><span class="string">mongo2</span></div><div class="line"><span class="attr">    - mongo3:</span><span class="string">mongo3</span></div></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mongo1:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="attr">mongo:3.3</span></span><br><span class="line"><span class="attr">  container_name:</span> <span class="string">"mongo1"</span></span><br><span class="line"><span class="attr">  net:</span> <span class="string">"mongo-cluster"</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"30001:27017"</span></span><br><span class="line"><span class="attr">  command:</span> <span class="string">mongod</span> <span class="bullet">--replSet</span> <span class="string">mongoreplset</span></span><br><span class="line"><span class="attr">mongo2:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="attr">mongo:3.3</span></span><br><span class="line"><span class="attr">  container_name:</span> <span class="string">"mongo2"</span></span><br><span class="line"><span class="attr">  net:</span> <span class="string">"mongo-cluster"</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"30002:27017"</span></span><br><span class="line"><span class="attr">  command:</span> <span class="string">mongod</span> <span class="bullet">--replSet</span> <span class="string">mongoreplset</span></span><br><span class="line"><span class="attr">mongo3:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="attr">mongo:3.3</span></span><br><span class="line"><span class="attr">  container_name:</span> <span class="string">"mongo3"</span></span><br><span class="line"><span class="attr">  net:</span> <span class="string">"mongo-cluster"</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"30003:27017"</span></span><br><span class="line"><span class="attr">  command:</span> <span class="string">mongod</span> <span class="bullet">--replSet</span> <span class="string">mongoreplset</span></span><br><span class="line"><span class="attr">mongo-repl:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="string">mongo-replset-config</span></span><br><span class="line"><span class="attr">  container_name:</span> <span class="string">mongo-repl</span></span><br><span class="line"><span class="attr">  net:</span> <span class="string">"mongo-cluster"</span></span><br><span class="line"><span class="attr">  links:</span></span><br><span class="line"><span class="attr">    - mongo1:</span><span class="string">mongo1</span></span><br><span class="line"><span class="attr">    - mongo2:</span><span class="string">mongo2</span></span><br><span class="line"><span class="attr">    - mongo3:</span><span class="string">mongo3</span></span><br></pre></td></tr></table></figure>
 <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>执行命令<code>docker-compose up -d</code>，复本集群就搭建完成了，连接mongo1，插入数据，在mongo2中查询，就可以看到了，默认<code>SECONDARY</code>不支持查询操作，需要执行命令<code>rs.setSlaveOk()</code>，然后执行查询，就没问题了</p>
 <ul>
 <li><p>查看副本集信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker exec -it mongo1 mongo</div><div class="line">rs.status()</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mongo1 mongo</span><br><span class="line">rs.status()</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>连接副本集，用下面的命令连接副本集，不需要关注到底谁是<code>PRAMARY</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -it --network mongo-cluster --rm mongo sh -c 'exec mongo --host mongoreplset/mongo1,mongo2,mongo3 test'</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --network mongo-cluster --rm mongo sh -c 'exec mongo --host mongoreplset/mongo1,mongo2,mongo3 test'</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="在Node-js中使用"><a href="#在Node-js中使用" class="headerlink" title="在Node.js中使用"></a>在Node.js中使用</h3><ul>
 <li>依赖<code>mongoose</code></li>
 <li>测试脚本<code>index.js</code>如下</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</div><div class="line"><span class="keyword">const</span> Schema = mongoose.Schema;</div><div class="line"><span class="keyword">const</span> ObjectId = Schema.ObjectId;</div><div class="line"><span class="comment">// 配置schema</span></div><div class="line"><span class="keyword">let</span> user = <span class="keyword">new</span> Schema(&#123;</div><div class="line">  <span class="attr">name</span>: &#123;<span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="string">'kivi'</span>&#125;,</div><div class="line">  <span class="attr">sex</span>: &#123;<span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="string">'male'</span>&#125;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 暴露model</span></div><div class="line">mongoose.model(<span class="string">'User'</span>, user);</div><div class="line"><span class="keyword">const</span> UserModel = mongoose.model(<span class="string">'User'</span>);</div><div class="line"><span class="comment">// 这里的ip和端口号是集群启动的时候配置的</span></div><div class="line">mongoose.connect(<span class="string">'mongodb://192.168.99.100:30001,192.168.99.100:30002,192.168.99.100:30003,192.168.99.100:30004/test'</span>, &#123;</div><div class="line">	<span class="attr">db</span>: &#123;</div><div class="line">		<span class="attr">readPreference</span>: <span class="string">'secondary'</span>, <span class="comment">// primary, primaryPreferred, secondary, secondaryPreferred, nearest</span></div><div class="line">		slaveOk: <span class="literal">true</span></div><div class="line">	&#125;</div><div class="line">&#125;, (err) =&gt; &#123;</div><div class="line">	<span class="built_in">console</span>.log(err);</div><div class="line"></div><div class="line">	UserModel.create(&#123;<span class="attr">name</span>: <span class="string">'kivi'</span>, <span class="attr">sex</span>: <span class="string">'male'</span>&#125;, (err, results) =&gt; &#123;</div><div class="line">		<span class="keyword">if</span> (err) &#123;</div><div class="line">			<span class="built_in">console</span>.log(<span class="string">'插入数据失败'</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> &#123;</div><div class="line">			<span class="built_in">console</span>.log(results);</div><div class="line">			mongoose.disconnect(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</div><div class="line">				<span class="built_in">console</span>.log(err);</div><div class="line">			&#125;);</div><div class="line">		&#125;</div><div class="line">	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> Schema = mongoose.Schema;</span><br><span class="line"><span class="keyword">const</span> ObjectId = Schema.ObjectId;</span><br><span class="line"><span class="comment">// 配置schema</span></span><br><span class="line"><span class="keyword">let</span> user = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">  name: &#123;<span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="string">'kivi'</span>&#125;,</span><br><span class="line">  sex: &#123;<span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="string">'male'</span>&#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 暴露model</span></span><br><span class="line">mongoose.model(<span class="string">'User'</span>, user);</span><br><span class="line"><span class="keyword">const</span> UserModel = mongoose.model(<span class="string">'User'</span>);</span><br><span class="line"><span class="comment">// 这里的ip和端口号是集群启动的时候配置的</span></span><br><span class="line">mongoose.connect(<span class="string">'mongodb://192.168.99.100:30001,192.168.99.100:30002,192.168.99.100:30003,192.168.99.100:30004/test'</span>, &#123;</span><br><span class="line">	db: &#123;</span><br><span class="line">		readPreference: <span class="string">'secondary'</span>, <span class="comment">// primary, primaryPreferred, secondary, secondaryPreferred, nearest</span></span><br><span class="line">		slaveOk: <span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;, (err) =&gt; &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(err);</span><br><span class="line"></span><br><span class="line">	UserModel.create(&#123;<span class="attr">name</span>: <span class="string">'kivi'</span>, <span class="attr">sex</span>: <span class="string">'male'</span>&#125;, (err, results) =&gt; &#123;</span><br><span class="line">		<span class="keyword">if</span> (err) &#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">'插入数据失败'</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="built_in">console</span>.log(results);</span><br><span class="line">			mongoose.disconnect(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">				<span class="built_in">console</span>.log(err);</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><strong>注意</strong></p>
 </blockquote>
@@ -454,91 +380,67 @@
 <li><code>nearest</code> 不管是主节点、secondary节点，从网络延迟最低的节点上读取数据。</li>
 </ul>
 
-      
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
+        
       
-        <div class="post-tags">
+
+      <footer class="post-footer">
           
-            <a href="/tags/docker/" rel="tag"># docker</a>
-          
-            <a href="/tags/mongodb/" rel="tag"># mongodb</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/01/git/git移除之前没有ignore的文件-文件夹/" rel="next" title="git移除之前没有ignore的文件/文件夹">
-                <i class="fa fa-chevron-left"></i> git移除之前没有ignore的文件/文件夹
-              </a>
+          
+          <div class="post-tags">
+            
+              <a href="/tags/docker/" rel="tag"># docker</a>
+            
+              <a href="/tags/mongodb/" rel="tag"># mongodb</a>
             
           </div>
+        
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/16/docker/基于docker搭建mongodb分片集群/" rel="prev" title="基于docker搭建mongodb分片集群">
-                基于docker搭建mongodb分片集群 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2016/07/01/git/git移除之前没有ignore的文件-文件夹/" rel="next" title="git移除之前没有ignore的文件/文件夹">
+                  <i class="fa fa-chevron-left"></i> git移除之前没有ignore的文件/文件夹
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2016/08/16/docker/基于docker搭建mongodb分片集群/" rel="prev" title="基于docker搭建mongodb分片集群">
+                  基于docker搭建mongodb分片集群 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
           </div>
-        </div>
-      
-
-      
-      
-    </footer>
+        
+      </footer>
+    
   </div>
   
   
   
   </article>
 
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
-
-
-          
-
+    
+    <div class="comments" id="gitalk-container"></div>
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
-
-  
-
-
 
         </div>
-        
           
   
   <div class="sidebar-toggle">
@@ -550,12 +452,7 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
-
-      
-
-      
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
@@ -566,84 +463,172 @@
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
+
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/author.jpg"
-                alt="kivi" />
-            
-              <p class="site-author-name" itemprop="name">kivi</p>
-              <p class="site-description motion-element" itemprop="description">nodejs | server</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">58</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
+    <img class="site-author-image" itemprop="image"
+      src="/images/author.jpg"
+      alt="kivi">
+  <p class="site-author-name" itemprop="name">kivi</p>
+  <div class="site-description motion-element" itemprop="description">nodejs | server</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
           
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
+            <a href="/categories/">
           
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
 
-          
 
-          
-          
-
-          
-          
-
-          
 
         </div>
-      </section>
-
-      
+      </div>
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
 
             
-              
+            
+            
             
 
             
@@ -651,64 +636,33 @@
             
 
           </div>
-        </section>
+        </div>
       <!--/noindex-->
-      
-
       
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">kivi</span>
-
-  
 </div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
 
         
 <div class="busuanzi-count">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i> 访客数量
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i> 浏览量
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
-    </span>
-  
 </div>
 
 
@@ -721,25 +675,54 @@
         
       </div>
     </footer>
-
-    
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
-        
       </div>
-    
 
     
 
   </div>
 
   
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -751,278 +734,35 @@
 
   
 
-
-
-
-
-
-
-
-
-
-
-
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
 
   
 
 
   
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            // id: window.location.pathname, 
-            id: '1471254205000', 
-            owner: 'CocaCola183',
-            repo: 'CocaCola183.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                proxy_gateway: 'https://dev1pc.7moor.com',
-            
-                client_id: '9aa9571446f523fd0c7f'
-            }});
-        gitment.render('gitment-container');
-      }
-
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+    var gitalk = new Gitalk({
+      clientID: '9aa9571446f523fd0c7f',
+      clientSecret: '237884fa7cb94f497a3da8211fbadfded147b531',
+      repo: 'CocaCola183.github.io',
+      owner: 'CocaCola183',
+      admin: ['CocaCola183'],
+      id: '1f00fbd5cd98b56d996910da09d94917',
+        language: 'zh-CN',
       
-      renderGitment();
-      
-      </script>
-    
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("e99ORGgDvGxLUzH8mhKbAKu0-gzGzoHsz", "INsrz00YWhTssAqr5djkdMAS");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
+      distractionFreeMode: 'true'
     });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
 
 </body>
 </html>

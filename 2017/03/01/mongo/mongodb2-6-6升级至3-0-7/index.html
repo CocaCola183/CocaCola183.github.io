@@ -2,139 +2,90 @@
 
 
 
-  
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="mongodb," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="写在前面版本从2.6.6升级到3.0.7 环境描述服务器相关信息系统版本: centos6.5内核版本: 2.6.32-358.6.2.el6.x86_64 数据库版本升级前版本: 2.6.6升级后版本: 3.0.7 数据库集群模拟环境：二个mongos三个config三个分片，每个分片是一个一主，一从，一仲裁的副本集">
-<meta name="keywords" content="mongodb">
-<meta property="og:type" content="article">
-<meta property="og:title" content="mongodb2.6.9热升级至3.0.7">
-<meta property="og:url" content="http://cocacola183.github.io/2017/03/01/mongo/mongodb2-6-6升级至3-0-7/index.html">
-<meta property="og:site_name" content="Kivi">
-<meta property="og:description" content="写在前面版本从2.6.6升级到3.0.7 环境描述服务器相关信息系统版本: centos6.5内核版本: 2.6.32-358.6.2.el6.x86_64 数据库版本升级前版本: 2.6.6升级后版本: 3.0.7 数据库集群模拟环境：二个mongos三个config三个分片，每个分片是一个一主，一从，一仲裁的副本集">
-<meta property="og:updated_time" content="2017-07-02T02:33:05.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mongodb2.6.9热升级至3.0.7">
-<meta name="twitter:description" content="写在前面版本从2.6.6升级到3.0.7 环境描述服务器相关信息系统版本: centos6.5内核版本: 2.6.32-358.6.2.el6.x86_64 数据库版本升级前版本: 2.6.6升级后版本: 3.0.7 数据库集群模拟环境：二个mongos三个config三个分片，每个分片是一个一主，一从，一仲裁的副本集">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: 'undefined',
-      author: '博主'
-    },
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     }
   };
 </script>
 
+  <meta name="description" content="写在前面版本从2.6.6升级到3.0.7 环境描述服务器相关信息系统版本: centos6.5内核版本: 2.6.32-358.6.2.el6.x86_64 数据库版本升级前版本: 2.6.6升级后版本: 3.0.7 数据库集群模拟环境：二个mongos三个config三个分片，每个分片是一个一主，一从，一仲裁的副本集">
+<meta name="keywords" content="mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongodb2.6.9热升级至3.0.7">
+<meta property="og:url" content="http://cocacola183.github.io/2017/03/01/mongo/mongodb2-6-6升级至3-0-7/index.html">
+<meta property="og:site_name" content="Kivi">
+<meta property="og:description" content="写在前面版本从2.6.6升级到3.0.7 环境描述服务器相关信息系统版本: centos6.5内核版本: 2.6.32-358.6.2.el6.x86_64 数据库版本升级前版本: 2.6.6升级后版本: 3.0.7 数据库集群模拟环境：二个mongos三个config三个分片，每个分片是一个一主，一从，一仲裁的副本集">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-07-02T02:33:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongodb2.6.9热升级至3.0.7">
+<meta name="twitter:description" content="写在前面版本从2.6.6升级到3.0.7 环境描述服务器相关信息系统版本: centos6.5内核版本: 2.6.32-358.6.2.el6.x86_64 数据库版本升级前版本: 2.6.6升级后版本: 3.0.7 数据库集群模拟环境：二个mongos三个config三个分片，每个分片是一个一主，一从，一仲裁的副本集">
+  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml">
+  <link rel="canonical" href="http://cocacola183.github.io/2017/03/01/mongo/mongodb2-6-6升级至3-0-7/">
 
 
-  <link rel="canonical" href="http://cocacola183.github.io/2017/03/01/mongo/mongodb2-6-6升级至3-0-7/"/>
-
-
-
-
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
 
   <title>mongodb2.6.9热升级至3.0.7 | Kivi</title>
   
 
 
-
-
-
-  <script type="text/javascript">
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -147,37 +98,57 @@
 
 
 
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+  <div class="site-meta">
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Kivi</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
         <p class="site-subtitle">没有什么远大理想，只是永远都不会满足而已</p>
       
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -185,79 +156,73 @@
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
+  <ul id="menu" class="menu">
+      
+      
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
       
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
       
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            标签
-          </a>
-        </li>
+      
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            关于
-          </a>
-        </li>
       
+    
 
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
       
-    </ul>
-  
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
 
-  
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+            
+
+          <div id="content" class="content page-post-detail">
             
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -268,58 +233,55 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kivi">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="nodejs | server">
       <meta itemprop="image" content="/images/author.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Kivi">
     </span>
-
-    
       <header class="post-header">
 
         
-        
-          <h1 class="post-title" itemprop="name headline">mongodb2.6.9热升级至3.0.7</h1>
+          <h1 class="post-title" itemprop="name headline">mongodb2.6.9热升级至3.0.7
+
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">发表于</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-01T19:06:10+08:00">
-                2017-03-01
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="创建时间：2017-03-01 19:06:10" itemprop="dateCreated datePublished" datetime="2017-03-01T19:06:10+08:00">2017-03-01</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2017-07-02 10:33:05" itemprop="dateModified" datetime="2017-07-02T10:33:05+08:00">2017-07-02</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">分类于</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mongodb/" itemprop="url" rel="index">
-                    <span itemprop="name">mongodb</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mongodb/" itemprop="url" rel="index"><span itemprop="name">mongodb</span></a></span>
 
                 
                 
@@ -328,50 +290,14 @@
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/01/mongo/mongodb2-6-6升级至3-0-7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/03/01/mongo/mongodb2-6-6升级至3-0-7/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/01/mongo/mongodb2-6-6升级至3-0-7/" class="leancloud_visitors" data-flag-title="mongodb2.6.9热升级至3.0.7">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
 
       
         <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>版本从2.6.6升级到3.0.7</p>
@@ -385,33 +311,33 @@
 </blockquote>
 <p>相关官方文档：</p>
 <ol>
-<li><a href="https://docs.mongodb.com/v3.0/core/replication-introduction/" target="_blank" rel="external">官方文档：mongodb副本集</a></li>
-<li><a href="https://docs.mongodb.com/v3.0/core/sharding-introduction/" target="_blank" rel="external">官方文档：mongodb分片集群</a></li>
-<li><a href="https://docs.mongodb.com/v3.0/release-notes/3.0-upgrade/" target="_blank" rel="external">官方文档：升级mongodb至3.0</a></li>
-<li><a href="https://docs.mongodb.com/v3.0/release-notes/3.0-downgrade/" target="_blank" rel="external">官方文档：mongo3.0降级方案</a></li>
+<li><a href="https://docs.mongodb.com/v3.0/core/replication-introduction/" target="_blank" rel="noopener">官方文档：mongodb副本集</a></li>
+<li><a href="https://docs.mongodb.com/v3.0/core/sharding-introduction/" target="_blank" rel="noopener">官方文档：mongodb分片集群</a></li>
+<li><a href="https://docs.mongodb.com/v3.0/release-notes/3.0-upgrade/" target="_blank" rel="noopener">官方文档：升级mongodb至3.0</a></li>
+<li><a href="https://docs.mongodb.com/v3.0/release-notes/3.0-downgrade/" target="_blank" rel="noopener">官方文档：mongo3.0降级方案</a></li>
 </ol>
 <p>这几篇文章一定要看明白，看仔细，尤其是最后一篇，前两个是帮助理解mongodb集群，最后一篇是详细的升级步骤</p>
 <p>mongodb升级相关博客:</p>
 <ul>
-<li><a href="http://www.cleey.com/blog/single/id/750.html" target="_blank" rel="external">mongodb升级到3.0.2（2.6.9到3.0.2）</a> 除了官网之外，我主要参考了这个文章</li>
+<li><a href="http://www.cleey.com/blog/single/id/750.html" target="_blank" rel="noopener">mongodb升级到3.0.2（2.6.9到3.0.2）</a> 除了官网之外，我主要参考了这个文章</li>
 </ul>
 <h2 id="升级演练方案"><a href="#升级演练方案" class="headerlink" title="升级演练方案"></a>升级演练方案</h2><p>就算明白升级的大概流程原理，也需要构建一个可用的测试环境测试一下。当然，这里比较简单的方案就是找一台环境相同的服务器，然后在这个机器上启动相应的mongodb进程，构建集群<br>如果没有可用的服务器，使用的是mac，也可以使用mac代替服务器（不推荐）<br>但是这两种方案都有一定的问题，因为是测试所以很有可能因为操作错误，需要干掉当前集群，重新起来一个然后再测试，或者是需要部署一个新版本的集群，这样前面两个方法问题就比较大，目前我采用的方式是使用docker搭建mongo集群，通过docker-compose可以一键启动和删除，非常方便，下面重点说下我使用的这个方法（当然，缺点是相对比较麻烦）</p>
-<p><a href="https://github.com/CocaCola183/docker-centos-mongo" target="_blank" rel="external">项目地址</a></p>
-<h3 id="基础环境"><a href="#基础环境" class="headerlink" title="基础环境"></a>基础环境</h3><p><code>docker version</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Client:</div><div class="line">  Version:      1.12.0</div><div class="line">  API version:  1.24</div><div class="line">  Go version:   go1.6.3</div><div class="line">  Git commit:   8eab29e</div><div class="line">  Built:        Thu Jul 28 21:15:28 2016</div><div class="line">  OS/Arch:      darwin/amd64</div><div class="line"></div><div class="line">Server:</div><div class="line">  Version:      1.12.0</div><div class="line">  API version:  1.24</div><div class="line">  Go version:   go1.6.3</div><div class="line">  Git commit:   8eab29e</div><div class="line">  Built:        Thu Jul 28 23:54:00 2016</div><div class="line">  OS/Arch:      linux/amd64</div></pre></td></tr></table></figure></p>
-<p><code>docker-compose version</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker-compose version 1.8.0, build f3628c7</div><div class="line">docker-py version: 1.9.0</div><div class="line">CPython version: 2.7.9</div><div class="line">OpenSSL version: OpenSSL 1.0.2h  3 May 2016</div></pre></td></tr></table></figure></p>
-<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">├── LICENSE</div><div class="line">├── README.md</div><div class="line">├── attach.sh</div><div class="line">├── centos</div><div class="line">│   ├── centos-mongo-config                 <span class="comment"># 所有节点的配置文件</span></div><div class="line">│   ├── centos-mongo-data                   <span class="comment"># 所有节点的数据目录和日志目录，结构如config-1示例</span></div><div class="line">│   │   ├── config-1</div><div class="line">│   │   │   ├── data</div><div class="line">│   │   │   │   └── db</div><div class="line">│   │   │   └── <span class="built_in">log</span></div><div class="line">│   │   │       └── mongo.log</div><div class="line">│   ├── centos-mongo-shell                   <span class="comment"># 需要用到的脚本</span></div><div class="line">│   │   ├── startup-mongo-cluster-2.6.9.sh   <span class="comment"># 启动一个mongodb2.6.9的集群</span></div><div class="line">│   │   ├── startup-mongo-cluster.sh         <span class="comment"># 启动一个mognodb2.4的集群</span></div><div class="line">│   │   ├── upgrade_mongos.sh                <span class="comment"># 未完成，一键升级集群</span></div><div class="line">│   │   └── waitmongo.sh                     <span class="comment"># 脚本，等待mongodb实例启动（这个比较重要）</span></div><div class="line">│   └── mongo-source-rhel</div><div class="line">│       ├── config-backup                    <span class="comment"># config节点数据备份目录</span></div><div class="line">│       │   ├── config-1</div><div class="line">│       │   ├── config-2</div><div class="line">│       │   └── config-3</div><div class="line">│       ├── mongodb-2.6.9                    <span class="comment"># mongodb二进制文件夹</span></div><div class="line">│       └── mongodb-3.0.7                    <span class="comment"># mongodb二进制文件夹</span></div><div class="line">├── centos-mongo-image                       <span class="comment"># 运行mongodb的centos系统镜像</span></div><div class="line">│   ├── Dockerfile</div><div class="line">│   ├── build.sh</div><div class="line">│   └── waitmongo</div><div class="line">├── clear.sh                                 <span class="comment"># 一键清除mongodb集群，并且清楚本地缓存</span></div><div class="line">├── docker-compose.yml                       <span class="comment"># docker-compose配置文件</span></div><div class="line">├── run.sh                                   <span class="comment"># 启动脚本</span></div><div class="line">└── server                                   <span class="comment"># 测试链接使用搭建好的mongodb集群的小程序(热升级测试)</span></div><div class="line">    ├── index.js</div><div class="line">    ├── node_modules</div><div class="line">    │   ├── 此处略去一万行</div><div class="line">    └── package.json</div></pre></td></tr></table></figure>
-<h3 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./run.sh</div><div class="line">./attach.sh</div><div class="line">/opt/shell/startup-mongo-cluster-2.6.9.sh</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/CocaCola183/docker-centos-mongo" target="_blank" rel="noopener">项目地址</a></p>
+<h3 id="基础环境"><a href="#基础环境" class="headerlink" title="基础环境"></a>基础环境</h3><p><code>docker version</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Client:</span><br><span class="line">  Version:      1.12.0</span><br><span class="line">  API version:  1.24</span><br><span class="line">  Go version:   go1.6.3</span><br><span class="line">  Git commit:   8eab29e</span><br><span class="line">  Built:        Thu Jul 28 21:15:28 2016</span><br><span class="line">  OS/Arch:      darwin/amd64</span><br><span class="line"></span><br><span class="line">Server:</span><br><span class="line">  Version:      1.12.0</span><br><span class="line">  API version:  1.24</span><br><span class="line">  Go version:   go1.6.3</span><br><span class="line">  Git commit:   8eab29e</span><br><span class="line">  Built:        Thu Jul 28 23:54:00 2016</span><br><span class="line">  OS/Arch:      linux/amd64</span><br></pre></td></tr></table></figure></p>
+<p><code>docker-compose version</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker-compose version 1.8.0, build f3628c7</span><br><span class="line">docker-py version: 1.9.0</span><br><span class="line">CPython version: 2.7.9</span><br><span class="line">OpenSSL version: OpenSSL 1.0.2h  3 May 2016</span><br></pre></td></tr></table></figure></p>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">├── LICENSE</span><br><span class="line">├── README.md</span><br><span class="line">├── attach.sh</span><br><span class="line">├── centos</span><br><span class="line">│   ├── centos-mongo-config                 <span class="comment"># 所有节点的配置文件</span></span><br><span class="line">│   ├── centos-mongo-data                   <span class="comment"># 所有节点的数据目录和日志目录，结构如config-1示例</span></span><br><span class="line">│   │   ├── config-1</span><br><span class="line">│   │   │   ├── data</span><br><span class="line">│   │   │   │   └── db</span><br><span class="line">│   │   │   └── <span class="built_in">log</span></span><br><span class="line">│   │   │       └── mongo.log</span><br><span class="line">│   ├── centos-mongo-shell                   <span class="comment"># 需要用到的脚本</span></span><br><span class="line">│   │   ├── startup-mongo-cluster-2.6.9.sh   <span class="comment"># 启动一个mongodb2.6.9的集群</span></span><br><span class="line">│   │   ├── startup-mongo-cluster.sh         <span class="comment"># 启动一个mognodb2.4的集群</span></span><br><span class="line">│   │   ├── upgrade_mongos.sh                <span class="comment"># 未完成，一键升级集群</span></span><br><span class="line">│   │   └── waitmongo.sh                     <span class="comment"># 脚本，等待mongodb实例启动（这个比较重要）</span></span><br><span class="line">│   └── mongo-source-rhel</span><br><span class="line">│       ├── config-backup                    <span class="comment"># config节点数据备份目录</span></span><br><span class="line">│       │   ├── config-1</span><br><span class="line">│       │   ├── config-2</span><br><span class="line">│       │   └── config-3</span><br><span class="line">│       ├── mongodb-2.6.9                    <span class="comment"># mongodb二进制文件夹</span></span><br><span class="line">│       └── mongodb-3.0.7                    <span class="comment"># mongodb二进制文件夹</span></span><br><span class="line">├── centos-mongo-image                       <span class="comment"># 运行mongodb的centos系统镜像</span></span><br><span class="line">│   ├── Dockerfile</span><br><span class="line">│   ├── build.sh</span><br><span class="line">│   └── waitmongo</span><br><span class="line">├── clear.sh                                 <span class="comment"># 一键清除mongodb集群，并且清楚本地缓存</span></span><br><span class="line">├── docker-compose.yml                       <span class="comment"># docker-compose配置文件</span></span><br><span class="line">├── run.sh                                   <span class="comment"># 启动脚本</span></span><br><span class="line">└── server                                   <span class="comment"># 测试链接使用搭建好的mongodb集群的小程序(热升级测试)</span></span><br><span class="line">    ├── index.js</span><br><span class="line">    ├── node_modules</span><br><span class="line">    │   ├── 此处略去一万行</span><br><span class="line">    └── package.json</span><br></pre></td></tr></table></figure>
+<h3 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./run.sh</span><br><span class="line">./attach.sh</span><br><span class="line">/opt/shell/startup-mongo-cluster-2.6.9.sh</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>注意</p>
 </blockquote>
 <p><code>startup-mongo-cluster-2.6.9.sh</code>可能会出现个别节点没有起来的情况，如果发现节点没有完全起来，可以在执行一次。因为为了快速搭建起来集群，这个方案中还有一些细节没有处理好，见谅。</p>
 <h2 id="升级前注意事项"><a href="#升级前注意事项" class="headerlink" title="升级前注意事项"></a>升级前注意事项</h2><p><strong>降级限制</strong><br>一旦升级到mongo3.0，则mongo集群就不能再降级到2.6.8以下的版本了</p>
-<p><strong>authSchema要求</strong><br>3.0支持的最低的authSchema版本是3，低于3mongos将无法启动。（<a href="https://docs.mongodb.com/v3.0/release-notes/2.6-upgrade-authorization/" target="_blank" rel="external">authSchema更新</a>）</p>
+<p><strong>authSchema要求</strong><br>3.0支持的最低的authSchema版本是3，低于3mongos将无法启动。（<a href="https://docs.mongodb.com/v3.0/release-notes/2.6-upgrade-authorization/" target="_blank" rel="noopener">authSchema更新</a>）</p>
 <p><strong>数据备份</strong><br>任何版本的升级前，一定要线备份<code>config server</code>中的数据</p>
 <p><strong>升级时间选择</strong><br>最好在业务量比较小的时候进行升级，这个好处多多，大家都明白</p>
 <h2 id="具体升级步骤"><a href="#具体升级步骤" class="headerlink" title="具体升级步骤"></a>具体升级步骤</h2><p>根据升级过程时间的消耗，建议将升级分为两个阶段（我们是这么处理的）。第一阶段：升级mongos和config，第二阶段：升级所有分片</p>
 <h3 id="关闭负载均衡器"><a href="#关闭负载均衡器" class="headerlink" title="关闭负载均衡器"></a>关闭负载均衡器</h3><p>注意这里的负载均衡是mongo自身用于均衡各个分片数据量的，关闭负载均衡是为了阻止数据chunk移动，放置因为升级过程因为数据迁移带来问题</p>
-<h4 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 连接mongos</span></div><div class="line">/opt/mongo-source/mongodb-2.6.9/bin/mongo 127.0.0.1:9000/admin </div><div class="line"><span class="meta">#</span><span class="bash"> 关闭负载均衡</span></div><div class="line">sh.stopBalancer();</div></pre></td></tr></table></figure>
+<h4 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 连接mongos</span></span><br><span class="line">/opt/mongo-source/mongodb-2.6.9/bin/mongo 127.0.0.1:9000/admin </span><br><span class="line"><span class="meta">#</span><span class="bash"> 关闭负载均衡</span></span><br><span class="line">sh.stopBalancer();</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>分析</p>
 </blockquote>
@@ -425,18 +351,18 @@
 <li>升级mongos</li>
 </ul>
 <h4 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h4><p>元数据升级目前我没有找到简单的方式去回滚，所以这个操作基本是不可逆的。但是，幸运的是，我在升级整个测试环境的mongo集群的时候，元数据升级成功，但是3.0的mognos却无法启动，当时测试环境出现故障，情急之下，使用2.6的mongos启动，成功了，也没有遇到什么其他问题，所以万一元数据升级之后出现问题，还是有临时方案解决的。</p>
-<p>上面说到了升级元数据之后新的mongos无法启动，是因为遇到了这样的错误：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Failed to authenticate *** with mechanism MONGODB-CR: AuthenticationFailed AuthSchemaIncompatible Authorization data schema version 1 not support</div></pre></td></tr></table></figure></p>
+<p>上面说到了升级元数据之后新的mongos无法启动，是因为遇到了这样的错误：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed to authenticate *** with mechanism MONGODB-CR: AuthenticationFailed AuthSchemaIncompatible Authorization data schema version 1 not support</span><br></pre></td></tr></table></figure></p>
 <p>这个问题概括来说就是authSchema版本过低导致的，3.0.7支持的authSchema最低版本是3，但是当前版本是1，事实上，2.6.6默认的authSchema版本是3。出现这种问题，是因为我们的2.6.6版本的数据库是升级过来的。经过我的测试，2.4.3版本默认的authSchema版本就是1，所以这个历史遗留问题。如果你系统刚好也有这种情况，升级前最好先参考下<a href="/2017/03/06/authSchema升级/">这里</a>解决，以下是升级authSchema命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">use admin</div><div class="line"><span class="meta">#</span><span class="bash"> 升级authSchema</span></div><div class="line">db.getSiblingDB("admin").runCommand(&#123;authSchemaUpgrade: 1 &#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use admin</span><br><span class="line"><span class="meta">#</span><span class="bash"> 升级authSchema</span></span><br><span class="line">db.getSiblingDB("admin").runCommand(&#123;authSchemaUpgrade: 1 &#125;)</span><br></pre></td></tr></table></figure>
 <p>注意上面那个命令是比较危险的，原因有以下两点:</p>
 <ul>
 <li>authSchema升级之后如果对程序没有影响，那么无所谓，如果有影响，这个要降级到之前的版本，会比较麻烦<a href="/2017/03/06/authSchema升级/">参考这里</a></li>
 <li>如果authSchema升级之后，再将整个集群升级至3.0，此时如果再想降级到2.6，那么启动mongos，mongod实例的时候，不能使用<code>--auth</code>参数，因为<code>authSchema</code>已经不兼容了（除非有所备份）</li>
 <li>以上命令，作用域mongos的同时也会作用于所有的分片上，如果你不想在分片上也生效，那么可以这么做: <code>db.getSiblingDB(&quot;admin&quot;).runCommand({authSchemaUpgrade: 1, upgradeShards: false })</code></li>
 </ul>
-<h4 id="回滚方案"><a href="#回滚方案" class="headerlink" title="回滚方案"></a>回滚方案</h4><p>回滚<code>authSchema</code>参考<a href="">这里</a><br>回滚mongos版本，直接使用2.6的二进制文件启动mongos实例就可以了<br>回滚元数据，这个我没有做过，目前也没有好的方案，通常情况下，2.6元数据升至3.0是没有问题的（没有操作失误）</p>
+<h4 id="回滚方案"><a href="#回滚方案" class="headerlink" title="回滚方案"></a>回滚方案</h4><p>回滚<code>authSchema</code>参考<a href>这里</a><br>回滚mongos版本，直接使用2.6的二进制文件启动mongos实例就可以了<br>回滚元数据，这个我没有做过，目前也没有好的方案，通常情况下，2.6元数据升至3.0是没有问题的（没有操作失误）</p>
 <h4 id="热升级保障"><a href="#热升级保障" class="headerlink" title="热升级保障"></a>热升级保障</h4><p>如果下游有负载均衡，或者使用多个mongos实例连接方式，那么重启单个mongos实例带来的影响是可以容忍的（如果不是金融等业务的话）。如果是连接的单点mongos，重启肯定会带来一定影响，这个术语程序设计的问题了，不在这里讨论。<br>我们采用的方式是mongos之上搭建负载均衡器，选择在业务量小的时候做升级，没有太大问题</p>
-<h4 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 升级元数据</span></div><div class="line"><span class="meta">#</span><span class="bash"> tail -100 /mongodb/mongos-1/<span class="built_in">log</span>/mongo.log</span></div><div class="line"><span class="meta">#</span><span class="bash"> 日志中应该有类似 upgrade of config server to v6 successful 信息</span></div><div class="line">/opt/mongo-source/mongodb-3.0.7/bin/mongos -f /data/mongos-1/mongo.conf --upgrade </div><div class="line"><span class="meta">#</span><span class="bash"> 升级mongos</span></div><div class="line">/opt/mongo-source/mongodb-2.6.9/bin/mongo 127.0.0.1:9000/admin</div><div class="line">db.shutdownServer()</div><div class="line">/opt/mongo-source/mongodb-3.0.7/bin/mongos -f /data/mongos-1/mongo.conf</div></pre></td></tr></table></figure>
+<h4 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 升级元数据</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tail -100 /mongodb/mongos-1/<span class="built_in">log</span>/mongo.log</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 日志中应该有类似 upgrade of config server to v6 successful 信息</span></span><br><span class="line">/opt/mongo-source/mongodb-3.0.7/bin/mongos -f /data/mongos-1/mongo.conf --upgrade </span><br><span class="line"><span class="meta">#</span><span class="bash"> 升级mongos</span></span><br><span class="line">/opt/mongo-source/mongodb-2.6.9/bin/mongo 127.0.0.1:9000/admin</span><br><span class="line">db.shutdownServer()</span><br><span class="line">/opt/mongo-source/mongodb-3.0.7/bin/mongos -f /data/mongos-1/mongo.conf</span><br></pre></td></tr></table></figure>
 <p>这里只是升级了一个<code>mongos</code>，同理其他所有<code>mongos</code></p>
 <h3 id="升级config-server"><a href="#升级config-server" class="headerlink" title="升级config server"></a>升级<code>config server</code></h3><h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><ul>
 <li>备份<code>config server</code>的数据</li>
@@ -451,7 +377,7 @@
 <h4 id="安全性-1"><a href="#安全性-1" class="headerlink" title="安全性"></a>安全性</h4><p>只要按照正确的步骤操作，安全性没有问题，因为升级并不会影响到数据</p>
 <h4 id="热升级保障-1"><a href="#热升级保障-1" class="headerlink" title="热升级保障"></a>热升级保障</h4><p>只要保障有一个以上的<code>config server</code>正常运行，服务就没有问题</p>
 <h4 id="回滚方案-1"><a href="#回滚方案-1" class="headerlink" title="回滚方案"></a>回滚方案</h4><p>使用原来的mongo二进制文件重新启动mongod服务即可</p>
-<h4 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 导出数据</span></div><div class="line">/opt/mongo-source/mongodb-2.6.9/bin/mongodump --port 8000 -o /opt/mongo-source/config-backup/config-1</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 关闭config实例</span></div><div class="line">db.shutdownServer()</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 使用3.0的二进制文件启动config实例</span></div><div class="line">/opt/mongo-source/mongodb-3.0.7/bin/mongod -f /data/config-1/mongo3.conf</div></pre></td></tr></table></figure>
+<h4 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 导出数据</span></span><br><span class="line">/opt/mongo-source/mongodb-2.6.9/bin/mongodump --port 8000 -o /opt/mongo-source/config-backup/config-1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 关闭config实例</span></span><br><span class="line">db.shutdownServer()</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用3.0的二进制文件启动config实例</span></span><br><span class="line">/opt/mongo-source/mongodb-3.0.7/bin/mongod -f /data/config-1/mongo3.conf</span><br></pre></td></tr></table></figure>
 <h3 id="升级分片"><a href="#升级分片" class="headerlink" title="升级分片"></a>升级分片</h3><h4 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h4><p>因为每一个分片都是一个副本集，所有分片的升级就相当于是副本集的升级，升级副本集按照以下步骤:</p>
 <ul>
 <li>升级arbit</li>
@@ -469,111 +395,87 @@
 <h4 id="安全性-2"><a href="#安全性-2" class="headerlink" title="安全性"></a>安全性</h4><p>数据分片的升级相对于<code>mongos, config</code>的升级安全性更高了，一个方面因为一个分片不会影响到整个集群，另外一个方面，完善的副本集机制为升级提供了保障。这步非常轻松（但是工作量非常大）</p>
 <h4 id="回滚方案-2"><a href="#回滚方案-2" class="headerlink" title="回滚方案"></a>回滚方案</h4><p>副本集的升级和降级的步骤基本一样，可以参考升级的步骤降级</p>
 <h4 id="热升级保障-2"><a href="#热升级保障-2" class="headerlink" title="热升级保障"></a>热升级保障</h4><p>这个又副本集的高可用机制保证，但是同步数据的时候是有可能导致系统负载过高的，这里最好多观察。</p>
-<h4 id="升级代码示例"><a href="#升级代码示例" class="headerlink" title="升级代码示例"></a>升级代码示例</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 升级arbit</span></div><div class="line">/opt/mongo-source/mongodb-2.6.9/bin/mongo 127.0.0.1:6000/admin</div><div class="line">db.shutdownServer()</div><div class="line">/opt/mongo-source/mongodb-3.0.7/bin/mongod -f /data/mongod-1-3/mongo3.conf --storageEngine wiredTiger</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 升级secondary</span></div><div class="line">/opt/mongo-source/mongodb-2.6.9/bin/mongo 127.0.0.1:7001/admin</div><div class="line">db.shutdownServer()</div><div class="line">/opt/mongo-source/mongodb-3.0.7/bin/mongod -f /data/mongod-1-2/mongo3.conf --storageEngine wiredTiger</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 升级primary</span></div><div class="line">/opt/mongo-source/mongodb-2.6.9/bin/mongo 127.0.0.1:7000/admin</div><div class="line">rs.stepDown()</div><div class="line">db.shutdownServer()</div><div class="line">/opt/mongo-source/mongodb-3.0.7/bin/mongod -f /data/mongod-1-1/mongo3.conf --storageEngine wiredTiger</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 升级完成之后记得检查副本集和整个集群的状态 </span></div><div class="line">rs.status()</div><div class="line">sh.status()</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 更新authSchema，如果上面升级mongos的时候没有作用于整个集群</span></div><div class="line">db.getSiblingDB("admin").runCommand(&#123;authSchemaUpgrade: 1, upgradeShards: false &#125;)</div></pre></td></tr></table></figure>
+<h4 id="升级代码示例"><a href="#升级代码示例" class="headerlink" title="升级代码示例"></a>升级代码示例</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 升级arbit</span></span><br><span class="line">/opt/mongo-source/mongodb-2.6.9/bin/mongo 127.0.0.1:6000/admin</span><br><span class="line">db.shutdownServer()</span><br><span class="line">/opt/mongo-source/mongodb-3.0.7/bin/mongod -f /data/mongod-1-3/mongo3.conf --storageEngine wiredTiger</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 升级secondary</span></span><br><span class="line">/opt/mongo-source/mongodb-2.6.9/bin/mongo 127.0.0.1:7001/admin</span><br><span class="line">db.shutdownServer()</span><br><span class="line">/opt/mongo-source/mongodb-3.0.7/bin/mongod -f /data/mongod-1-2/mongo3.conf --storageEngine wiredTiger</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 升级primary</span></span><br><span class="line">/opt/mongo-source/mongodb-2.6.9/bin/mongo 127.0.0.1:7000/admin</span><br><span class="line">rs.stepDown()</span><br><span class="line">db.shutdownServer()</span><br><span class="line">/opt/mongo-source/mongodb-3.0.7/bin/mongod -f /data/mongod-1-1/mongo3.conf --storageEngine wiredTiger</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 升级完成之后记得检查副本集和整个集群的状态 </span></span><br><span class="line">rs.status()</span><br><span class="line">sh.status()</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 更新authSchema，如果上面升级mongos的时候没有作用于整个集群</span></span><br><span class="line">db.getSiblingDB("admin").runCommand(&#123;authSchemaUpgrade: 1, upgradeShards: false &#125;)</span><br></pre></td></tr></table></figure>
 <h3 id="打开负载均衡器"><a href="#打开负载均衡器" class="headerlink" title="打开负载均衡器"></a>打开负载均衡器</h3><p>最后，一定不要忘记打开负载均衡</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh.setBalancerState(true)</div></pre></td></tr></table></figure>
-<h2 id="线上升级按照上述步骤遇到的问题"><a href="#线上升级按照上述步骤遇到的问题" class="headerlink" title="线上升级按照上述步骤遇到的问题"></a>线上升级按照上述步骤遇到的问题</h2><p>首先明确的是，上面的升级过程本身是没有问题的，然后，<strong>请一定要看看<a href="http://mt.sohu.com/20161017/n470478001.shtml" target="_blank" rel="external">这篇文章</a></strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh.setBalancerState(true)</span><br></pre></td></tr></table></figure>
+<h2 id="线上升级按照上述步骤遇到的问题"><a href="#线上升级按照上述步骤遇到的问题" class="headerlink" title="线上升级按照上述步骤遇到的问题"></a>线上升级按照上述步骤遇到的问题</h2><p>首先明确的是，上面的升级过程本身是没有问题的，然后，<strong>请一定要看看<a href="http://mt.sohu.com/20161017/n470478001.shtml" target="_blank" rel="noopener">这篇文章</a></strong></p>
 <p>我遇到了一模一样的问题，mongodb进程的内存占用会持续走高，一直到跑满内存，然后被系统干掉。</p>
 <p>我采用的任何限制内存的方案的结果都是一样的，因为只要是通过外部限制内存使用，要么根本没法限制，要么就会在到达限制的时候干掉mongodb进程。  </p>
 <p>最开始的时候我们使用为机器添加内存的方式，最终的结果是将内存变为原来的8倍，依然会有这种问题</p>
 <p>最终的解决方案是，重新替换为mmapv1寸处引擎，wiredtiger这名起起的却是生动，有令人期待的吞吐量和更高的数据压缩比，但是却难以控制（目前）</p>
 <p>一下是我们解决问题过程中查阅的文档：</p>
 <p>内存限制相关:</p>
-<p><strong>cgroups方式</strong><br><a href="http://www.techpaste.com/2016/04/limit-mongodb-memory-usage/" target="_blank" rel="external">Easy Steps to Limit Mongodb Memory Usage</a>，照着这个实践过</p>
-<p><strong>相关的讨论</strong><br><a href="http://dba.stackexchange.com/questions/86109/limit-the-ram-memory-usage-in-mongodb" target="_blank" rel="external">Limit the RAM memory usage in MongoDB</a><br><a href="http://stackoverflow.com/questions/6861184/is-there-any-option-to-limit-mongodb-memory-usage" target="_blank" rel="external">Is there any option to limit mongodb memory usage?</a><br><a href="https://groups.google.com/forum/#!topic/mongodb-user/JkalLE9B2DI" target="_blank" rel="external">Mongod start with memory limit</a><br><a href="http://stackoverflow.com/questions/4365224/mongodb-limit-memory" target="_blank" rel="external">MongoDB limit memory</a><br><a href="http://stackoverflow.com/questions/31502062/mongodb-wiredtiger-memory-usage-growing" target="_blank" rel="external">mongodb - wiredtiger memory usage growing</a><br><a href="http://stackoverflow.com/questions/14134109/mongodb-memory-usage-is-going-high-even-if-only-insertions-are-made" target="_blank" rel="external">mongodb memory usage is going high even if only insertions are made</a><br><a href="https://qnalist.com/questions/5264672/90-memory-usage-of-mongod" target="_blank" rel="external">Mongodb - &gt; 90% Memory Usage Of Mongod</a><br><a href="https://jira.mongodb.org/browse/SERVER-17456" target="_blank" rel="external">Mongodb 3.0 wiredTiger storage engine memory usage too high.</a><br><a href="http://dba.stackexchange.com/questions/58928/mongodb-memory-leak-or-big-collection" target="_blank" rel="external">mongodb memory leak or big collection?</a><br><a href="http://stackoverflow.com/questions/31502062/mongodb-wiredtiger-memory-usage-growing" target="_blank" rel="external">mongodb - wiredtiger memory usage growing</a><br><a href="https://docs.mongodb.com/manual/faq/storage/" target="_blank" rel="external">FAQ: MongoDB Storage</a><br><a href="http://stackoverflow.com/questions/4468873/how-to-release-the-caching-which-is-used-by-mongodb" target="_blank" rel="external">how to release the caching which is used by Mongodb?</a></p>
-<p><strong>mongodb状态查询详解</strong><br><a href="http://m.blog.itpub.net/15498/viewspace-2076968/" target="_blank" rel="external">MongoDB状态查询db.serverStatus()详解</a><br><a href="http://blog.csdn.net/cug_jiang126com/article/details/42706827" target="_blank" rel="external">MongoDB状态查询详解：db.serverStatus()</a></p>
+<p><strong>cgroups方式</strong><br><a href="http://www.techpaste.com/2016/04/limit-mongodb-memory-usage/" target="_blank" rel="noopener">Easy Steps to Limit Mongodb Memory Usage</a>，照着这个实践过</p>
+<p><strong>相关的讨论</strong><br><a href="http://dba.stackexchange.com/questions/86109/limit-the-ram-memory-usage-in-mongodb" target="_blank" rel="noopener">Limit the RAM memory usage in MongoDB</a><br><a href="http://stackoverflow.com/questions/6861184/is-there-any-option-to-limit-mongodb-memory-usage" target="_blank" rel="noopener">Is there any option to limit mongodb memory usage?</a><br><a href="https://groups.google.com/forum/#!topic/mongodb-user/JkalLE9B2DI" target="_blank" rel="noopener">Mongod start with memory limit</a><br><a href="http://stackoverflow.com/questions/4365224/mongodb-limit-memory" target="_blank" rel="noopener">MongoDB limit memory</a><br><a href="http://stackoverflow.com/questions/31502062/mongodb-wiredtiger-memory-usage-growing" target="_blank" rel="noopener">mongodb - wiredtiger memory usage growing</a><br><a href="http://stackoverflow.com/questions/14134109/mongodb-memory-usage-is-going-high-even-if-only-insertions-are-made" target="_blank" rel="noopener">mongodb memory usage is going high even if only insertions are made</a><br><a href="https://qnalist.com/questions/5264672/90-memory-usage-of-mongod" target="_blank" rel="noopener">Mongodb - &gt; 90% Memory Usage Of Mongod</a><br><a href="https://jira.mongodb.org/browse/SERVER-17456" target="_blank" rel="noopener">Mongodb 3.0 wiredTiger storage engine memory usage too high.</a><br><a href="http://dba.stackexchange.com/questions/58928/mongodb-memory-leak-or-big-collection" target="_blank" rel="noopener">mongodb memory leak or big collection?</a><br><a href="http://stackoverflow.com/questions/31502062/mongodb-wiredtiger-memory-usage-growing" target="_blank" rel="noopener">mongodb - wiredtiger memory usage growing</a><br><a href="https://docs.mongodb.com/manual/faq/storage/" target="_blank" rel="noopener">FAQ: MongoDB Storage</a><br><a href="http://stackoverflow.com/questions/4468873/how-to-release-the-caching-which-is-used-by-mongodb" target="_blank" rel="noopener">how to release the caching which is used by Mongodb?</a></p>
+<p><strong>mongodb状态查询详解</strong><br><a href="http://m.blog.itpub.net/15498/viewspace-2076968/" target="_blank" rel="noopener">MongoDB状态查询db.serverStatus()详解</a><br><a href="http://blog.csdn.net/cug_jiang126com/article/details/42706827" target="_blank" rel="noopener">MongoDB状态查询详解：db.serverStatus()</a></p>
 <p><strong>确定内存增长不是因为索引导致的</strong></p>
 <ul>
-<li><a href="http://stackoverflow.com/questions/2811299/mongodb-index-ram-relationship" target="_blank" rel="external">索引+数据量和内存占用的对应关系</a></li>
+<li><a href="http://stackoverflow.com/questions/2811299/mongodb-index-ram-relationship" target="_blank" rel="noopener">索引+数据量和内存占用的对应关系</a></li>
 </ul>
-<p><strong>查看wiredtiger cache size</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">status=db.serverStatus()</div><div class="line">memory = 0</div><div class="line">Object.keys(status.wiredTiger.cache).forEach(function(key)&#123;   </div><div class="line">  memory += status.wiredTiger.cache[key]</div><div class="line">&#125;)</div><div class="line">memory = memory / 2014 / 1024 / 1024</div></pre></td></tr></table></figure></p>
+<p><strong>查看wiredtiger cache size</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">status=db.serverStatus()</span><br><span class="line">memory = 0</span><br><span class="line">Object.keys(status.wiredTiger.cache).forEach(function(key)&#123;   </span><br><span class="line">  memory += status.wiredTiger.cache[key]</span><br><span class="line">&#125;)</span><br><span class="line">memory = memory / 2014 / 1024 / 1024</span><br></pre></td></tr></table></figure></p>
 <h2 id="升级常见错误整理"><a href="#升级常见错误整理" class="headerlink" title="升级常见错误整理"></a>升级常见错误整理</h2><ul>
 <li><a href="/2017/03/07/mongodb常见Q-A整理/">mongodb常见Q&amp;A整理</a></li>
 </ul>
 
-      
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
+        
       
-        <div class="post-tags">
+
+      <footer class="post-footer">
           
-            <a href="/tags/mongodb/" rel="tag"># mongodb</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/24/ansible/ansible入门/" rel="next" title="ansible入门">
-                <i class="fa fa-chevron-left"></i> ansible入门
-              </a>
+          
+          <div class="post-tags">
+            
+              <a href="/tags/mongodb/" rel="tag"># mongodb</a>
             
           </div>
+        
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/06/mongo/authSchema升级/" rel="prev" title="authSchema升级">
-                authSchema升级 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2017/02/24/ansible/ansible入门/" rel="next" title="ansible入门">
+                  <i class="fa fa-chevron-left"></i> ansible入门
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2017/03/06/mongo/authSchema升级/" rel="prev" title="authSchema升级">
+                  authSchema升级 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
           </div>
-        </div>
-      
-
-      
-      
-    </footer>
+        
+      </footer>
+    
   </div>
   
   
   
   </article>
 
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
-
-
-          
-
+    
+    <div class="comments" id="gitalk-container"></div>
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
-
-  
-
-
 
         </div>
-        
           
   
   <div class="sidebar-toggle">
@@ -585,12 +487,7 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
-
-      
-
-      
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
@@ -601,84 +498,172 @@
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
+
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/author.jpg"
-                alt="kivi" />
-            
-              <p class="site-author-name" itemprop="name">kivi</p>
-              <p class="site-description motion-element" itemprop="description">nodejs | server</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">58</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
+    <img class="site-author-image" itemprop="image"
+      src="/images/author.jpg"
+      alt="kivi">
+  <p class="site-author-name" itemprop="name">kivi</p>
+  <div class="site-description motion-element" itemprop="description">nodejs | server</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
           
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
+            <a href="/categories/">
           
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
 
-          
 
-          
-          
-
-          
-          
-
-          
 
         </div>
-      </section>
-
-      
+      </div>
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
 
             
-              
+            
+            
             
 
             
@@ -686,64 +671,33 @@
             
 
           </div>
-        </section>
+        </div>
       <!--/noindex-->
-      
-
       
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">kivi</span>
-
-  
 </div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
 
         
 <div class="busuanzi-count">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i> 访客数量
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i> 浏览量
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
-    </span>
-  
 </div>
 
 
@@ -756,25 +710,54 @@
         
       </div>
     </footer>
-
-    
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
-        
       </div>
-    
 
     
 
   </div>
 
   
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -786,278 +769,35 @@
 
   
 
-
-
-
-
-
-
-
-
-
-
-
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
 
   
 
 
   
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            // id: window.location.pathname, 
-            id: '1488366370000', 
-            owner: 'CocaCola183',
-            repo: 'CocaCola183.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                proxy_gateway: 'https://dev1pc.7moor.com',
-            
-                client_id: '9aa9571446f523fd0c7f'
-            }});
-        gitment.render('gitment-container');
-      }
-
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+    var gitalk = new Gitalk({
+      clientID: '9aa9571446f523fd0c7f',
+      clientSecret: '237884fa7cb94f497a3da8211fbadfded147b531',
+      repo: 'CocaCola183.github.io',
+      owner: 'CocaCola183',
+      admin: ['CocaCola183'],
+      id: '47c22986340b9922937fd0ac218f4a3e',
+        language: 'zh-CN',
       
-      renderGitment();
-      
-      </script>
-    
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("e99ORGgDvGxLUzH8mhKbAKu0-gzGzoHsz", "INsrz00YWhTssAqr5djkdMAS");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
+      distractionFreeMode: 'true'
     });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
 
 </body>
 </html>

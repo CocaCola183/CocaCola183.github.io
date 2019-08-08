@@ -2,141 +2,92 @@
 
 
 
-  
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="iOS,read," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="###写在前面自己看完这本书之后做的一点记录，收获还是有的，但是没有封面上吹的那么好，建议还是去看英文版的《Effective Object-C》系列的吧，如果能忍受住英语，还是不要看翻译过的了。 ###让自己习惯Object-C  tip 1  Objective-C为一门动态开发语言   Objective-C是动态语言，C++是静态语言，runtime相当于是运行Objective－C的操作">
-<meta name="keywords" content="iOS,read">
-<meta property="og:type" content="article">
-<meta property="og:title" content="编写高质量代码-改善Objective-C程序的61个建议">
-<meta property="og:url" content="http://cocacola183.github.io/2016/03/02/ios/编写高质量代码/index.html">
-<meta property="og:site_name" content="Kivi">
-<meta property="og:description" content="###写在前面自己看完这本书之后做的一点记录，收获还是有的，但是没有封面上吹的那么好，建议还是去看英文版的《Effective Object-C》系列的吧，如果能忍受住英语，还是不要看翻译过的了。 ###让自己习惯Object-C  tip 1  Objective-C为一门动态开发语言   Objective-C是动态语言，C++是静态语言，runtime相当于是运行Objective－C的操作">
-<meta property="og:image" content="http://7xj5yf.com1.z0.glb.clouddn.com/qrcode_for_gh_62243782e36d_344.jpg">
-<meta property="og:updated_time" content="2017-07-02T02:23:43.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="编写高质量代码-改善Objective-C程序的61个建议">
-<meta name="twitter:description" content="###写在前面自己看完这本书之后做的一点记录，收获还是有的，但是没有封面上吹的那么好，建议还是去看英文版的《Effective Object-C》系列的吧，如果能忍受住英语，还是不要看翻译过的了。 ###让自己习惯Object-C  tip 1  Objective-C为一门动态开发语言   Objective-C是动态语言，C++是静态语言，runtime相当于是运行Objective－C的操作">
-<meta name="twitter:image" content="http://7xj5yf.com1.z0.glb.clouddn.com/qrcode_for_gh_62243782e36d_344.jpg">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: 'undefined',
-      author: '博主'
-    },
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     }
   };
 </script>
 
+  <meta name="description" content="###写在前面自己看完这本书之后做的一点记录，收获还是有的，但是没有封面上吹的那么好，建议还是去看英文版的《Effective Object-C》系列的吧，如果能忍受住英语，还是不要看翻译过的了。 ###让自己习惯Object-C  tip 1  Objective-C为一门动态开发语言   Objective-C是动态语言，C++是静态语言，runtime相当于是运行Objective－C的操作">
+<meta name="keywords" content="iOS,read">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编写高质量代码-改善Objective-C程序的61个建议">
+<meta property="og:url" content="http://cocacola183.github.io/2016/03/02/ios/编写高质量代码/index.html">
+<meta property="og:site_name" content="Kivi">
+<meta property="og:description" content="###写在前面自己看完这本书之后做的一点记录，收获还是有的，但是没有封面上吹的那么好，建议还是去看英文版的《Effective Object-C》系列的吧，如果能忍受住英语，还是不要看翻译过的了。 ###让自己习惯Object-C  tip 1  Objective-C为一门动态开发语言   Objective-C是动态语言，C++是静态语言，runtime相当于是运行Objective－C的操作">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://7xj5yf.com1.z0.glb.clouddn.com/qrcode_for_gh_62243782e36d_344.jpg">
+<meta property="og:updated_time" content="2017-07-02T02:23:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编写高质量代码-改善Objective-C程序的61个建议">
+<meta name="twitter:description" content="###写在前面自己看完这本书之后做的一点记录，收获还是有的，但是没有封面上吹的那么好，建议还是去看英文版的《Effective Object-C》系列的吧，如果能忍受住英语，还是不要看翻译过的了。 ###让自己习惯Object-C  tip 1  Objective-C为一门动态开发语言   Objective-C是动态语言，C++是静态语言，runtime相当于是运行Objective－C的操作">
+<meta name="twitter:image" content="http://7xj5yf.com1.z0.glb.clouddn.com/qrcode_for_gh_62243782e36d_344.jpg">
+  <link rel="alternate" href="/atom.xml" title="Kivi" type="application/atom+xml">
+  <link rel="canonical" href="http://cocacola183.github.io/2016/03/02/ios/编写高质量代码/">
 
 
-  <link rel="canonical" href="http://cocacola183.github.io/2016/03/02/ios/编写高质量代码/"/>
-
-
-
-
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
 
   <title>编写高质量代码-改善Objective-C程序的61个建议 | Kivi</title>
   
 
 
-
-
-
-  <script type="text/javascript">
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -149,37 +100,57 @@
 
 
 
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+  <div class="site-meta">
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Kivi</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
         <p class="site-subtitle">没有什么远大理想，只是永远都不会满足而已</p>
       
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -187,79 +158,73 @@
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
+  <ul id="menu" class="menu">
+      
+      
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
       
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
       
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            标签
-          </a>
-        </li>
+      
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            关于
-          </a>
-        </li>
       
+    
 
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
       
-    </ul>
-  
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
 
-  
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+            
+
+          <div id="content" class="content page-post-detail">
             
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -270,58 +235,55 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kivi">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="nodejs | server">
       <meta itemprop="image" content="/images/author.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Kivi">
     </span>
-
-    
       <header class="post-header">
 
         
-        
-          <h1 class="post-title" itemprop="name headline">编写高质量代码-改善Objective-C程序的61个建议</h1>
+          <h1 class="post-title" itemprop="name headline">编写高质量代码-改善Objective-C程序的61个建议
+
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">发表于</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-02T17:46:59+08:00">
-                2016-03-02
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="创建时间：2016-03-02 17:46:59" itemprop="dateCreated datePublished" datetime="2016-03-02T17:46:59+08:00">2016-03-02</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2017-07-02 10:23:43" itemprop="dateModified" datetime="2017-07-02T10:23:43+08:00">2017-07-02</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">分类于</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
 
                 
                 
@@ -330,50 +292,14 @@
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/03/02/ios/编写高质量代码/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2016/03/02/ios/编写高质量代码/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/03/02/ios/编写高质量代码/" class="leancloud_visitors" data-flag-title="编写高质量代码-改善Objective-C程序的61个建议">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
 
       
         <p>###写在前面<br>自己看完这本书之后做的一点记录，收获还是有的，但是没有封面上吹的那么好，建议还是去看英文版的《Effective Object-C》系列的吧，如果能忍受住英语，还是不要看翻译过的了。</p>
@@ -398,6 +324,8 @@
 <a id="more"></a>
 <blockquote>
 <p>tip 3 尽量使用const，enum来替换预处理#define</p>
+</blockquote>
+<blockquote>
 <p>tip 4 优先使用对象字面量语法而非等效方法</p>
 </blockquote>
 <ul>
@@ -405,6 +333,8 @@
 </ul>
 <blockquote>
 <p>tip 5 处理隐藏的返回值类型，优先选择实例类型(Instancetype)而非id</p>
+</blockquote>
+<blockquote>
 <p>tip 6 尽量使用模块方式与多类建立复合关系</p>
 </blockquote>
 <ul>
@@ -415,7 +345,11 @@
 </ul>
 <blockquote>
 <p>tip 7 明解Object-C++中的有所为而有所不为</p>
+</blockquote>
+<blockquote>
 <p>tip 8 C语言与Object-C语言的关系时充分而非必要条件</p>
+</blockquote>
+<blockquote>
 <p>tip 9 高度警惕空指针和野指针的袭击</p>
 </blockquote>
 <ul>
@@ -424,7 +358,11 @@
 </ul>
 <blockquote>
 <p>tip 10 在64位环境下尽可能利用标记指针</p>
+</blockquote>
+<blockquote>
 <p>tip 11 谨记兼容32位和64位环境下代码编写注意事项</p>
+</blockquote>
+<blockquote>
 <p>tip 12 记清楚常量字符串和一般字符串的区别</p>
 </blockquote>
 <ul>
@@ -443,7 +381,11 @@
 </ul>
 <blockquote>
 <p>tip 14 有序对象适宜存于数组，无序对象适宜存于集合(Set)</p>
+</blockquote>
+<blockquote>
 <p>tip 15 存在公共键时，字典是在对象之间传递信息的最佳方式</p>
+</blockquote>
+<blockquote>
 <p>tip 16 明智而谨慎地使用BOOL类型</p>
 </blockquote>
 <ul>
@@ -463,6 +405,8 @@
 </ul>
 <blockquote>
 <p>tip 18 内存管理讲究“好借好还，再借不难”</p>
+</blockquote>
+<blockquote>
 <p>tip 19 区别开alloc init retain release dealloc之间的差异</p>
 </blockquote>
 <ul>
@@ -470,6 +414,8 @@
 </ul>
 <blockquote>
 <p>tip 20 优先使用存取方法管理内存</p>
+</blockquote>
+<blockquote>
 <p>tip 21 对象销毁或者被移除一定考虑所有权的释放</p>
 </blockquote>
 <ul>
@@ -484,6 +430,8 @@
 <p>###设计与声明</p>
 <blockquote>
 <p>tip 23 编写代码要遵守CocoaAPI约定</p>
+</blockquote>
+<blockquote>
 <p>tip 24 实例变量</p>
 </blockquote>
 <ul>
@@ -501,6 +449,8 @@
 </ul>
 <blockquote>
 <p>tip 26 存取方法是良好的类接口必要的组成部分</p>
+</blockquote>
+<blockquote>
 <p>tip 27 明晓类公共领域的方法都是虚方法</p>
 </blockquote>
 <ul>
@@ -529,6 +479,8 @@
 <p>浅复制：将原始对象的指针复制到副本中，原对象引用计数＋1<br>深复制：复制指针所引用的数据，并将其赋给副本的实例变量  </p>
 <blockquote>
 <p>tip 31 明智而谨慎的使用NSCopying </p>
+</blockquote>
+<blockquote>
 <p>tip 32 使用协议来实现匿名对象的提供</p>
 </blockquote>
 <p>###实现</p>
@@ -576,7 +528,7 @@
 </blockquote>
 <ul>
 <li><p>类拓展（extension）语法如下  </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@interface className ()  </div><div class="line">@end</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@interface className ()  </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>类拓展从某种程度来说可以称之为匿名类别</p>
 </li>
@@ -590,10 +542,10 @@
 <li><p>内联块中能直接引用self，但是要注意避免导致循环引用</p>
 <ul>
 <li><p>独立的block  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">void (^independentBlockObject)(void) = ^(void)&#123;  </div><div class="line">    NSInteger localInteger = 10;  </div><div class="line">    NSLog(@&quot;local integer = %ld&quot;,(long)localInteger);  </div><div class="line">    localInteger = 20;  </div><div class="line">    NSLog(@&quot;local integer = %ld&quot;,(long)localInteger);  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void (^independentBlockObject)(void) = ^(void)&#123;  </span><br><span class="line">    NSInteger localInteger = 10;  </span><br><span class="line">    NSLog(@&quot;local integer = %ld&quot;,(long)localInteger);  </span><br><span class="line">    localInteger = 20;  </span><br><span class="line">    NSLog(@&quot;local integer = %ld&quot;,(long)localInteger);  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>内联的block</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//内联Block  </div><div class="line">- (void)simpleMethod  </div><div class="line">&#123;  </div><div class="line">    NSUInteger outsideVariable = 10;  </div><div class="line">    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:@&quot;obj1&quot;, @&quot;obj2&quot;, nil];  </div><div class="line">    [array sortUsingComparator:^NSComparisonResult(id obj1, id obj2)&#123;  </div><div class="line">        NSInteger insideVariable = 20;  </div><div class="line">        NSLog(@&quot;Outside variable = %lu&quot;, (unsigned long)outsideVariable); //在这个Block里不能使outsideVariable的值变化，如果要改变outsideVariable，可以在定义outsideVariable时加上__block存储类的前缀  </div><div class="line">        NSLog(@&quot;Inside variable = %lu&quot;, (unsigned long)insideVariable);  </div><div class="line">        NSLog(@&quot;self = %@&quot;, self);  </div><div class="line">        return NSOrderedSame;  </div><div class="line">    &#125;];  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//内联Block  </span><br><span class="line">- (void)simpleMethod  </span><br><span class="line">&#123;  </span><br><span class="line">    NSUInteger outsideVariable = 10;  </span><br><span class="line">    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:@&quot;obj1&quot;, @&quot;obj2&quot;, nil];  </span><br><span class="line">    [array sortUsingComparator:^NSComparisonResult(id obj1, id obj2)&#123;  </span><br><span class="line">        NSInteger insideVariable = 20;  </span><br><span class="line">        NSLog(@&quot;Outside variable = %lu&quot;, (unsigned long)outsideVariable); //在这个Block里不能使outsideVariable的值变化，如果要改变outsideVariable，可以在定义outsideVariable时加上__block存储类的前缀  </span><br><span class="line">        NSLog(@&quot;Inside variable = %lu&quot;, (unsigned long)insideVariable);  </span><br><span class="line">        NSLog(@&quot;self = %@&quot;, self);  </span><br><span class="line">        return NSOrderedSame;  </span><br><span class="line">    &#125;];  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -603,6 +555,8 @@
 </ul>
 <blockquote>
 <p>39 通过类别把方法添加到现有的类</p>
+</blockquote>
+<blockquote>
 <p>40 通过强弱引用来管理对象的所有权</p>
 </blockquote>
 <ul>
@@ -657,7 +611,11 @@
 </ul>
 <blockquote>
 <p>tip 46 MVC模式是一种复合或聚合模式</p>
+</blockquote>
+<blockquote>
 <p>tip 47 对象建模在数据库中也广泛使用</p>
+</blockquote>
+<blockquote>
 <p>tip 48 类簇可简化框架的公开架构而又不减少功能的丰富性</p>
 </blockquote>
 <ul>
@@ -685,7 +643,11 @@
 </ul>
 <blockquote>
 <p>tip 51 直接访问实例变量的init方法</p>
+</blockquote>
+<blockquote>
 <p>tip 52 初始化方法必须以init开头</p>
+</blockquote>
+<blockquote>
 <p>tip 53 从init方法得到的对象可能不是想要的</p>
 </blockquote>
 <ul>
@@ -712,91 +674,67 @@
 </blockquote>
 <p>###写在后面<br>如果你觉得我写的不错，欢迎关注我的微信公众号</p>
 <div style="text-align: center"><br><img src="http://7xj5yf.com1.z0.glb.clouddn.com/qrcode_for_gh_62243782e36d_344.jpg" alt="微信公众号"><br></div>
-      
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
+        
       
-        <div class="post-tags">
+
+      <footer class="post-footer">
           
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
-          
-            <a href="/tags/read/" rel="tag"># read</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/02/26/read/和时间做朋友/" rel="next" title="和时间做朋友">
-                <i class="fa fa-chevron-left"></i> 和时间做朋友
-              </a>
+          
+          <div class="post-tags">
+            
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+            
+              <a href="/tags/read/" rel="tag"># read</a>
             
           </div>
+        
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/03/ios/iOS基础知识总结/" rel="prev" title="iOS基础知识总结">
-                iOS基础知识总结 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2016/02/26/read/和时间做朋友/" rel="next" title="和时间做朋友">
+                  <i class="fa fa-chevron-left"></i> 和时间做朋友
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2016/03/03/ios/iOS基础知识总结/" rel="prev" title="iOS基础知识总结">
+                  iOS基础知识总结 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
           </div>
-        </div>
-      
-
-      
-      
-    </footer>
+        
+      </footer>
+    
   </div>
   
   
   
   </article>
 
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
-
-
-          
-
+    
+    <div class="comments" id="gitalk-container"></div>
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
-
-  
-
-
 
         </div>
-        
           
   
   <div class="sidebar-toggle">
@@ -808,140 +746,191 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
+
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/author.jpg"
-                alt="kivi" />
-            
-              <p class="site-author-name" itemprop="name">kivi</p>
-              <p class="site-description motion-element" itemprop="description">nodejs | server</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">58</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
+    <img class="site-author-image" itemprop="image"
+      src="/images/author.jpg"
+      alt="kivi">
+  <p class="site-author-name" itemprop="name">kivi</p>
+  <div class="site-description motion-element" itemprop="description">nodejs | server</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
           
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
+            <a href="/categories/">
           
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
 
-          
 
-          
-          
-
-          
-          
-
-          
 
         </div>
-      </section>
-
-      
-
-      
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">kivi</span>
-
-  
 </div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
 
         
 <div class="busuanzi-count">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i> 访客数量
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i> 浏览量
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
-    </span>
-  
 </div>
 
 
@@ -954,25 +943,54 @@
         
       </div>
     </footer>
-
-    
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
-        
       </div>
-    
 
     
 
   </div>
 
   
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -984,278 +1002,35 @@
 
   
 
-
-
-
-
-
-
-
-
-
-
-
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
 
   
 
 
   
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            // id: window.location.pathname, 
-            id: '1456912019000', 
-            owner: 'CocaCola183',
-            repo: 'CocaCola183.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                proxy_gateway: 'https://dev1pc.7moor.com',
-            
-                client_id: '9aa9571446f523fd0c7f'
-            }});
-        gitment.render('gitment-container');
-      }
-
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+    var gitalk = new Gitalk({
+      clientID: '9aa9571446f523fd0c7f',
+      clientSecret: '237884fa7cb94f497a3da8211fbadfded147b531',
+      repo: 'CocaCola183.github.io',
+      owner: 'CocaCola183',
+      admin: ['CocaCola183'],
+      id: 'fc009fc4c204da3b04fac706064650a2',
+        language: 'zh-CN',
       
-      renderGitment();
-      
-      </script>
-    
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("e99ORGgDvGxLUzH8mhKbAKu0-gzGzoHsz", "INsrz00YWhTssAqr5djkdMAS");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
+      distractionFreeMode: 'true'
     });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
 
 </body>
 </html>
